@@ -8,22 +8,26 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Domain;
+
+
+using DataAccess;
 
 namespace Ophthalmology
 {
     public partial class Authorization : Form
     {
+        ClsUsers users = new ClsUsers();
         public Authorization()
         {
             InitializeComponent();
         }
         #region ЗакрытьСвернутьУвелиичить
+        //Закрыть
         private void iconbtnExitLogin_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
+        //В полный экран
         private void iconBtnMaxLogin_Click(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Normal)
@@ -35,7 +39,7 @@ namespace Ophthalmology
                 WindowState = FormWindowState.Normal;
             }
         }
-
+        //Скрыть
         private void iconBtnMinLogin_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
@@ -80,7 +84,6 @@ namespace Ophthalmology
             }
         }
         #endregion
-
         #region //Перестановка формы
         [DllImport("user32.Dll", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -119,10 +122,9 @@ namespace Ophthalmology
             {
                 if (textBoxPass.Text != "Пароль")
                 {
-                    UserModel users = new UserModel();
                     //Объявляем переменную неявного типа, для входа
                     var validLogin = users.LoginUser(textBoxLogin.Text, textBoxPass.Text);
-                    //Проверка существует ли пользователь и парол   ь 
+                    //Проверка существует ли пользователь и пароль 
                     if (validLogin == true)
                     {
                         //Скрываем форму входа в следующий экземпляр 
@@ -167,6 +169,16 @@ namespace Ophthalmology
             labelError.Visible = false;
             this.Show();
             //textBoxLogin.Focus();
+        }
+
+        private void Authorization_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+           //textBox1.Text = users.sha256(textBoxPass.Text);
         }
     }
 }

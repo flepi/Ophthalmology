@@ -8,6 +8,9 @@ using System.Data;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 
+
+using Common.Cache;
+
 namespace DataAccess
 {
     public class ClsPatients:Connection
@@ -26,7 +29,7 @@ namespace DataAccess
         public DataTable listPatients()
         {
             command.Connection = ConnOpen();
-            command.CommandText = "SELECT * FROM patients";
+            command.CommandText = "SELECT * FROM Patients";
             //Исправляем. чтобы можно использовать несколько строк
             command.CommandType = CommandType.Text;
             leer = command.ExecuteReader();
@@ -40,63 +43,91 @@ namespace DataAccess
         //
         //Метод для добавление пользователя
         //
-        public void AddDoctor(string fio_pat, string address, string med_policy, string phone,string gender, string dob)
+        public void AddPatients(string fio_pat, string med_polis, string street, string num_house, string num_kv, string phone,string dob)
         {
             //MySqlCommand command = new MySqlCommand();
             command.Connection = ConnOpen();
-            command.CommandText = "INSERT INTO `patients` (`fio_pat` , `address` , `med_policy`, `phone`, `gender`, `dob`) " +
-            "VALUES(@fio_pat, @address, @med_policy, @phone, @gender ,@dob)";
+            command.CommandText = "INSERT INTO `Patients` (`fio_pat` , `med_polis` , `street`, `num_house`, `num_kv`, `phone`,`dob`) " +
+            "VALUES(@fio_pat, @med_polis,@street, @num_house,@num_kv, @phone, @dob)";
             //Исправляем. чтобы можно использовать несколько строк
             command.CommandType = CommandType.Text;
             command.Parameters.AddWithValue("@fio_pat", fio_pat);
-            command.Parameters.AddWithValue("@address", address);
-            command.Parameters.AddWithValue("@med_policy", med_policy);
+            command.Parameters.AddWithValue("@med_polis", med_polis);
+            command.Parameters.AddWithValue("@street", street);
+            command.Parameters.AddWithValue("@num_house", num_house);
+            command.Parameters.AddWithValue("@num_kv", num_kv);
             command.Parameters.AddWithValue("@phone", phone);
-            command.Parameters.AddWithValue("@gender", gender);
             command.Parameters.AddWithValue("@dob", dob);
 
             command.ExecuteNonQuery();
             //Очищает параметры 
             command.Parameters.Clear();
+            ConnClose();
         }
         //
         //Метод для редактирования пользователя
         //
-        public void EditDoctor(string fio_pat, string address, string med_policy, string phone, string gender, string dob, int id)
+        public void EditPatients(string fio_pat, string med_polis, string street, string num_house, string num_kv, string phone,string dob, int id)
         {
             //MySqlCommand command = new MySqlCommand();
             command.Connection = ConnOpen();
-            command.CommandText = "UPDATE `patients` SET fio_pat=@fio_pat, address=@address, med_policy=@med_policy, phone=@phone, gender=@gender,dob=@dob WHERE id=@id LIMIT 1";
+            command.CommandText = "UPDATE `Patients` SET fio_pat=@fio_pat, med_polis=@med_polis, street=@street, num_house=@num_house, num_kv=@num_kv,phone=@phone,dob=@dob WHERE id=@id LIMIT 1";
             //"WHERE (id_doc) " +
             //"LIMIT 1";
             //Исправляем. чтобы можно использовать несколько строк
             command.CommandType = CommandType.Text;
             command.Parameters.AddWithValue("@fio_pat", fio_pat);
-            command.Parameters.AddWithValue("@address", address);
-            command.Parameters.AddWithValue("@med_policy", med_policy);
+            command.Parameters.AddWithValue("@med_polis", med_polis);
+            command.Parameters.AddWithValue("@street", street);
+            command.Parameters.AddWithValue("@num_house", num_house);
+            command.Parameters.AddWithValue("@num_kv", num_kv);
             command.Parameters.AddWithValue("@phone", phone);
-            command.Parameters.AddWithValue("@gender", gender);
             command.Parameters.AddWithValue("@dob", dob);
             command.Parameters.AddWithValue("@id", id);
             command.ExecuteNonQuery();
             //Очищает параметры 
             command.Parameters.Clear();
+            ConnClose();
         }
 
         //
         //Удаление
         //
-        public void DeleteDoctor(int id)
+        public void DeletePatients(int id)
         {
             command.Connection = ConnOpen();
-            command.CommandText = "DELETE FROM `patients` WHERE id=@id_doc";
+            command.CommandText = "DELETE FROM `Patients` WHERE id=@id_pat";
             //Исправляем. чтобы можно использовать несколько строк
             command.CommandType = CommandType.Text;
-            command.Parameters.AddWithValue("@id_doc", id);
+            command.Parameters.AddWithValue("@id_pat", id);
 
             command.ExecuteNonQuery();
             //Очищает параметры 
             command.Parameters.Clear();
+            ConnClose();
         }
+
+        //Метод для добавления информации в combobox
+        public DataTable listStreets()
+        {
+            DataTable table = new DataTable();
+            command.Connection = ConnOpen();
+            command.CommandText = "SELECT * FROM t_streets";
+            //Исправляем. чтобы можно использовать несколько строк
+            command.CommandType = CommandType.Text;
+            leer = command.ExecuteReader();
+            //table.Clear();
+            //Таблица будет заполняться sql-запросом 
+            table.Load(leer);
+            ConnClose();
+            return table;
+        }
+        //Метод который возращает значения 
+
+        //public bool CheckPat(string med_polis)
+        //{
+        //    return Check(med_polis);
+        //}
     }
 }
+

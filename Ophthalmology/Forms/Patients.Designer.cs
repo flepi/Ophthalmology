@@ -32,38 +32,21 @@ namespace Ophthalmology
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Patients));
             this.txtBoxPhonePat = new System.Windows.Forms.TextBox();
             this.txtBoxFioPat = new System.Windows.Forms.TextBox();
-            this.txtBoxAddressPat = new System.Windows.Forms.TextBox();
             this.txtBoxMedPat = new System.Windows.Forms.TextBox();
             this.BtnPatientsEdit = new FontAwesome.Sharp.IconButton();
             this.BtnPatientsDel = new FontAwesome.Sharp.IconButton();
             this.BtnPatientsAdd = new FontAwesome.Sharp.IconButton();
             this.buttonExitPatients = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.txtBoxGenderPat = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.cmBoxStreets = new System.Windows.Forms.ComboBox();
+            this.txtNum_house = new System.Windows.Forms.TextBox();
+            this.txtNum_kv = new System.Windows.Forms.TextBox();
+            this.customDateTimePicker1 = new Ophthalmology.CustomDateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePicker1.CalendarForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.dateTimePicker1.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
-            this.dateTimePicker1.CalendarTitleBackColor = System.Drawing.Color.Maroon;
-            this.dateTimePicker1.CalendarTitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.dateTimePicker1.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dateTimePicker1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dateTimePicker1.Location = new System.Drawing.Point(667, 172);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(108, 23);
-            this.dateTimePicker1.TabIndex = 24;
             // 
             // txtBoxPhonePat
             // 
@@ -72,7 +55,7 @@ namespace Ophthalmology
             this.txtBoxPhonePat.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBoxPhonePat.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtBoxPhonePat.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtBoxPhonePat.Location = new System.Drawing.Point(667, 113);
+            this.txtBoxPhonePat.Location = new System.Drawing.Point(667, 163);
             this.txtBoxPhonePat.Name = "txtBoxPhonePat";
             this.txtBoxPhonePat.Size = new System.Drawing.Size(109, 19);
             this.txtBoxPhonePat.TabIndex = 23;
@@ -95,21 +78,6 @@ namespace Ophthalmology
             this.txtBoxFioPat.Enter += new System.EventHandler(this.txtBoxFioPat_Enter);
             this.txtBoxFioPat.Leave += new System.EventHandler(this.txtBoxFioPat_Leave);
             // 
-            // txtBoxAddressPat
-            // 
-            this.txtBoxAddressPat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxAddressPat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
-            this.txtBoxAddressPat.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBoxAddressPat.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtBoxAddressPat.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtBoxAddressPat.Location = new System.Drawing.Point(667, 61);
-            this.txtBoxAddressPat.Name = "txtBoxAddressPat";
-            this.txtBoxAddressPat.Size = new System.Drawing.Size(109, 19);
-            this.txtBoxAddressPat.TabIndex = 21;
-            this.txtBoxAddressPat.Text = " Адрес";
-            this.txtBoxAddressPat.Enter += new System.EventHandler(this.txtBoxAddressPat_Enter);
-            this.txtBoxAddressPat.Leave += new System.EventHandler(this.txtBoxAddressPat_Leave);
-            // 
             // txtBoxMedPat
             // 
             this.txtBoxMedPat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -117,9 +85,9 @@ namespace Ophthalmology
             this.txtBoxMedPat.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBoxMedPat.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtBoxMedPat.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtBoxMedPat.Location = new System.Drawing.Point(667, 87);
+            this.txtBoxMedPat.Location = new System.Drawing.Point(666, 58);
             this.txtBoxMedPat.Name = "txtBoxMedPat";
-            this.txtBoxMedPat.Size = new System.Drawing.Size(109, 19);
+            this.txtBoxMedPat.Size = new System.Drawing.Size(110, 19);
             this.txtBoxMedPat.TabIndex = 20;
             this.txtBoxMedPat.Text = " Мед.Полис";
             this.txtBoxMedPat.Enter += new System.EventHandler(this.txtBoxMedPat_Enter);
@@ -170,7 +138,8 @@ namespace Ophthalmology
             // 
             // BtnPatientsAdd
             // 
-            this.BtnPatientsAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnPatientsAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnPatientsAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
             this.BtnPatientsAdd.FlatAppearance.BorderSize = 0;
             this.BtnPatientsAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(71)))), ((int)(((byte)(26)))));
             this.BtnPatientsAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -180,13 +149,13 @@ namespace Ophthalmology
             this.BtnPatientsAdd.IconColor = System.Drawing.Color.Green;
             this.BtnPatientsAdd.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnPatientsAdd.IconSize = 25;
-            this.BtnPatientsAdd.Location = new System.Drawing.Point(667, 213);
+            this.BtnPatientsAdd.Location = new System.Drawing.Point(666, 229);
             this.BtnPatientsAdd.Name = "BtnPatientsAdd";
             this.BtnPatientsAdd.Size = new System.Drawing.Size(109, 36);
             this.BtnPatientsAdd.TabIndex = 17;
             this.BtnPatientsAdd.Text = "Сохранить";
             this.BtnPatientsAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnPatientsAdd.UseVisualStyleBackColor = true;
+            this.BtnPatientsAdd.UseVisualStyleBackColor = false;
             this.BtnPatientsAdd.Click += new System.EventHandler(this.BtnPatientsAdd_Click);
             // 
             // buttonExitPatients
@@ -213,17 +182,16 @@ namespace Ophthalmology
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeight = 30;
+            this.dataGridView1.ColumnHeadersHeight = 35;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(69)))), ((int)(((byte)(129)))));
@@ -249,48 +217,66 @@ namespace Ophthalmology
             this.dataGridView1.Size = new System.Drawing.Size(659, 301);
             this.dataGridView1.TabIndex = 15;
             // 
-            // txtBoxGenderPat
+            // cmBoxStreets
             // 
-            this.txtBoxGenderPat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxGenderPat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
-            this.txtBoxGenderPat.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBoxGenderPat.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtBoxGenderPat.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtBoxGenderPat.Location = new System.Drawing.Point(667, 139);
-            this.txtBoxGenderPat.Name = "txtBoxGenderPat";
-            this.txtBoxGenderPat.Size = new System.Drawing.Size(38, 19);
-            this.txtBoxGenderPat.TabIndex = 25;
-            this.txtBoxGenderPat.Text = " Пол";
-            this.txtBoxGenderPat.Enter += new System.EventHandler(this.txtBoxGenderPat_Enter);
-            this.txtBoxGenderPat.Leave += new System.EventHandler(this.txtBoxGenderPat_Leave);
+            this.cmBoxStreets.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmBoxStreets.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
+            this.cmBoxStreets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmBoxStreets.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cmBoxStreets.ForeColor = System.Drawing.Color.LightGray;
+            this.cmBoxStreets.FormattingEnabled = true;
+            this.cmBoxStreets.Location = new System.Drawing.Point(666, 82);
+            this.cmBoxStreets.Name = "cmBoxStreets";
+            this.cmBoxStreets.Size = new System.Drawing.Size(109, 25);
+            this.cmBoxStreets.TabIndex = 40;
             // 
-            // checkBox1
+            // txtNum_house
             // 
-            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBox1.ForeColor = System.Drawing.Color.DarkGray;
-            this.checkBox1.Location = new System.Drawing.Point(711, 139);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(38, 21);
-            this.checkBox1.TabIndex = 26;
-            this.checkBox1.Text = "М";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.txtNum_house.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNum_house.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
+            this.txtNum_house.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNum_house.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtNum_house.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtNum_house.Location = new System.Drawing.Point(666, 113);
+            this.txtNum_house.Name = "txtNum_house";
+            this.txtNum_house.Size = new System.Drawing.Size(109, 19);
+            this.txtNum_house.TabIndex = 41;
+            this.txtNum_house.Text = " Номер дома";
+            this.txtNum_house.Enter += new System.EventHandler(this.txtNum_house_Enter);
+            this.txtNum_house.Leave += new System.EventHandler(this.txtNum_house_Leave);
             // 
-            // checkBox2
+            // txtNum_kv
             // 
-            this.checkBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBox2.ForeColor = System.Drawing.Color.DarkGray;
-            this.checkBox2.Location = new System.Drawing.Point(736, 139);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(39, 21);
-            this.checkBox2.TabIndex = 27;
-            this.checkBox2.Text = "Ж";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            this.txtNum_kv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNum_kv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
+            this.txtNum_kv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNum_kv.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtNum_kv.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtNum_kv.Location = new System.Drawing.Point(667, 138);
+            this.txtNum_kv.Name = "txtNum_kv";
+            this.txtNum_kv.Size = new System.Drawing.Size(109, 19);
+            this.txtNum_kv.TabIndex = 42;
+            this.txtNum_kv.Text = " Номер квартиры";
+            this.txtNum_kv.Enter += new System.EventHandler(this.txtNum_kv_Enter);
+            this.txtNum_kv.Leave += new System.EventHandler(this.txtNum_kv_Leave);
+            // 
+            // customDateTimePicker1
+            // 
+            this.customDateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.customDateTimePicker1.BorderColors = System.Drawing.Color.PaleVioletRed;
+            this.customDateTimePicker1.BorderSize = 0;
+            this.customDateTimePicker1.CalendarTitleForeColor = System.Drawing.Color.Green;
+            this.customDateTimePicker1.CustomFormat = "";
+            this.customDateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.customDateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.customDateTimePicker1.Location = new System.Drawing.Point(667, 188);
+            this.customDateTimePicker1.MinimumSize = new System.Drawing.Size(4, 25);
+            this.customDateTimePicker1.Name = "customDateTimePicker1";
+            this.customDateTimePicker1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.customDateTimePicker1.Size = new System.Drawing.Size(109, 25);
+            this.customDateTimePicker1.SkinColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
+            this.customDateTimePicker1.TabIndex = 43;
+            this.customDateTimePicker1.TxtColor = System.Drawing.Color.DarkGray;
             // 
             // Patients
             // 
@@ -298,13 +284,12 @@ namespace Ophthalmology
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(787, 387);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.txtBoxGenderPat);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.customDateTimePicker1);
+            this.Controls.Add(this.txtNum_kv);
+            this.Controls.Add(this.txtNum_house);
+            this.Controls.Add(this.cmBoxStreets);
             this.Controls.Add(this.txtBoxPhonePat);
             this.Controls.Add(this.txtBoxFioPat);
-            this.Controls.Add(this.txtBoxAddressPat);
             this.Controls.Add(this.txtBoxMedPat);
             this.Controls.Add(this.BtnPatientsEdit);
             this.Controls.Add(this.BtnPatientsDel);
@@ -312,6 +297,7 @@ namespace Ophthalmology
             this.Controls.Add(this.buttonExitPatients);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Patients";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Patients";
@@ -323,19 +309,17 @@ namespace Ophthalmology
         }
 
         #endregion
-
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox txtBoxPhonePat;
         private System.Windows.Forms.TextBox txtBoxFioPat;
-        private System.Windows.Forms.TextBox txtBoxAddressPat;
         private System.Windows.Forms.TextBox txtBoxMedPat;
         private FontAwesome.Sharp.IconButton BtnPatientsEdit;
         private FontAwesome.Sharp.IconButton BtnPatientsDel;
         private FontAwesome.Sharp.IconButton BtnPatientsAdd;
         private System.Windows.Forms.Button buttonExitPatients;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox txtBoxGenderPat;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.ComboBox cmBoxStreets;
+        private System.Windows.Forms.TextBox txtNum_house;
+        private System.Windows.Forms.TextBox txtNum_kv;
+        private CustomDateTimePicker customDateTimePicker1;
     }
 }

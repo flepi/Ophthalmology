@@ -32,16 +32,17 @@ namespace Ophthalmology
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Doctors));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.buttonExitDoctors = new System.Windows.Forms.Button();
             this.BtnDoctorsDel = new FontAwesome.Sharp.IconButton();
             this.BtnDoctorsEdit = new FontAwesome.Sharp.IconButton();
             this.BtnDoctorsAdd = new FontAwesome.Sharp.IconButton();
             this.txtBoxCabDoc = new System.Windows.Forms.TextBox();
-            this.txtBoxPositionDoc = new System.Windows.Forms.TextBox();
             this.txtBoxFioDoc = new System.Windows.Forms.TextBox();
             this.txtBoxPhoneDoc = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.cmBoxPosition = new System.Windows.Forms.ComboBox();
+            this.customDateTimePicker1 = new Ophthalmology.CustomDateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,17 +54,16 @@ namespace Ophthalmology
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeight = 30;
+            this.dataGridView1.ColumnHeadersHeight = 35;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(69)))), ((int)(((byte)(129)))));
@@ -80,13 +80,13 @@ namespace Ophthalmology
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.RowHeadersVisible = false;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(69)))), ((int)(((byte)(129)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(621, 301);
+            this.dataGridView1.Size = new System.Drawing.Size(630, 301);
             this.dataGridView1.TabIndex = 0;
             // 
             // buttonExitDoctors
@@ -150,7 +150,8 @@ namespace Ophthalmology
             // 
             // BtnDoctorsAdd
             // 
-            this.BtnDoctorsAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnDoctorsAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnDoctorsAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
             this.BtnDoctorsAdd.FlatAppearance.BorderSize = 0;
             this.BtnDoctorsAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(71)))), ((int)(((byte)(26)))));
             this.BtnDoctorsAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -160,13 +161,13 @@ namespace Ophthalmology
             this.BtnDoctorsAdd.IconColor = System.Drawing.Color.Green;
             this.BtnDoctorsAdd.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnDoctorsAdd.IconSize = 25;
-            this.BtnDoctorsAdd.Location = new System.Drawing.Point(648, 175);
+            this.BtnDoctorsAdd.Location = new System.Drawing.Point(648, 167);
             this.BtnDoctorsAdd.Name = "BtnDoctorsAdd";
             this.BtnDoctorsAdd.Size = new System.Drawing.Size(127, 36);
             this.BtnDoctorsAdd.TabIndex = 2;
             this.BtnDoctorsAdd.Text = "Сохранить";
             this.BtnDoctorsAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnDoctorsAdd.UseVisualStyleBackColor = true;
+            this.BtnDoctorsAdd.UseVisualStyleBackColor = false;
             this.BtnDoctorsAdd.Click += new System.EventHandler(this.BtnDoctorsAdd_Click);
             // 
             // txtBoxCabDoc
@@ -176,28 +177,13 @@ namespace Ophthalmology
             this.txtBoxCabDoc.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBoxCabDoc.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtBoxCabDoc.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtBoxCabDoc.Location = new System.Drawing.Point(648, 83);
+            this.txtBoxCabDoc.Location = new System.Drawing.Point(648, 87);
             this.txtBoxCabDoc.Name = "txtBoxCabDoc";
             this.txtBoxCabDoc.Size = new System.Drawing.Size(127, 19);
             this.txtBoxCabDoc.TabIndex = 10;
             this.txtBoxCabDoc.Text = " Кабинет";
             this.txtBoxCabDoc.Enter += new System.EventHandler(this.txtBoxCabDoc_Enter);
             this.txtBoxCabDoc.Leave += new System.EventHandler(this.txtBoxCabDoc_Leave);
-            // 
-            // txtBoxPositionDoc
-            // 
-            this.txtBoxPositionDoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxPositionDoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
-            this.txtBoxPositionDoc.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBoxPositionDoc.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtBoxPositionDoc.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtBoxPositionDoc.Location = new System.Drawing.Point(648, 57);
-            this.txtBoxPositionDoc.Name = "txtBoxPositionDoc";
-            this.txtBoxPositionDoc.Size = new System.Drawing.Size(127, 19);
-            this.txtBoxPositionDoc.TabIndex = 11;
-            this.txtBoxPositionDoc.Text = " Должность";
-            this.txtBoxPositionDoc.Enter += new System.EventHandler(this.txtBoxPositionDoc_Enter);
-            this.txtBoxPositionDoc.Leave += new System.EventHandler(this.txtBoxPositionDoc_Leave);
             // 
             // txtBoxFioDoc
             // 
@@ -206,7 +192,7 @@ namespace Ophthalmology
             this.txtBoxFioDoc.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBoxFioDoc.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtBoxFioDoc.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtBoxFioDoc.Location = new System.Drawing.Point(648, 31);
+            this.txtBoxFioDoc.Location = new System.Drawing.Point(648, 32);
             this.txtBoxFioDoc.Name = "txtBoxFioDoc";
             this.txtBoxFioDoc.Size = new System.Drawing.Size(127, 19);
             this.txtBoxFioDoc.TabIndex = 12;
@@ -221,7 +207,7 @@ namespace Ophthalmology
             this.txtBoxPhoneDoc.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBoxPhoneDoc.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtBoxPhoneDoc.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtBoxPhoneDoc.Location = new System.Drawing.Point(648, 107);
+            this.txtBoxPhoneDoc.Location = new System.Drawing.Point(648, 111);
             this.txtBoxPhoneDoc.Name = "txtBoxPhoneDoc";
             this.txtBoxPhoneDoc.Size = new System.Drawing.Size(127, 19);
             this.txtBoxPhoneDoc.TabIndex = 13;
@@ -229,22 +215,36 @@ namespace Ophthalmology
             this.txtBoxPhoneDoc.Enter += new System.EventHandler(this.txtBoxPhoneDoc_Enter);
             this.txtBoxPhoneDoc.Leave += new System.EventHandler(this.txtBoxPhoneDoc_Leave);
             // 
-            // dateTimePicker1
+            // cmBoxPosition
             // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePicker1.CalendarForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.dateTimePicker1.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
-            this.dateTimePicker1.CalendarTitleBackColor = System.Drawing.Color.Maroon;
-            this.dateTimePicker1.CalendarTitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.dateTimePicker1.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dateTimePicker1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dateTimePicker1.Location = new System.Drawing.Point(648, 132);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(127, 23);
-            this.dateTimePicker1.TabIndex = 14;
+            this.cmBoxPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmBoxPosition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
+            this.cmBoxPosition.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmBoxPosition.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cmBoxPosition.ForeColor = System.Drawing.Color.LightGray;
+            this.cmBoxPosition.FormattingEnabled = true;
+            this.cmBoxPosition.Location = new System.Drawing.Point(648, 56);
+            this.cmBoxPosition.Name = "cmBoxPosition";
+            this.cmBoxPosition.Size = new System.Drawing.Size(127, 25);
+            this.cmBoxPosition.TabIndex = 39;
+            // 
+            // customDateTimePicker1
+            // 
+            this.customDateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.customDateTimePicker1.BorderColors = System.Drawing.Color.PaleVioletRed;
+            this.customDateTimePicker1.BorderSize = 0;
+            this.customDateTimePicker1.CalendarTitleForeColor = System.Drawing.Color.Green;
+            this.customDateTimePicker1.CustomFormat = "";
+            this.customDateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.customDateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.customDateTimePicker1.Location = new System.Drawing.Point(648, 136);
+            this.customDateTimePicker1.MinimumSize = new System.Drawing.Size(4, 25);
+            this.customDateTimePicker1.Name = "customDateTimePicker1";
+            this.customDateTimePicker1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.customDateTimePicker1.Size = new System.Drawing.Size(127, 25);
+            this.customDateTimePicker1.SkinColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
+            this.customDateTimePicker1.TabIndex = 41;
+            this.customDateTimePicker1.TxtColor = System.Drawing.Color.DarkGray;
             // 
             // Doctors
             // 
@@ -252,10 +252,10 @@ namespace Ophthalmology
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(787, 387);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.customDateTimePicker1);
+            this.Controls.Add(this.cmBoxPosition);
             this.Controls.Add(this.txtBoxPhoneDoc);
             this.Controls.Add(this.txtBoxFioDoc);
-            this.Controls.Add(this.txtBoxPositionDoc);
             this.Controls.Add(this.txtBoxCabDoc);
             this.Controls.Add(this.BtnDoctorsEdit);
             this.Controls.Add(this.BtnDoctorsDel);
@@ -263,6 +263,7 @@ namespace Ophthalmology
             this.Controls.Add(this.buttonExitDoctors);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Doctors";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "doctors";
@@ -281,9 +282,9 @@ namespace Ophthalmology
         private FontAwesome.Sharp.IconButton BtnDoctorsEdit;
         private FontAwesome.Sharp.IconButton BtnDoctorsAdd;
         private System.Windows.Forms.TextBox txtBoxCabDoc;
-        private System.Windows.Forms.TextBox txtBoxPositionDoc;
         private System.Windows.Forms.TextBox txtBoxFioDoc;
         private System.Windows.Forms.TextBox txtBoxPhoneDoc;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ComboBox cmBoxPosition;
+        private CustomDateTimePicker customDateTimePicker1;
     }
 }

@@ -126,6 +126,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\Authorization.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,17 +141,35 @@
     <Compile Include="Forms\Doctors.Designer.cs">
       <DependentUpon>Doctors.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ListRegistration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ListRegistration.Designer.cs">
+      <DependentUpon>ListRegistration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\PatCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PatCard.Designer.cs">
+      <DependentUpon>PatCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Patients.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Patients.Designer.cs">
       <DependentUpon>Patients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Registration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Registration.Designer.cs">
+      <DependentUpon>Registration.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Services.cs">
       <SubType>Form</SubType>
@@ -170,11 +191,20 @@
     <EmbeddedResource Include="Forms\Doctors.resx">
       <DependentUpon>Doctors.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ListRegistration.resx">
+      <DependentUpon>ListRegistration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PatCard.resx">
+      <DependentUpon>PatCard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Patients.resx">
       <DependentUpon>Patients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Registration.resx">
+      <DependentUpon>Registration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Services.resx">
       <DependentUpon>Services.cs</DependentUpon>
@@ -187,6 +217,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Forms\WelcomeForm.resx">
       <DependentUpon>WelcomeForm.cs</DependentUpon>
@@ -222,6 +253,11 @@
       <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\calendarWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendarDark.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

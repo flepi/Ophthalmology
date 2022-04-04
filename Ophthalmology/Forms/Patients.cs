@@ -16,7 +16,7 @@ namespace Ophthalmology
 {
     public partial class Patients : Form
     {
-        DataAccess.ClsPatients OutPutPatients = new DataAccess.ClsPatients();
+        ClsPatients OutPutPatients = new ClsPatients();
         private string idPat = null;
         //Переменная для применнеия редактирования на кнопке сохранить
         private bool EditPat = false;
@@ -24,6 +24,9 @@ namespace Ophthalmology
         public Patients()
         {
             InitializeComponent();
+            //Свойства combobox-a для поиска 
+            cmBoxStreets.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmBoxStreets.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
 
         private void buttonExitPatients_Click(object sender, EventArgs e)
@@ -42,15 +45,16 @@ namespace Ophthalmology
             dataGridView1.Columns[4].Visible = true;
             dataGridView1.Columns[5].Visible = true;
             dataGridView1.Columns[6].Visible = true;
+            dataGridView1.Columns[7].Visible = true;
             //Ширина полей
             dataGridView1.Columns[0].FillWeight = 7;
-            dataGridView1.Columns[1].FillWeight = 15;
-            dataGridView1.Columns[2].FillWeight = 25;
-            dataGridView1.Columns[3].FillWeight = 15;
-            dataGridView1.Columns[4].FillWeight = 15;
+            dataGridView1.Columns[1].FillWeight = 23;
+            dataGridView1.Columns[2].FillWeight = 20;
+            dataGridView1.Columns[3].FillWeight = 20;
+            dataGridView1.Columns[4].FillWeight = 8;
             dataGridView1.Columns[5].FillWeight = 8;
-            dataGridView1.Columns[6].FillWeight = 13;
-
+            dataGridView1.Columns[6].FillWeight = 15;
+            dataGridView1.Columns[7].FillWeight = 15;
             //Растягивание полей грида
             dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -59,18 +63,31 @@ namespace Ophthalmology
             dataGridView1.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //Заголовки
+            dataGridView1.Columns[0].HeaderText = "id";
+            dataGridView1.Columns[1].HeaderText = "ФИО Пациента";
+            dataGridView1.Columns[2].HeaderText = "Мед.Полис";
+            dataGridView1.Columns[3].HeaderText = "Улица";
+            dataGridView1.Columns[4].HeaderText = "Дом";
+            dataGridView1.Columns[5].HeaderText = "Кв.";
+            dataGridView1.Columns[6].HeaderText = "Телефон";
+            dataGridView1.Columns[7].HeaderText = "Дата рождения";
             //Убираем заголовки строк
             //dataGridView1.RowHeadersVisible = false;
             //Показываем заголовки столбцов
             dataGridView1.ColumnHeadersVisible = true;
 
-            if (UserCache.Position == Positions.Guest)
+            if (UserCache.role == Positions.Register)
             {
                 BtnPatientsAdd.Enabled = false;
                 BtnPatientsEdit.Enabled = false;
                 BtnPatientsDel.Enabled = false;
             }
-
+            //Вывод информации в combobox
+            cmBoxStreets.DataSource = OutPutPatients.listStreets();
+            cmBoxStreets.DisplayMember = "street_name"; // Вывод информации в cbmbox
+            cmBoxStreets.ValueMember = "id";
         }
 
 
@@ -88,7 +105,7 @@ namespace Ophthalmology
                 try
                 {
                     OutPutPatients.ConnOpen();
-                    OutPutPatients.AddDoctor(txtBoxFioPat.Text, txtBoxAddressPat.Text, txtBoxMedPat.Text, txtBoxPhonePat.Text, txtBoxGenderPat.Text, dateTimePicker1.Value.ToString("yyyy-MM-dd"));
+                    OutPutPatients.AddPatients(txtBoxFioPat.Text, txtBoxMedPat.Text, cmBoxStreets.Text,txtNum_house.Text, txtNum_kv.Text ,txtBoxPhonePat.Text,customDateTimePicker1.Value.ToString("yyyy-MM-dd"));
                     MessageBox.Show(" Пользователь успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //Обновление  таблицы
                     dataGridView1.DataSource = OutPutPatients.listPatients();
@@ -114,7 +131,7 @@ namespace Ophthalmology
              {
                 try
                 {
-                    OutPutPatients.EditDoctor(txtBoxFioPat.Text, txtBoxAddressPat.Text, txtBoxMedPat.Text, txtBoxPhonePat.Text, txtBoxGenderPat.Text, dateTimePicker1.Value.ToString("yyyy-MM-dd"), Convert.ToInt32(idPat));
+                    OutPutPatients.EditPatients(txtBoxFioPat.Text, txtBoxMedPat.Text, cmBoxStreets.Text, txtNum_house.Text, txtNum_kv.Text, txtBoxPhonePat.Text, customDateTimePicker1.Value.ToString("yyyy-MM-dd"), Convert.ToInt32(idPat));
                     MessageBox.Show(" Пользователь успешно изменен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //Обновление  таблицы
                     dataGridView1.DataSource = OutPutPatients.listPatients();
@@ -132,7 +149,7 @@ namespace Ophthalmology
             }
         }
 
-        //Изменить
+        //Кнопка Изменить
         private void BtnPatientsEdit_Click(object sender, EventArgs e)
         {
             //Если выделены ячейки
@@ -141,26 +158,15 @@ namespace Ophthalmology
                 EditPat = true;
                 //Имя тексового поля равно значению ячейки, выбранная в имя столбца 
                 txtBoxFioPat.Text = dataGridView1.CurrentRow.Cells["fio_pat"].Value.ToString();
-                txtBoxAddressPat.Text = dataGridView1.CurrentRow.Cells["address"].Value.ToString();
-                txtBoxMedPat.Text = dataGridView1.CurrentRow.Cells["med_policy"].Value.ToString();
+                txtBoxMedPat.Text = dataGridView1.CurrentRow.Cells["med_polis"].Value.ToString();
+                cmBoxStreets.Text = dataGridView1.CurrentRow.Cells["street"].Value.ToString();
+                txtNum_house.Text = dataGridView1.CurrentRow.Cells["num_house"].Value.ToString();
+                txtNum_kv.Text = dataGridView1.CurrentRow.Cells["num_kv"].Value.ToString();
                 txtBoxPhonePat.Text = dataGridView1.CurrentRow.Cells["phone"].Value.ToString();
-
-                //combobox в datagrid
-                //DataGridViewComboBoxColumn combo = new DataGridViewComboBoxColumn();
-                //combo.HeaderText = "gender";
-                //combo.Name = "combo";
-                //ArrayList row = new ArrayList();
-                //row = new ArrayList();
-                //row.AddRange(new string[] { "М", "Ж" });
-                //combo.Items.AddRange(row.ToArray());
-
-                //dataGridView1.Columns.Add(combo);
-
-                txtBoxGenderPat.Text = dataGridView1.CurrentRow.Cells["gender"].Value.ToString();
                 //Переменная дата рождения
                 DateTime dt_pat;
                 dt_pat = Convert.ToDateTime(dataGridView1.CurrentRow.Cells["dob"].Value.ToString());
-                dateTimePicker1.Value = dt_pat;
+                customDateTimePicker1.Value = dt_pat;
                 idPat = dataGridView1.CurrentRow.Cells["id"].Value.ToString();
             }
             else
@@ -172,10 +178,10 @@ namespace Ophthalmology
         private void ClearTxt()
         {
             txtBoxFioPat.Text = " ФИО Пациента";
-            txtBoxAddressPat.Text = " Адрес";
             txtBoxMedPat.Text = " Мед.Полис";
+            txtNum_house.Text = " Номер дома";
+            txtNum_kv.Text = " Номер квартиры";
             txtBoxPhonePat.Text = " Телефон";
-            txtBoxGenderPat.Text = " Пол";
         }
 
 
@@ -188,7 +194,7 @@ namespace Ophthalmology
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 idPat = dataGridView1.CurrentRow.Cells["id"].Value.ToString();
-                OutPutPatients.DeleteDoctor(Convert.ToInt32(idPat));
+                OutPutPatients.DeletePatients(Convert.ToInt32(idPat));
                 MessageBox.Show("Пользователь удалён");
                 //Обновление  таблицы
                 dataGridView1.DataSource = OutPutPatients.listPatients();
@@ -218,25 +224,6 @@ namespace Ophthalmology
                 txtBoxFioPat.ForeColor = Color.DarkGray;
             }
         }
-
-        private void txtBoxAddressPat_Enter(object sender, EventArgs e)
-        {
-            if (txtBoxAddressPat.Text == " Адрес")
-            {
-                txtBoxAddressPat.Text = "";
-                txtBoxAddressPat.ForeColor = Color.White;
-            }
-        }
-
-        private void txtBoxAddressPat_Leave(object sender, EventArgs e)
-        {
-            if (txtBoxAddressPat.Text == "")
-            {
-                txtBoxAddressPat.Text = " Адрес";
-                txtBoxAddressPat.ForeColor = Color.DarkGray;
-            }
-        }
-
         private void txtBoxMedPat_Enter(object sender, EventArgs e)
         {
             if (txtBoxMedPat.Text == " Мед.Полис")
@@ -273,43 +260,41 @@ namespace Ophthalmology
             }
         }
 
-        private void txtBoxGenderPat_Enter(object sender, EventArgs e)
+        private void txtNum_house_Enter(object sender, EventArgs e)
         {
-            if (txtBoxGenderPat.Text == " Пол")
+            if (txtNum_house.Text == " Номер дома")
             {
-                txtBoxGenderPat.Text = "";
-                txtBoxGenderPat.ForeColor = Color.White;
+                txtNum_house.Text = "";
+                txtNum_house.ForeColor = Color.White;
             }
         }
 
-        private void txtBoxGenderPat_Leave(object sender, EventArgs e)
+        private void txtNum_house_Leave(object sender, EventArgs e)
         {
-            if(txtBoxGenderPat.Text == "")
+            if (txtNum_house.Text == "")
             {
-                txtBoxGenderPat.Text = " Пол";
-                txtBoxGenderPat.ForeColor = Color.DarkGray;
+                txtNum_house.Text = " Номер дома";
+                txtNum_house.ForeColor = Color.DarkGray;
+            }
+        }
+
+        private void txtNum_kv_Enter(object sender, EventArgs e)
+        {
+            if (txtNum_kv.Text == " Номер квартиры")
+            {
+                txtNum_kv.Text = "";
+                txtNum_kv.ForeColor = Color.White;
+            }
+        }
+
+        private void txtNum_kv_Leave(object sender, EventArgs e)
+        {
+            if (txtNum_kv.Text == "")
+            {
+                txtNum_kv.Text = " Номер квартиры";
+                txtNum_kv.ForeColor = Color.DarkGray;
             }
         }
         #endregion
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox1.Checked)
-            {
-                txtBoxGenderPat.Text = "Муж";
-            }
-            else
-                txtBoxGenderPat.Text = " Пол";
-        }
-
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox2.Checked)
-            {
-                txtBoxGenderPat.Text = "Жен";
-            }
-            else
-                txtBoxGenderPat.Text = " Пол";
-        }
     }
 }

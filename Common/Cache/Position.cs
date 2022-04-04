@@ -8,11 +8,11 @@ namespace Common.Cache
 {
     public struct Positions
     {
-        //Объявляем постоянные перменные с помощью значения каждого заряда 
+        //Объявляем постоянные переменные с помощью значения каждого заряда 
         //Можно использовать его столько раз,сколько необходимо, без орфографических ошибок
         //и при необходимости вносить изменения
         public const string Administrator = "Администратор";
-        public const string Employees = "Сотрудник";
-        public const string Guest = "Гость";
+        public const string Director = "Директор";
+        public const string Register = "Регистратор";
     }
 }

@@ -11,10 +11,13 @@ namespace Common.Cache
     //Данные о пользователе, который входит в систему
     public static class UserCache
     {
-        public static int Id { get; set; }
-        public static string Name { get; set; }
-        public static string Position { get; set; }
-        public static string Email { get; set; }
+        public static int id { get; set; }
+        public static string name { get; set; }
+        public static string role { get; set; }
 
+
+
+
+        public static string med_polis { get; set; }
     }
 }

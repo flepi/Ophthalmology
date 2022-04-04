@@ -25,7 +25,7 @@ namespace DataAccess
         public DataTable listDoctors()
         {
             command.Connection = ConnOpen();
-            command.CommandText = "SELECT * FROM doctors";
+            command.CommandText = "SELECT * FROM Doctors";
             //Исправляем. чтобы можно использовать несколько строк
             command.CommandType = CommandType.Text;
             leer = command.ExecuteReader();
@@ -44,7 +44,7 @@ namespace DataAccess
         {
             //MySqlCommand command = new MySqlCommand();
                 command.Connection = ConnOpen();
-                command.CommandText = "INSERT INTO `doctors` (`fio_doc` , `position` , `cab`, `phone`, `dob`) " +
+                command.CommandText = "INSERT INTO `Doctors` (`fio_doc` , `position` , `cab`, `phone`, `dob`) " +
                 "VALUES(@fio_doc, @position, @cabinet, @phone, @dob)";
             //Исправляем. чтобы можно использовать несколько строк
                 command.CommandType = CommandType.Text;
@@ -68,7 +68,7 @@ namespace DataAccess
         {
             //MySqlCommand command = new MySqlCommand();
                 command.Connection = ConnOpen();
-                command.CommandText = "UPDATE `doctors` SET fio_doc=@fio_doc, position=@position,cab=@cabinet,phone=@phone,dob=@dob WHERE id=@id LIMIT 1";
+                command.CommandText = "UPDATE `Doctors` SET fio_doc=@fio_doc, position=@position,cab=@cabinet,phone=@phone,dob=@dob WHERE id=@id LIMIT 1";
             //"WHERE (id_doc) " +
             //"LIMIT 1";
             //Исправляем. чтобы можно использовать несколько строк
@@ -90,7 +90,7 @@ namespace DataAccess
         public void DeleteDoctor(int id)
         {
             command.Connection = ConnOpen();
-            command.CommandText = "DELETE FROM `doctors` WHERE id=@id_doc";
+            command.CommandText = "DELETE FROM `Doctors` WHERE id=@id_doc";
             //Исправляем. чтобы можно использовать несколько строк
             command.CommandType = CommandType.Text;
             command.Parameters.AddWithValue("@id_doc", id);
@@ -98,6 +98,22 @@ namespace DataAccess
             command.ExecuteNonQuery();
             //Очищает параметры 
             command.Parameters.Clear();
+        }
+
+        //Метод для добавления информации в combobox
+        public DataTable listPosition()
+        {
+            DataTable table = new DataTable();
+            command.Connection = ConnOpen();
+            command.CommandText = "SELECT * FROM t_position ";
+            //Исправляем. чтобы можно использовать несколько строк
+            command.CommandType = CommandType.Text;
+            leer = command.ExecuteReader();
+            //table.Clear();
+            //Таблица будет заполняться sql-запросом 
+            table.Load(leer);
+            ConnClose();
+            return table;
         }
 
     }

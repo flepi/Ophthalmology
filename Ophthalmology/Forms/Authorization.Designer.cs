@@ -141,6 +141,7 @@ namespace Ophthalmology
             // 
             // labelLogin
             // 
+            this.labelLogin.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelLogin.AutoSize = true;
             this.labelLogin.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelLogin.ForeColor = System.Drawing.Color.DimGray;
@@ -270,10 +271,12 @@ namespace Ophthalmology
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.shapeContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Authorization";
             this.Opacity = 0.85D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Authorization";
+            this.Load += new System.EventHandler(this.Authorization_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Authorization_MouseDown);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogin)).EndInit();

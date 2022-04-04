@@ -18,8 +18,6 @@ namespace DataAccess
         DataTable table = new DataTable();
         //Добавляем sql-запрос для запуска
         MySqlCommand command = new MySqlCommand();
-        public string name;
-
         //
         //Метод для отображения записей
         //
@@ -28,7 +26,7 @@ namespace DataAccess
             // ORDER BY `name`
             DataTable table = new DataTable();
             command.Connection = ConnOpen();
-            command.CommandText = "SELECT * FROM t_services ";
+            command.CommandText = "SELECT * FROM t_services";
             //Исправляем. чтобы можно использовать несколько строк
             command.CommandType = CommandType.Text;
             leer = command.ExecuteReader();
@@ -38,63 +36,79 @@ namespace DataAccess
             ConnClose();
             return table;
         }
+        //
+        //Метод для добавление пользователя
+        //
+        public void AddServices(string service, decimal price, string doc)
+        {
+            //MySqlCommand command = new MySqlCommand();
+            command.Connection = ConnOpen();
+            command.CommandText = "INSERT INTO `t_services` (`name_service` , `price` , `doc`)" +
+            "VALUES(@service, @price,@doc)";
+            //Исправляем. чтобы можно использовать несколько строк
+            command.CommandType = CommandType.Text;
+            command.Parameters.AddWithValue("@service", service);
+            command.Parameters.AddWithValue("@price", price);
+            command.Parameters.AddWithValue("@doc", doc);
+            command.ExecuteNonQuery();
+            //Очищает параметры 
+            command.Parameters.Clear();
+            ConnClose();
+        }
+        //
+        //Метод для редактирования пользователя
+        //
+        public void EditServices(string service, decimal price, string doc, int id)
+        {
+            //MySqlCommand command = new MySqlCommand();
+            command.Connection = ConnOpen();
+            command.CommandText = "UPDATE `t_services` SET name_service=@service, price=@price, doc=@doc WHERE id=@id LIMIT 1";
+            //"WHERE (id_doc) " +
+            //"LIMIT 1";
+            //Исправляем. чтобы можно использовать несколько строк
+            command.CommandType = CommandType.Text;
+            command.Parameters.AddWithValue("@service", service);
+            command.Parameters.AddWithValue("@price", price);
+            command.Parameters.AddWithValue("@doc", doc);
+            command.Parameters.AddWithValue("@id", id);
+            command.ExecuteNonQuery();
+            //Очищает параметры 
+            command.Parameters.Clear();
+            ConnClose();
+        }
 
-        //        SELECT name_service, price
-        //FROM t_services
-        //INNER JOIN Diagnostics ON t_services.`name` = Diagnostics.id
+        //
+        //Удаление
+        //
+        public void DeleteServices(int id)
+        {
+            command.Connection = ConnOpen();
+            command.CommandText = "DELETE FROM `t_services` WHERE id=@id";
+            //Исправляем. чтобы можно использовать несколько строк
+            command.CommandType = CommandType.Text;
+            command.Parameters.AddWithValue("@id", id);
 
-        //Правильный  в sql, но не работает
-        //select Diagnostics.id , Diagnostics.name_service, Diagnostics.price from Diagnostics INNER JOIN t_services WHERE t_services.id = Diagnostics.name_service
-        //public  DataTable listDiagnostics()
-        //{
-        //    DataTable table = new DataTable();
-        //    command.Connection = ConnOpen();
-        //    command.CommandText = "SELECT All_services.`сategory`, All_services.name_services , All_services.price  FROM All_services INNER JOIN t_services ON  t_services.`name`= All_services.`сategory` where t_services.`name` = 'Диагностика'";
-        //    //Исправляем. чтобы можно использовать несколько строк
-        //    command.CommandType = CommandType.Text;
-        //    leer = command.ExecuteReader();
-        //    //table.Clear();
-        //    ////Таблица будет заполняться sql-запросом 
-        //    table.Load(leer);
-        //    ConnClose();
-        //    return table;
-        //}
+            command.ExecuteNonQuery();
+            //Очищает параметры 
+            command.Parameters.Clear();
+            ConnClose();
+        }
 
-        //public DataSet Addqwe(ComboBox cmd)
-        //{
-        //    //MySqlCommand command = new MySqlCommand();
-        //    DataSet table = new DataSet();
-        //    command.Connection = ConnOpen();
-        //    command.CommandText = "select * from  Diagnostics INNER JOIN t_services where t_services.`name` = @name";
-        //    //Исправляем. чтобы можно использовать несколько строк
-        //    command.CommandType = CommandType.Text;
-        //    command.Parameters.AddWithValue("@name", cmd);
-        //    command.ExecuteNonQuery();
-        //    //Очищает параметры 
-        //    command.Parameters.Clear();
-        //    ConnClose();
-        //    return table;
-
-        //}
-
-
-        public DataTable listLaser()
+        //Метод для добавления информации в combobox
+        public DataTable listDoctors()
         {
             DataTable table = new DataTable();
             command.Connection = ConnOpen();
-            command.CommandText = "SELECT All_services.`сategory`, All_services.name_services , All_services.price  FROM All_services INNER JOIN t_services ON  t_services.`name`= All_services.`сategory` where t_services.`name` = 'Консультация'"; 
+            command.CommandText = "SELECT * FROM Doctors";
             //Исправляем. чтобы можно использовать несколько строк
             command.CommandType = CommandType.Text;
+            //command.Parameters.AddWithValue("@position", position);
             leer = command.ExecuteReader();
-            //table.Clear();
-            ////Таблица будет заполняться sql-запросом 
+            table.Clear();
+            //Таблица будет заполняться sql-запросом 
             table.Load(leer);
             ConnClose();
             return table;
         }
-
-
-
-
     }
 }

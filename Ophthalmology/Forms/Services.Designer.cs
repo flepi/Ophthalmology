@@ -32,18 +32,15 @@ namespace Ophthalmology.Forms
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Services));
             this.buttonExitDoctors = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.txtBoxPhoneDoc = new System.Windows.Forms.TextBox();
-            this.txtBoxFioDoc = new System.Windows.Forms.TextBox();
-            this.txtBoxPositionDoc = new System.Windows.Forms.TextBox();
-            this.txtBoxCabDoc = new System.Windows.Forms.TextBox();
-            this.BtnDoctorsEdit = new FontAwesome.Sharp.IconButton();
-            this.BtnDoctorsDel = new FontAwesome.Sharp.IconButton();
-            this.BtnDoctorsAdd = new FontAwesome.Sharp.IconButton();
+            this.txtBoxService = new System.Windows.Forms.TextBox();
+            this.txtBoxPrice = new System.Windows.Forms.TextBox();
+            this.BtnServicesEdit = new FontAwesome.Sharp.IconButton();
+            this.BtnServicesDel = new FontAwesome.Sharp.IconButton();
+            this.BtnServicesAdd = new FontAwesome.Sharp.IconButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxDoc = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,135 +60,100 @@ namespace Ophthalmology.Forms
             this.buttonExitDoctors.UseVisualStyleBackColor = true;
             this.buttonExitDoctors.Click += new System.EventHandler(this.buttonExitDoctors_Click);
             // 
-            // dateTimePicker1
+            // txtBoxService
             // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePicker1.CalendarForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.dateTimePicker1.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
-            this.dateTimePicker1.CalendarTitleBackColor = System.Drawing.Color.Maroon;
-            this.dateTimePicker1.CalendarTitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.dateTimePicker1.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dateTimePicker1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dateTimePicker1.Location = new System.Drawing.Point(648, 133);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(127, 23);
-            this.dateTimePicker1.TabIndex = 23;
+            this.txtBoxService.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxService.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
+            this.txtBoxService.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtBoxService.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtBoxService.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtBoxService.Location = new System.Drawing.Point(629, 46);
+            this.txtBoxService.Name = "txtBoxService";
+            this.txtBoxService.Size = new System.Drawing.Size(146, 19);
+            this.txtBoxService.TabIndex = 21;
+            this.txtBoxService.Text = " Услуга";
+            this.txtBoxService.Enter += new System.EventHandler(this.txtBoxService_Enter);
+            this.txtBoxService.Leave += new System.EventHandler(this.txtBoxService_Leave);
             // 
-            // txtBoxPhoneDoc
+            // txtBoxPrice
             // 
-            this.txtBoxPhoneDoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxPhoneDoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
-            this.txtBoxPhoneDoc.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBoxPhoneDoc.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtBoxPhoneDoc.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtBoxPhoneDoc.Location = new System.Drawing.Point(648, 108);
-            this.txtBoxPhoneDoc.Name = "txtBoxPhoneDoc";
-            this.txtBoxPhoneDoc.Size = new System.Drawing.Size(127, 19);
-            this.txtBoxPhoneDoc.TabIndex = 22;
-            this.txtBoxPhoneDoc.Text = " Телефон";
+            this.txtBoxPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
+            this.txtBoxPrice.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtBoxPrice.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtBoxPrice.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtBoxPrice.Location = new System.Drawing.Point(629, 72);
+            this.txtBoxPrice.Name = "txtBoxPrice";
+            this.txtBoxPrice.Size = new System.Drawing.Size(146, 19);
+            this.txtBoxPrice.TabIndex = 20;
+            this.txtBoxPrice.Text = " Стоимость";
+            this.txtBoxPrice.Enter += new System.EventHandler(this.txtBoxPrice_Enter);
+            this.txtBoxPrice.Leave += new System.EventHandler(this.txtBoxPrice_Leave);
             // 
-            // txtBoxFioDoc
+            // BtnServicesEdit
             // 
-            this.txtBoxFioDoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxFioDoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
-            this.txtBoxFioDoc.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBoxFioDoc.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtBoxFioDoc.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtBoxFioDoc.Location = new System.Drawing.Point(648, 32);
-            this.txtBoxFioDoc.Name = "txtBoxFioDoc";
-            this.txtBoxFioDoc.Size = new System.Drawing.Size(127, 19);
-            this.txtBoxFioDoc.TabIndex = 21;
-            this.txtBoxFioDoc.Text = " ФИО Доктора";
+            this.BtnServicesEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BtnServicesEdit.FlatAppearance.BorderSize = 0;
+            this.BtnServicesEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.BtnServicesEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnServicesEdit.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.BtnServicesEdit.ForeColor = System.Drawing.Color.LightGray;
+            this.BtnServicesEdit.IconChar = FontAwesome.Sharp.IconChar.UserEdit;
+            this.BtnServicesEdit.IconColor = System.Drawing.Color.SandyBrown;
+            this.BtnServicesEdit.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnServicesEdit.IconSize = 25;
+            this.BtnServicesEdit.Location = new System.Drawing.Point(22, 339);
+            this.BtnServicesEdit.Name = "BtnServicesEdit";
+            this.BtnServicesEdit.Size = new System.Drawing.Size(113, 36);
+            this.BtnServicesEdit.TabIndex = 18;
+            this.BtnServicesEdit.Text = "Изменить";
+            this.BtnServicesEdit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnServicesEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnServicesEdit.UseVisualStyleBackColor = true;
+            this.BtnServicesEdit.Click += new System.EventHandler(this.BtnServicesEdit_Click);
             // 
-            // txtBoxPositionDoc
+            // BtnServicesDel
             // 
-            this.txtBoxPositionDoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxPositionDoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
-            this.txtBoxPositionDoc.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBoxPositionDoc.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtBoxPositionDoc.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtBoxPositionDoc.Location = new System.Drawing.Point(648, 58);
-            this.txtBoxPositionDoc.Name = "txtBoxPositionDoc";
-            this.txtBoxPositionDoc.Size = new System.Drawing.Size(127, 19);
-            this.txtBoxPositionDoc.TabIndex = 20;
-            this.txtBoxPositionDoc.Text = " Должность";
+            this.BtnServicesDel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BtnServicesDel.FlatAppearance.BorderSize = 0;
+            this.BtnServicesDel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.BtnServicesDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnServicesDel.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.BtnServicesDel.ForeColor = System.Drawing.Color.LightGray;
+            this.BtnServicesDel.IconChar = FontAwesome.Sharp.IconChar.UserMinus;
+            this.BtnServicesDel.IconColor = System.Drawing.Color.Red;
+            this.BtnServicesDel.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnServicesDel.IconSize = 25;
+            this.BtnServicesDel.Location = new System.Drawing.Point(151, 339);
+            this.BtnServicesDel.Name = "BtnServicesDel";
+            this.BtnServicesDel.Size = new System.Drawing.Size(113, 36);
+            this.BtnServicesDel.TabIndex = 17;
+            this.BtnServicesDel.Text = "Удалить";
+            this.BtnServicesDel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnServicesDel.UseVisualStyleBackColor = true;
+            this.BtnServicesDel.Click += new System.EventHandler(this.BtnServicesDel_Click);
             // 
-            // txtBoxCabDoc
+            // BtnServicesAdd
             // 
-            this.txtBoxCabDoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxCabDoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
-            this.txtBoxCabDoc.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBoxCabDoc.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtBoxCabDoc.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtBoxCabDoc.Location = new System.Drawing.Point(648, 84);
-            this.txtBoxCabDoc.Name = "txtBoxCabDoc";
-            this.txtBoxCabDoc.Size = new System.Drawing.Size(127, 19);
-            this.txtBoxCabDoc.TabIndex = 19;
-            this.txtBoxCabDoc.Text = " Кабинет";
-            // 
-            // BtnDoctorsEdit
-            // 
-            this.BtnDoctorsEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnDoctorsEdit.FlatAppearance.BorderSize = 0;
-            this.BtnDoctorsEdit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.BtnDoctorsEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnDoctorsEdit.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BtnDoctorsEdit.ForeColor = System.Drawing.Color.LightGray;
-            this.BtnDoctorsEdit.IconChar = FontAwesome.Sharp.IconChar.UserEdit;
-            this.BtnDoctorsEdit.IconColor = System.Drawing.Color.SandyBrown;
-            this.BtnDoctorsEdit.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnDoctorsEdit.IconSize = 25;
-            this.BtnDoctorsEdit.Location = new System.Drawing.Point(12, 339);
-            this.BtnDoctorsEdit.Name = "BtnDoctorsEdit";
-            this.BtnDoctorsEdit.Size = new System.Drawing.Size(113, 36);
-            this.BtnDoctorsEdit.TabIndex = 18;
-            this.BtnDoctorsEdit.Text = "Изменить";
-            this.BtnDoctorsEdit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnDoctorsEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnDoctorsEdit.UseVisualStyleBackColor = true;
-            // 
-            // BtnDoctorsDel
-            // 
-            this.BtnDoctorsDel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnDoctorsDel.FlatAppearance.BorderSize = 0;
-            this.BtnDoctorsDel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.BtnDoctorsDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnDoctorsDel.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BtnDoctorsDel.ForeColor = System.Drawing.Color.LightGray;
-            this.BtnDoctorsDel.IconChar = FontAwesome.Sharp.IconChar.UserMinus;
-            this.BtnDoctorsDel.IconColor = System.Drawing.Color.Red;
-            this.BtnDoctorsDel.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnDoctorsDel.IconSize = 25;
-            this.BtnDoctorsDel.Location = new System.Drawing.Point(131, 339);
-            this.BtnDoctorsDel.Name = "BtnDoctorsDel";
-            this.BtnDoctorsDel.Size = new System.Drawing.Size(113, 36);
-            this.BtnDoctorsDel.TabIndex = 17;
-            this.BtnDoctorsDel.Text = "Удалить";
-            this.BtnDoctorsDel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnDoctorsDel.UseVisualStyleBackColor = true;
-            // 
-            // BtnDoctorsAdd
-            // 
-            this.BtnDoctorsAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnDoctorsAdd.FlatAppearance.BorderSize = 0;
-            this.BtnDoctorsAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(71)))), ((int)(((byte)(26)))));
-            this.BtnDoctorsAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnDoctorsAdd.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BtnDoctorsAdd.ForeColor = System.Drawing.Color.LightGray;
-            this.BtnDoctorsAdd.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
-            this.BtnDoctorsAdd.IconColor = System.Drawing.Color.Green;
-            this.BtnDoctorsAdd.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnDoctorsAdd.IconSize = 25;
-            this.BtnDoctorsAdd.Location = new System.Drawing.Point(648, 176);
-            this.BtnDoctorsAdd.Name = "BtnDoctorsAdd";
-            this.BtnDoctorsAdd.Size = new System.Drawing.Size(127, 36);
-            this.BtnDoctorsAdd.TabIndex = 16;
-            this.BtnDoctorsAdd.Text = "Сохранить";
-            this.BtnDoctorsAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnDoctorsAdd.UseVisualStyleBackColor = true;
+            this.BtnServicesAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnServicesAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
+            this.BtnServicesAdd.FlatAppearance.BorderSize = 0;
+            this.BtnServicesAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(71)))), ((int)(((byte)(26)))));
+            this.BtnServicesAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnServicesAdd.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.BtnServicesAdd.ForeColor = System.Drawing.Color.LightGray;
+            this.BtnServicesAdd.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
+            this.BtnServicesAdd.IconColor = System.Drawing.Color.Green;
+            this.BtnServicesAdd.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnServicesAdd.IconSize = 25;
+            this.BtnServicesAdd.Location = new System.Drawing.Point(629, 138);
+            this.BtnServicesAdd.Name = "BtnServicesAdd";
+            this.BtnServicesAdd.Size = new System.Drawing.Size(146, 36);
+            this.BtnServicesAdd.TabIndex = 16;
+            this.BtnServicesAdd.Text = "Сохранить";
+            this.BtnServicesAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnServicesAdd.UseVisualStyleBackColor = false;
+            this.BtnServicesAdd.Click += new System.EventHandler(this.BtnServicesAdd_Click);
             // 
             // dataGridView1
             // 
@@ -211,11 +173,11 @@ namespace Ophthalmology.Forms
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeight = 30;
+            this.dataGridView1.ColumnHeadersHeight = 35;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(69)))), ((int)(((byte)(129)))));
-            this.dataGridView1.Location = new System.Drawing.Point(12, 67);
+            this.dataGridView1.Location = new System.Drawing.Point(22, 46);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -234,33 +196,22 @@ namespace Ophthalmology.Forms
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(621, 266);
+            this.dataGridView1.Size = new System.Drawing.Size(601, 266);
             this.dataGridView1.TabIndex = 15;
             // 
-            // label1
+            // comboBoxDoc
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.ForeColor = System.Drawing.Color.LightGray;
-            this.label1.Location = new System.Drawing.Point(8, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(181, 21);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "Выберите категорию:";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox1.ForeColor = System.Drawing.Color.LightGray;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(195, 29);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(230, 25);
-            this.comboBox1.TabIndex = 25;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBoxDoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxDoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
+            this.comboBoxDoc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxDoc.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxDoc.ForeColor = System.Drawing.Color.LightGray;
+            this.comboBoxDoc.FormattingEnabled = true;
+            this.comboBoxDoc.Location = new System.Drawing.Point(629, 97);
+            this.comboBoxDoc.Name = "comboBoxDoc";
+            this.comboBoxDoc.Size = new System.Drawing.Size(146, 25);
+            this.comboBoxDoc.TabIndex = 25;
+            this.comboBoxDoc.Text = " Выполняет врач:";
             // 
             // Services
             // 
@@ -268,19 +219,16 @@ namespace Ophthalmology.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(787, 387);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.txtBoxPhoneDoc);
-            this.Controls.Add(this.txtBoxFioDoc);
-            this.Controls.Add(this.txtBoxPositionDoc);
-            this.Controls.Add(this.txtBoxCabDoc);
-            this.Controls.Add(this.BtnDoctorsEdit);
-            this.Controls.Add(this.BtnDoctorsDel);
-            this.Controls.Add(this.BtnDoctorsAdd);
+            this.Controls.Add(this.comboBoxDoc);
+            this.Controls.Add(this.txtBoxService);
+            this.Controls.Add(this.txtBoxPrice);
+            this.Controls.Add(this.BtnServicesEdit);
+            this.Controls.Add(this.BtnServicesDel);
+            this.Controls.Add(this.BtnServicesAdd);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonExitDoctors);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Services";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Services";
@@ -294,16 +242,12 @@ namespace Ophthalmology.Forms
         #endregion
 
         private System.Windows.Forms.Button buttonExitDoctors;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.TextBox txtBoxPhoneDoc;
-        private System.Windows.Forms.TextBox txtBoxFioDoc;
-        private System.Windows.Forms.TextBox txtBoxPositionDoc;
-        private System.Windows.Forms.TextBox txtBoxCabDoc;
-        private FontAwesome.Sharp.IconButton BtnDoctorsEdit;
-        private FontAwesome.Sharp.IconButton BtnDoctorsDel;
-        private FontAwesome.Sharp.IconButton BtnDoctorsAdd;
+        private System.Windows.Forms.TextBox txtBoxService;
+        private System.Windows.Forms.TextBox txtBoxPrice;
+        private FontAwesome.Sharp.IconButton BtnServicesEdit;
+        private FontAwesome.Sharp.IconButton BtnServicesDel;
+        private FontAwesome.Sharp.IconButton BtnServicesAdd;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxDoc;
     }
 }

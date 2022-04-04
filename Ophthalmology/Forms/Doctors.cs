@@ -17,7 +17,7 @@ namespace Ophthalmology
 {
     public partial class Doctors : Form
     {
-        DataAccess.ClsDoctors OutPutDoctors = new DataAccess.ClsDoctors();
+        ClsDoctors OutPutDoctors = new ClsDoctors();
         private string idDoc = null;
         //Переменная для применнеия редактирования на кнопке сохранить
         private bool EditDoc = false;
@@ -25,6 +25,11 @@ namespace Ophthalmology
         public Doctors()
         {
             InitializeComponent();
+            
+            
+            //Свойства combobox-a для поиска 
+            cmBoxPosition.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmBoxPosition.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
 
         private void buttonExitDoctors_Click(object sender, EventArgs e)
@@ -44,11 +49,11 @@ namespace Ophthalmology
             dataGridView1.Columns[4].Visible = true;
             dataGridView1.Columns[5].Visible = true;
             //Ширина полей
-            dataGridView1.Columns[0].FillWeight = 10;
-            dataGridView1.Columns[1].FillWeight = 25;
+            dataGridView1.Columns[0].FillWeight = 5;
+            dataGridView1.Columns[1].FillWeight = 20;
             dataGridView1.Columns[2].FillWeight = 20;
-            dataGridView1.Columns[3].FillWeight = 10;
-            dataGridView1.Columns[4].FillWeight = 20;
+            dataGridView1.Columns[3].FillWeight = 15;
+            dataGridView1.Columns[4].FillWeight = 15;
             dataGridView1.Columns[5].FillWeight = 20;
             //Растягивание полей грида
             dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -57,19 +62,31 @@ namespace Ophthalmology
             dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //Заголовки
+            dataGridView1.Columns[0].HeaderText = "id";
+            dataGridView1.Columns[1].HeaderText = "ФИО Доктора";
+            dataGridView1.Columns[2].HeaderText = "Должность";
+            dataGridView1.Columns[3].HeaderText = "Кабинет";
+            dataGridView1.Columns[4].HeaderText = "Телефон";
+            dataGridView1.Columns[5].HeaderText = "Дата рождения";
             //Убираем заголовки строк
             //dataGridView1.RowHeadersVisible = false;
             //Показываем заголовки столбцов
             dataGridView1.ColumnHeadersVisible = true;
-
-            if (UserCache.Position == Positions.Guest)
+            //Устанавлием ограничения для ролей
+            if (UserCache.role == Positions.Register)
             {
                 BtnDoctorsAdd.Enabled = false;
                 BtnDoctorsEdit.Enabled = false;
                 BtnDoctorsDel.Enabled = false;
             }
+            //Вывод информации в combobox
+            cmBoxPosition.DataSource = OutPutDoctors.listPosition();
+            cmBoxPosition.DisplayMember = "position_name"; // Вывод информации в cbmbox
+            cmBoxPosition.ValueMember = "id_position";
 
         }
+
         //Кнопка сохранить
         private void BtnDoctorsAdd_Click(object sender, EventArgs e)
         {
@@ -83,7 +100,7 @@ namespace Ophthalmology
                 try
                 {
                     OutPutDoctors.ConnOpen();
-                    OutPutDoctors.AddDoctor(txtBoxFioDoc.Text, txtBoxPositionDoc.Text, txtBoxCabDoc.Text, txtBoxPhoneDoc.Text, dateTimePicker1.Value.ToString("yyyy-MM-dd"));
+                    OutPutDoctors.AddDoctor(txtBoxFioDoc.Text, cmBoxPosition.Text, txtBoxCabDoc.Text, txtBoxPhoneDoc.Text, customDateTimePicker1.Value.ToString("yyyy-MM-dd"));
                     MessageBox.Show(" Пользователь успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //Обновление  таблицы
                     dataGridView1.DataSource = OutPutDoctors.listDoctors();
@@ -109,7 +126,7 @@ namespace Ophthalmology
              {
                 try
                 {
-                    OutPutDoctors.EditDoctor(txtBoxFioDoc.Text, txtBoxPositionDoc.Text, txtBoxCabDoc.Text, txtBoxPhoneDoc.Text, dateTimePicker1.Value.ToString("yyyy-MM-dd"), Convert.ToInt32(idDoc));
+                    OutPutDoctors.EditDoctor(txtBoxFioDoc.Text, cmBoxPosition.Text, txtBoxCabDoc.Text, txtBoxPhoneDoc.Text, customDateTimePicker1.Value.ToString("yyyy-MM-dd"), Convert.ToInt32(idDoc));
                     MessageBox.Show(" Пользователь успешно изменен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //Обновление  таблицы
                     dataGridView1.DataSource = OutPutDoctors.listDoctors();
@@ -136,13 +153,13 @@ namespace Ophthalmology
                 EditDoc = true;
                 //Имя тексового поля равно значению ячейки, выбранная в имя столбца 
                 txtBoxFioDoc.Text = dataGridView1.CurrentRow.Cells["fio_doc"].Value.ToString();
-                txtBoxPositionDoc.Text = dataGridView1.CurrentRow.Cells["position"].Value.ToString();
+                cmBoxPosition.Text = dataGridView1.CurrentRow.Cells["position"].Value.ToString();
                 txtBoxCabDoc.Text = dataGridView1.CurrentRow.Cells["cab"].Value.ToString();
                 txtBoxPhoneDoc.Text = dataGridView1.CurrentRow.Cells["phone"].Value.ToString();
                 //Переменная дата рождения
                 DateTime dt_doc;
                 dt_doc = Convert.ToDateTime(dataGridView1.CurrentRow.Cells["dob"].Value.ToString());
-                dateTimePicker1.Value = dt_doc;
+                customDateTimePicker1.Value = dt_doc;
                 idDoc = dataGridView1.CurrentRow.Cells["id"].Value.ToString();
             }
             else
@@ -154,7 +171,6 @@ namespace Ophthalmology
         private void ClearTxt()
         {
             txtBoxFioDoc.Text = " ФИО Доктора";
-            txtBoxPositionDoc.Text = " Должность";
             txtBoxCabDoc.Text = " Кабинет";
             txtBoxPhoneDoc.Text = " Телефон";
         }
@@ -199,23 +215,23 @@ namespace Ophthalmology
             }
         }
 
-        private void txtBoxPositionDoc_Enter(object sender, EventArgs e)
-        {
-            if (txtBoxPositionDoc.Text == " Должность")
-            {
-                txtBoxPositionDoc.Text = "";
-                txtBoxPositionDoc.ForeColor = Color.White;
-            }
-        }
+        //private void txtBoxPositionDoc_Enter(object sender, EventArgs e)
+        //{
+        //    if (txtBoxPositionDoc.Text == " Должность")
+        //    {
+        //        txtBoxPositionDoc.Text = "";
+        //        txtBoxPositionDoc.ForeColor = Color.White;
+        //    }
+        //}
 
-        private void txtBoxPositionDoc_Leave(object sender, EventArgs e)
-        {
-            if (txtBoxPositionDoc.Text == "")
-            {
-                txtBoxPositionDoc.Text = " Должность";
-                txtBoxPositionDoc.ForeColor = Color.DarkGray;
-            }
-        }
+        //private void txtBoxPositionDoc_Leave(object sender, EventArgs e)
+        //{
+        //    if (txtBoxPositionDoc.Text == "")
+        //    {
+        //        txtBoxPositionDoc.Text = " Должность";
+        //        txtBoxPositionDoc.ForeColor = Color.DarkGray;
+        //    }
+        //}
 
         private void txtBoxCabDoc_Enter(object sender, EventArgs e)
         {

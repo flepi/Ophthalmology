@@ -29,6 +29,7 @@ namespace Ophthalmology
         {
             InitializeComponent();
 
+            //Reset();
 
             // Для закругления углов 
             //Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 7, 7));
@@ -37,18 +38,16 @@ namespace Ophthalmology
             this.Opacity = (0.95);
 
 
-            // Форма
-            //Левая панель 
+            //Форма
+            //Указываем параметры для левая панель 
             leftBorderBtn = new Panel();
             leftBorderBtn.Size = new Size(5, 60);
             panelMenu.Controls.Add(leftBorderBtn);
 
-
+            //Вызываем метод скрытие левых панелей
             customizeDesign();
 
-            //Форма
             //Активируем двойной буфер, чтобы уменьшить мерцание в графике формы
-
             this.Text = string.Empty;
             ControlBox = false;
             this.DoubleBuffered = true;
@@ -166,6 +165,7 @@ namespace Ophthalmology
                 currentBtn.ImageAlign = ContentAlignment.MiddleLeft;
             }
         }
+
         private void Reset()
         {
             DisableButton();
@@ -174,15 +174,10 @@ namespace Ophthalmology
             iconSetHome.IconChar = IconChar.ClinicMedical; ;
             iconSetHome.IconColor = Color.Orchid;
 
-            labelSetHome.Text = "Офтальмологическая клиника";
+            labelSetHome.Text = "Регистратура";
+
 
         }
-        //Перестановка формы
-        [DllImport("user32.Dll", EntryPoint = "ReleaseCapture")]
-        private extern static void ReleaseCapture();
-        [DllImport("user32.Dll", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
-
         #region Главные кнопки на левой панели
         //Справочник
         private void btnReferences_Click(object sender, EventArgs e)
@@ -190,18 +185,6 @@ namespace Ophthalmology
             ActivateButton(sender, RBGColors.color1);
             labelSetHome.Text = "Справочники";
             showPanel(panelReferences);
-        }
-        //Услуги
-        private void btnServices_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender, RBGColors.color2);
-
-            labelSetHome.Text = "Услуги";
-
-            openForm(new Services());
-            //Выше код
-            hidePanel();
-
         }
         //Отчёты
         private void btnReports_Click(object sender, EventArgs e)
@@ -264,12 +247,18 @@ namespace Ophthalmology
 
         private void button3_Click(object sender, EventArgs e)
         {
+            openForm(new ListRegistration());
+
+            labelSetHome.Text = "Список приёмов";
             //Выше код
             hidePanel();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
+            openForm(new PatCard());
+
+            labelSetHome.Text = "Карточки пациентов";
             //Выше код
             hidePanel();
         }
@@ -364,26 +353,30 @@ namespace Ophthalmology
             LoadCard();
 
             //Управления разрешениями 
-            //Услоавие, где спрашиваем, если ли права на пользователя при загрузке
-            if (UserCache.Position == Positions.Guest)
+            //Услоавие, где устанавливаем доступ определенным ролям
+            if (UserCache.role == Positions.Register)
             {
                 btnReports.Enabled = false;
             }
-            if (UserCache.Position == Positions.Employees)
+            if (UserCache.role == Positions.Director)
             {
                 btnReports.Enabled = false;
             }
-            if (UserCache.Position == Positions.Administrator)
+            if (UserCache.role == Positions.Administrator)
             {
             }
         }
         //Метод, для загрузки данных в карточку
         private void LoadCard()
         {
-            labelAccessCard.Text = UserCache.Position;
-            labelNameCard.Text = UserCache.Name;
-            labelEmailCard.Text = UserCache.Email;
+            labelNameCard.Text = UserCache.name;
         }
+        #region Перестановка формы
+        //Перестановка формы
+        [DllImport("user32.Dll", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.Dll", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
 
         private void iconPictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -413,6 +406,34 @@ namespace Ophthalmology
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+        #endregion
+        //Кнопка запись на приём
+        private void btnRegistration_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RBGColors.color2);
+
+            labelSetHome.Text = "Запись на приём";
+
+            openForm(new Registration());
+            //Выше код
+            hidePanel();
+        }
+        //Таймер на время 
+        private void timerDateTime_Tick(object sender, EventArgs e)
+        {
+            //Чтобы узнать текущее время  и дату используем класс времени данных этого класса 
+            labelTime.Text = DateTime.Now.ToString("HH:mm:ss");
+            labelDate.Text = DateTime.Now.ToShortDateString();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            openForm(new Services());
+
+            labelSetHome.Text = "Услуги";
+            //Выше код
+            hidePanel();
         }
     }
 }
