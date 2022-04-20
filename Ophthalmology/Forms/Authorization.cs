@@ -16,7 +16,7 @@ namespace Ophthalmology
 {
     public partial class Authorization : Form
     {
-        ClsUsers users = new ClsUsers();
+        ClsLogin users = new ClsLogin();
         public Authorization()
         {
             InitializeComponent();

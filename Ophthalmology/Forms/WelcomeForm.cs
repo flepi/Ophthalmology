@@ -39,7 +39,7 @@ namespace Ophthalmology
 
         private void WelcomeForm_Load(object sender, EventArgs e)
         {
-            label2.Text = "Ваша роль: " + UserCache.name;
+            label2.Text = "Ваша роль: " + UserCache.role;
             this.Opacity = 0.0;
             circularProgressBar1.Value = 0;
             circularProgressBar1.Minimum = 0;

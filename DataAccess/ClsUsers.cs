@@ -3,88 +3,108 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using System.Data;
 using MySql.Data.MySqlClient;
-using Common.Cache;
+using System.Windows.Forms;
 
 namespace DataAccess
 {
-    public class ClsUsers:ConnectionToMySql
+    public class ClsUsers : Connection
     {
-        //Вычисление хэша строки и возрат его из метода
-        static string sha256(string randomString)
+        //Добавление данных из sql
+        MySqlDataReader leer;
+        //Чтобы просчитать строки таблицы 
+        DataTable table = new DataTable();
+        //Добавляем sql-запрос для запуска
+        MySqlCommand command = new MySqlCommand();
+
+        //
+        //Вывод информации о пользователях
+        //
+        public DataTable listUsers()
         {
-            //Тут происходит криптографическая магия. Смысл данного метода заключается в том, что строка залетает в метод
-            var crypt = new System.Security.Cryptography.SHA256Managed();
-            var hash = new System.Text.StringBuilder();
-            byte[] crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(randomString));
-            foreach (byte theByte in crypto)
-            {
-                hash.Append(theByte.ToString("x2"));
-            }
-            return hash.ToString();
+            command.Connection = ConnOpen();
+            command.CommandText = "SELECT * FROM Users";
+            //Исправляем. чтобы можно использовать несколько строк
+            command.CommandType = CommandType.Text;
+            leer = command.ExecuteReader();
+            table.Clear();
+            //Таблица будет заполняться sql-запросом 
+            table.Load(leer);
+            ConnClose();
+            return table;
+        }
+        //
+        //Добавление пользователей
+        //
+        public void AddUsers(string name, string login, string password, string role)
+        {
+            //MySqlCommand command = new MySqlCommand();
+            command.Connection = ConnOpen();
+            command.CommandText = "INSERT INTO `Users` (`name` , `login` , `password`, `role`) " +
+            "VALUES(@name, @login, @password, @role)";
+            //Исправляем. чтобы можно использовать несколько строк
+            command.CommandType = CommandType.Text;
+            command.Parameters.AddWithValue("@name", name);
+            command.Parameters.AddWithValue("@login", login);
+            command.Parameters.AddWithValue("@password", password);
+            command.Parameters.AddWithValue("@role", role);
+            command.ExecuteNonQuery();
+            //Очищает параметры 
+            command.Parameters.Clear();
+            ConnClose();
+        }
+        //
+        //Метод для редактирования пользователя
+        //
+        public void EditUsers(string name, string login, string password, string role, int id)
+        {
+            //MySqlCommand command = new MySqlCommand();
+            command.Connection = ConnOpen();
+            command.CommandText = "UPDATE `Users` SET name=@name, login=@login,password=@password,role=@role WHERE id=@id LIMIT 1";
+            //"WHERE (id_doc) " +
+            //"LIMIT 1";
+            //Исправляем. чтобы можно использовать несколько строк
+            command.CommandType = CommandType.Text;
+            command.Parameters.AddWithValue("@name", name);
+            command.Parameters.AddWithValue("@login", login);
+            command.Parameters.AddWithValue("@password", password);
+            command.Parameters.AddWithValue("@role", role);
+            command.Parameters.AddWithValue("@id", id);
+            command.ExecuteNonQuery();
+            //Очищает параметры 
+            command.Parameters.Clear();
         }
 
-        //Метод входа
-        public bool Login(string user, string pass)
+        //
+        //Удаление
+        //
+        public void DeleteUsers(int id)
         {
-            //using- блок гарантирует вызов метода одноразово т.е соединение базового класса будет существовать
-            //до тех пор, пока строки внутри блока не закончатся,когда закончатся их просто выбросят и отпустит используемые ресурсы 
-            //var неявная переменная 
-            using(var connection = GetConn())
-            {
-                connection.Open();
-                using(var command = new MySqlCommand())
-                {
-                    command.Connection = connection;
-                    command.CommandText = "Select * from Users where login=@user and password=@pass";
-                    //Пользовательский параметр  со значением 
-                    command.Parameters.AddWithValue("@user" , user);
-                    command.Parameters.AddWithValue("@pass", pass);
-                    //Какой тип команды 
-                    command.CommandType = CommandType.Text;
-                    MySqlDataReader reader = command.ExecuteReader();
-                    //Если у reader есть строки, которые мы возращаем, то запрос успешный
-                    if (reader.HasRows)
-                    {
-                        //Добавляем значение столбца к статическим полям класса 
-                        //Загружает данные из пользователей в класс UserCache
-                        while(reader.Read())
-                        {
-                            UserCache.id = reader.GetInt32(0);
-                            UserCache.name = reader.GetString(1);
-                            UserCache.role = reader.GetString(4);
-                        }
-                        return true;
-                    }    
-                    else
-                    {
-                        return false;
-                    }
-                }
-            }
+            command.Connection = ConnOpen();
+            command.CommandText = "DELETE FROM `Users` WHERE id=@id";
+            //Исправляем. чтобы можно использовать несколько строк
+            command.CommandType = CommandType.Text;
+            command.Parameters.AddWithValue("@id", id);
+            command.ExecuteNonQuery();
+            //Очищает параметры 
+            command.Parameters.Clear();
         }
-        //Метод который возращает значения логина и пароля
-
-            public bool LoginUser(string user, string pass)
-            {
-                return Login(user, pass);
-            }
-
-
-
-            //"Любой метод" для безопасности и права пользователя 
-            public void AnyMethod()
+        //Метод для добавления информации в combobox
+        public DataTable listRole()
         {
-            //Условие,где спрашиваем, что такое позиция пользователя, вошедшего в систему 
-            if(UserCache.role == Positions.Administrator)
-            {
-                //Код
-            }
-            if(UserCache.role == Positions.Director || UserCache.role == Positions.Register)
-            {
-                //Код
-            }
+            DataTable table = new DataTable();
+            command.Connection = ConnOpen();
+            command.CommandText = "SELECT * FROM t_role";
+            //Исправляем. чтобы можно использовать несколько строк
+            command.CommandType = CommandType.Text;
+            leer = command.ExecuteReader();
+            //table.Clear();
+            //Таблица будет заполняться sql-запросом 
+            table.Load(leer);
+            ConnClose();
+            return table;
         }
     }
 }

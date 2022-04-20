@@ -75,9 +75,7 @@ namespace Ophthalmology
             {
                 panelReports.Visible = false;
             }
-        }
-
-        
+        }  
         //
         //Метод для отображения меню
         //
@@ -110,8 +108,6 @@ namespace Ophthalmology
         //    }
         //}
 
-
-
         // Структура для хранения количество цветов RGB
         private struct RBGColors
         {
@@ -122,13 +118,14 @@ namespace Ophthalmology
             public static Color color5 = Color.FromArgb(249, 88, 155);
             public static Color color6 = Color.FromArgb(24, 161, 251);
         }
-
+        //Метод  открытия кнопок, которые находится на панели
         private void ActivateButton(object senderBtn, Color color)
         {
             if (senderBtn != null)
             {
+                //Метод скрытия кнопок
                 DisableButton();
-                //Кнопка
+                //Красим кнопку
                 currentBtn = (IconButton)senderBtn;
                 currentBtn.BackColor = Color.FromArgb(31, 30, 68);
                 currentBtn.ForeColor = color;
@@ -147,12 +144,11 @@ namespace Ophthalmology
                 // iconSetHome
                 iconSetHome.IconChar = currentBtn.IconChar;
                 iconSetHome.IconColor = color;
-
             }
         }
 
 
-        //Кнопки для того, чтобы отключить выделение кнопки 
+        //Метод для того, чтобы отключить выделение кнопки 
         private void DisableButton()
         {
             if (currentBtn != null)
@@ -165,7 +161,7 @@ namespace Ophthalmology
                 currentBtn.ImageAlign = ContentAlignment.MiddleLeft;
             }
         }
-
+        //Перезагрузка иконок, label и на главной форме
         private void Reset()
         {
             DisableButton();
@@ -357,19 +353,21 @@ namespace Ophthalmology
             if (UserCache.role == Positions.Register)
             {
                 btnReports.Enabled = false;
+                button6.Enabled = false;
             }
             if (UserCache.role == Positions.Director)
             {
-                btnReports.Enabled = false;
+
             }
             if (UserCache.role == Positions.Administrator)
             {
+
             }
         }
         //Метод, для загрузки данных в карточку
         private void LoadCard()
         {
-            labelNameCard.Text = UserCache.name;
+            labelNameCard.Text = "Ваше имя: " + UserCache.name;
         }
         #region Перестановка формы
         //Перестановка формы
@@ -426,12 +424,21 @@ namespace Ophthalmology
             labelTime.Text = DateTime.Now.ToString("HH:mm:ss");
             labelDate.Text = DateTime.Now.ToShortDateString();
         }
-
+        //Кнопка Услуги
         private void button5_Click(object sender, EventArgs e)
         {
             openForm(new Services());
 
             labelSetHome.Text = "Услуги";
+            //Выше код
+            hidePanel();
+        }
+        //Кнопка пользователи
+        private void button6_Click(object sender, EventArgs e)
+        {
+            openForm(new Users());
+
+            labelSetHome.Text = "Пользователи";
             //Выше код
             hidePanel();
         }

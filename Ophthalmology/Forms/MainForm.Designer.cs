@@ -105,7 +105,7 @@ namespace Ophthalmology
             this.btnExitAccounts.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnExitAccounts.IconSize = 32;
             this.btnExitAccounts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExitAccounts.Location = new System.Drawing.Point(0, 753);
+            this.btnExitAccounts.Location = new System.Drawing.Point(0, 760);
             this.btnExitAccounts.Name = "btnExitAccounts";
             this.btnExitAccounts.Padding = new System.Windows.Forms.Padding(17, 0, 29, 0);
             this.btnExitAccounts.Size = new System.Drawing.Size(234, 78);
@@ -127,7 +127,7 @@ namespace Ophthalmology
             this.btnAbout.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAbout.IconSize = 32;
             this.btnAbout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAbout.Location = new System.Drawing.Point(0, 693);
+            this.btnAbout.Location = new System.Drawing.Point(0, 700);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Padding = new System.Windows.Forms.Padding(17, 0, 29, 0);
             this.btnAbout.Size = new System.Drawing.Size(234, 60);
@@ -149,7 +149,7 @@ namespace Ophthalmology
             this.btnContacts.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnContacts.IconSize = 32;
             this.btnContacts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnContacts.Location = new System.Drawing.Point(0, 633);
+            this.btnContacts.Location = new System.Drawing.Point(0, 640);
             this.btnContacts.Name = "btnContacts";
             this.btnContacts.Padding = new System.Windows.Forms.Padding(17, 0, 29, 0);
             this.btnContacts.Size = new System.Drawing.Size(234, 60);
@@ -166,7 +166,7 @@ namespace Ophthalmology
             this.panelReports.Controls.Add(this.button13);
             this.panelReports.Controls.Add(this.button14);
             this.panelReports.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelReports.Location = new System.Drawing.Point(0, 561);
+            this.panelReports.Location = new System.Drawing.Point(0, 568);
             this.panelReports.Name = "panelReports";
             this.panelReports.Padding = new System.Windows.Forms.Padding(35, 0, 30, 0);
             this.panelReports.Size = new System.Drawing.Size(234, 72);
@@ -213,7 +213,7 @@ namespace Ophthalmology
             this.btnReports.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnReports.IconSize = 32;
             this.btnReports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReports.Location = new System.Drawing.Point(0, 501);
+            this.btnReports.Location = new System.Drawing.Point(0, 508);
             this.btnReports.Name = "btnReports";
             this.btnReports.Padding = new System.Windows.Forms.Padding(17, 0, 29, 0);
             this.btnReports.Size = new System.Drawing.Size(234, 60);
@@ -234,7 +234,7 @@ namespace Ophthalmology
             this.panelReferences.Controls.Add(this.button2);
             this.panelReferences.Controls.Add(this.button1);
             this.panelReferences.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelReferences.Location = new System.Drawing.Point(0, 281);
+            this.panelReferences.Location = new System.Drawing.Point(0, 288);
             this.panelReferences.Name = "panelReferences";
             this.panelReferences.Padding = new System.Windows.Forms.Padding(35, 0, 20, 0);
             this.panelReferences.Size = new System.Drawing.Size(234, 220);
@@ -253,6 +253,7 @@ namespace Ophthalmology
             this.button6.Text = "Пользователи";
             this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button5
             // 
@@ -340,7 +341,7 @@ namespace Ophthalmology
             this.btnReferences.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnReferences.IconSize = 32;
             this.btnReferences.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReferences.Location = new System.Drawing.Point(0, 221);
+            this.btnReferences.Location = new System.Drawing.Point(0, 228);
             this.btnReferences.Name = "btnReferences";
             this.btnReferences.Padding = new System.Windows.Forms.Padding(15, 0, 29, 0);
             this.btnReferences.Size = new System.Drawing.Size(234, 60);
@@ -359,7 +360,7 @@ namespace Ophthalmology
             this.panelCard.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelCard.Location = new System.Drawing.Point(0, 0);
             this.panelCard.Name = "panelCard";
-            this.panelCard.Size = new System.Drawing.Size(234, 221);
+            this.panelCard.Size = new System.Drawing.Size(234, 228);
             this.panelCard.TabIndex = 1;
             this.panelCard.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelCard_MouseDown);
             // 
@@ -374,10 +375,10 @@ namespace Ophthalmology
             this.btnRegistration.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnRegistration.IconSize = 32;
             this.btnRegistration.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegistration.Location = new System.Drawing.Point(0, 166);
+            this.btnRegistration.Location = new System.Drawing.Point(0, 168);
             this.btnRegistration.Name = "btnRegistration";
             this.btnRegistration.Padding = new System.Windows.Forms.Padding(17, 0, 29, 0);
-            this.btnRegistration.Size = new System.Drawing.Size(234, 55);
+            this.btnRegistration.Size = new System.Drawing.Size(234, 60);
             this.btnRegistration.TabIndex = 4;
             this.btnRegistration.Text = "Запись на приём";
             this.btnRegistration.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -390,11 +391,11 @@ namespace Ophthalmology
             this.labelNameCard.AutoSize = true;
             this.labelNameCard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
             this.labelNameCard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelNameCard.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelNameCard.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelNameCard.ForeColor = System.Drawing.Color.LightGray;
-            this.labelNameCard.Location = new System.Drawing.Point(86, 35);
+            this.labelNameCard.Location = new System.Drawing.Point(94, 18);
             this.labelNameCard.Name = "labelNameCard";
-            this.labelNameCard.Size = new System.Drawing.Size(54, 22);
+            this.labelNameCard.Size = new System.Drawing.Size(47, 21);
             this.labelNameCard.TabIndex = 2;
             this.labelNameCard.Text = "Имя:";
             // 
@@ -402,14 +403,15 @@ namespace Ophthalmology
             // 
             this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
             this.iconPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.iconPictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.iconPictureBox1.ForeColor = System.Drawing.Color.IndianRed;
             this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.AddressCard;
             this.iconPictureBox1.IconColor = System.Drawing.Color.IndianRed;
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 92;
-            this.iconPictureBox1.Location = new System.Drawing.Point(3, 12);
+            this.iconPictureBox1.IconSize = 106;
+            this.iconPictureBox1.Location = new System.Drawing.Point(0, 0);
             this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(228, 92);
+            this.iconPictureBox1.Size = new System.Drawing.Size(234, 106);
             this.iconPictureBox1.TabIndex = 0;
             this.iconPictureBox1.TabStop = false;
             this.iconPictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.iconPictureBox1_MouseDown);
