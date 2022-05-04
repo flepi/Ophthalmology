@@ -80,6 +80,12 @@ namespace Ophthalmology
                 BtnDoctorsEdit.Enabled = false;
                 BtnDoctorsDel.Enabled = false;
             }
+            if (UserCache.role == Positions.Doctors)
+            {
+                BtnDoctorsAdd.Enabled = false;
+                BtnDoctorsEdit.Enabled = false;
+                BtnDoctorsDel.Enabled = false;
+            }
             //Вывод информации в combobox
             cmBoxPosition.DataSource = OutPutDoctors.listPosition();
             cmBoxPosition.DisplayMember = "position_name"; // Вывод информации в cbmbox
@@ -90,33 +96,37 @@ namespace Ophthalmology
         //Кнопка сохранить
         private void BtnDoctorsAdd_Click(object sender, EventArgs e)
         {
-
             //
             //Добавление
             //
             //Условие, если редактирование ложно, то добавляется запись
             if (EditDoc == false)
-             {
-                try
+            {
+                if (txtBoxFioDoc.Text != " ФИО Доктора" && txtBoxCabDoc.Text != " Кабинет" && txtBoxPhoneDoc.Text != " Телефон")
                 {
-                    OutPutDoctors.ConnOpen();
-                    OutPutDoctors.AddDoctor(txtBoxFioDoc.Text, cmBoxPosition.Text, txtBoxCabDoc.Text, txtBoxPhoneDoc.Text, customDateTimePicker1.Value.ToString("yyyy-MM-dd"));
-                    MessageBox.Show(" Пользователь успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //Обновление  таблицы
-                    dataGridView1.DataSource = OutPutDoctors.listDoctors();
-                    ClearTxt();
+                    try
+                    {
+                        OutPutDoctors.ConnOpen();
+                        OutPutDoctors.AddDoctor(txtBoxFioDoc.Text, cmBoxPosition.Text, txtBoxCabDoc.Text, txtBoxPhoneDoc.Text, customDateTimePicker1.Value.ToString("yyyy-MM-dd"));
+                        MessageBox.Show(" Доктор успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //Обновление  таблицы
+                        dataGridView1.DataSource = OutPutDoctors.listDoctors();
+                        ClearTxt();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ошибка добавление  доктора \n\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        OutPutDoctors.ConnClose();
+                    }
                 }
-                catch(Exception ex)
+                else
                 {
-                    MessageBox.Show("Ошибка добавление  пользователя \n\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ErrorMessage("Заполните все поля!");
                 }
-                finally
-                {
-                    OutPutDoctors.ConnClose();
-                }
-             }
-
-
+            }
             //РЕДАКТИРОВАНИЕ
             //Сохранений изменений
             //
@@ -126,7 +136,7 @@ namespace Ophthalmology
                 try
                 {
                     OutPutDoctors.EditDoctor(txtBoxFioDoc.Text, cmBoxPosition.Text, txtBoxCabDoc.Text, txtBoxPhoneDoc.Text, customDateTimePicker1.Value.ToString("yyyy-MM-dd"), Convert.ToInt32(idDoc));
-                    MessageBox.Show(" Пользователь успешно изменен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(" Доктор успешно изменен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //Обновление  таблицы
                     dataGridView1.DataSource = OutPutDoctors.listDoctors();
                     ClearTxt();
@@ -172,8 +182,14 @@ namespace Ophthalmology
             txtBoxFioDoc.Text = " ФИО Доктора";
             txtBoxCabDoc.Text = " Кабинет";
             txtBoxPhoneDoc.Text = " Телефон";
+            labelError.Visible = false;
         }
-
+        //Метод для вывода ошибок
+        private void ErrorMessage(string mes)
+        {
+            labelError.Text = "    " + mes;
+            labelError.Visible = true;
+        }
         //
         //Удаление
         //
@@ -183,7 +199,7 @@ namespace Ophthalmology
             {
                 idDoc = dataGridView1.CurrentRow.Cells["id"].Value.ToString();
                 OutPutDoctors.DeleteDoctor(Convert.ToInt32(idDoc));
-                MessageBox.Show("Пользователь удалён");
+                MessageBox.Show("Доктор успешно удалён");
                 //Обновление  таблицы
                 dataGridView1.DataSource = OutPutDoctors.listDoctors();
             }
@@ -268,5 +284,10 @@ namespace Ophthalmology
             }
         }
         #endregion
+        //Поиск доктора
+        private void SearchTxt_TextChanged(object sender, EventArgs e)
+        {
+            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"fio_doc LIKE '%{SearchTxt.Text}%'";
+        }
     }
 }

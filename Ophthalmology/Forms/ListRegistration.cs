@@ -76,6 +76,10 @@ namespace Ophthalmology.Forms
             //Устанавливаем для ролей ограничения
             if (UserCache.role == Positions.Register)
             {
+
+            }
+            if (UserCache.role == Positions.Doctors)
+            {
                 BtnRegAdd.Enabled = false;
                 BtnRegEdit.Enabled = false;
                 BtnRegDel.Enabled = false;
@@ -99,22 +103,29 @@ namespace Ophthalmology.Forms
             //Условие, если редактирование ложно, то добавляется запись
             if (EditReg == false)
             {
-                try
+                if (txtBoxFio.Text != " ФИО" && txtBoxTime.Text != " Время приёма" )
                 {
-                    OutPutReg.ConnOpen();
-                    OutPutReg.AddRegisters(txtBoxFio.Text, cmBoxPosition.Text, cmBoxDoctors.Text, customDtPickerReg.Value.ToString("yyyy-MM-dd"), txtBoxTime.Text);
-                    MessageBox.Show(" Пользователь успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //Обновление  таблицы
-                    dataGridView1.DataSource = OutPutReg.listRegisters();
-                    ClearTxt();
+                    try
+                    {
+                        OutPutReg.ConnOpen();
+                        OutPutReg.AddRegisters(txtBoxFio.Text, cmBoxPosition.Text, cmBoxDoctors.Text, customDtPickerReg.Value.ToString("yyyy-MM-dd"), txtBoxTime.Text);
+                        MessageBox.Show(" Пользователь успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //Обновление  таблицы
+                        dataGridView1.DataSource = OutPutReg.listRegisters();
+                        ClearTxt();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ошибка добавление  пользователя \n\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        OutPutReg.ConnClose();
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Ошибка добавление  пользователя \n\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    OutPutReg.ConnClose();
+                    ErrorMessage("Заполните все поля!");
                 }
             }
             //РЕДАКТИРОВАНИЕ
@@ -188,6 +199,13 @@ namespace Ophthalmology.Forms
         {
             txtBoxFio.Text = " ФИО";
             txtBoxTime.Text = " Время приёма";
+            labelError.Visible = false;
+        }
+        //Метод для вывода ошибок
+        private void ErrorMessage(string mes)
+        {
+            labelError.Text = "    " + mes;
+            labelError.Visible = true;
         }
         #region !!==!! Надпись на txtbox-aх и чтобы она пропадала при нажатие на неё
         private void txtBoxFio_Enter(object sender, EventArgs e)

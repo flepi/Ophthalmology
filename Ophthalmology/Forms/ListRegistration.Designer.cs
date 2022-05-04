@@ -43,6 +43,7 @@ namespace Ophthalmology.Forms
             this.BtnRegEdit = new FontAwesome.Sharp.IconButton();
             this.BtnRegDel = new FontAwesome.Sharp.IconButton();
             this.customDtPickerReg = new Ophthalmology.CustomDateTimePicker();
+            this.labelError = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -245,12 +246,28 @@ namespace Ophthalmology.Forms
             this.customDtPickerReg.TabIndex = 65;
             this.customDtPickerReg.TxtColor = System.Drawing.Color.DarkGray;
             // 
+            // labelError
+            // 
+            this.labelError.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelError.AutoSize = true;
+            this.labelError.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelError.ForeColor = System.Drawing.Color.DarkGray;
+            this.labelError.Image = ((System.Drawing.Image)(resources.GetObject("labelError.Image")));
+            this.labelError.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.labelError.Location = new System.Drawing.Point(607, 218);
+            this.labelError.Name = "labelError";
+            this.labelError.Size = new System.Drawing.Size(34, 15);
+            this.labelError.TabIndex = 70;
+            this.labelError.Text = "label";
+            this.labelError.Visible = false;
+            // 
             // ListRegistration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(787, 387);
+            this.Controls.Add(this.labelError);
             this.Controls.Add(this.BtnRegEdit);
             this.Controls.Add(this.BtnRegDel);
             this.Controls.Add(this.dataGridView1);
@@ -285,5 +302,6 @@ namespace Ophthalmology.Forms
         private System.Windows.Forms.DataGridView dataGridView1;
         private FontAwesome.Sharp.IconButton BtnRegEdit;
         private FontAwesome.Sharp.IconButton BtnRegDel;
+        private System.Windows.Forms.Label labelError;
     }
 }

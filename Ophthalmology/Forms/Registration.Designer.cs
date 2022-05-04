@@ -48,8 +48,9 @@ namespace Ophthalmology.Forms
             this.labelRegisration = new System.Windows.Forms.Label();
             this.txtBoxFio = new System.Windows.Forms.TextBox();
             this.txtBoxTime = new System.Windows.Forms.TextBox();
-            this.customDtPickerReg = new Ophthalmology.CustomDateTimePicker();
+            this.labelError = new System.Windows.Forms.Label();
             this.customDtPickerAdd = new Ophthalmology.CustomDateTimePicker();
+            this.customDtPickerReg = new Ophthalmology.CustomDateTimePicker();
             this.SuspendLayout();
             // 
             // buttonExitRegistration
@@ -343,23 +344,19 @@ namespace Ophthalmology.Forms
             this.txtBoxTime.Enter += new System.EventHandler(this.txtBoxTime_Enter);
             this.txtBoxTime.Leave += new System.EventHandler(this.txtBoxTime_Leave);
             // 
-            // customDtPickerReg
+            // labelError
             // 
-            this.customDtPickerReg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.customDtPickerReg.BorderColors = System.Drawing.Color.PaleVioletRed;
-            this.customDtPickerReg.BorderSize = 0;
-            this.customDtPickerReg.CalendarTitleForeColor = System.Drawing.Color.Green;
-            this.customDtPickerReg.CustomFormat = "";
-            this.customDtPickerReg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.customDtPickerReg.Location = new System.Drawing.Point(459, 140);
-            this.customDtPickerReg.MinimumSize = new System.Drawing.Size(4, 25);
-            this.customDtPickerReg.Name = "customDtPickerReg";
-            this.customDtPickerReg.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.customDtPickerReg.Size = new System.Drawing.Size(327, 25);
-            this.customDtPickerReg.SkinColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
-            this.customDtPickerReg.TabIndex = 59;
-            this.customDtPickerReg.TxtColor = System.Drawing.Color.DarkGray;
-            this.customDtPickerReg.Visible = false;
+            this.labelError.AutoSize = true;
+            this.labelError.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelError.ForeColor = System.Drawing.Color.DarkGray;
+            this.labelError.Image = ((System.Drawing.Image)(resources.GetObject("labelError.Image")));
+            this.labelError.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.labelError.Location = new System.Drawing.Point(12, 132);
+            this.labelError.Name = "labelError";
+            this.labelError.Size = new System.Drawing.Size(34, 15);
+            this.labelError.TabIndex = 61;
+            this.labelError.Text = "label";
+            this.labelError.Visible = false;
             // 
             // customDtPickerAdd
             // 
@@ -379,12 +376,31 @@ namespace Ophthalmology.Forms
             this.customDtPickerAdd.TxtColor = System.Drawing.Color.DarkGray;
             this.customDtPickerAdd.Visible = false;
             // 
+            // customDtPickerReg
+            // 
+            this.customDtPickerReg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.customDtPickerReg.BorderColors = System.Drawing.Color.PaleVioletRed;
+            this.customDtPickerReg.BorderSize = 0;
+            this.customDtPickerReg.CalendarTitleForeColor = System.Drawing.Color.Green;
+            this.customDtPickerReg.CustomFormat = "";
+            this.customDtPickerReg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.customDtPickerReg.Location = new System.Drawing.Point(459, 140);
+            this.customDtPickerReg.MinimumSize = new System.Drawing.Size(4, 25);
+            this.customDtPickerReg.Name = "customDtPickerReg";
+            this.customDtPickerReg.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.customDtPickerReg.Size = new System.Drawing.Size(327, 25);
+            this.customDtPickerReg.SkinColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
+            this.customDtPickerReg.TabIndex = 59;
+            this.customDtPickerReg.TxtColor = System.Drawing.Color.DarkGray;
+            this.customDtPickerReg.Visible = false;
+            // 
             // Registration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(810, 415);
+            this.Controls.Add(this.labelError);
             this.Controls.Add(this.customDtPickerAdd);
             this.Controls.Add(this.customDtPickerReg);
             this.Controls.Add(this.txtBoxTime);
@@ -438,5 +454,6 @@ namespace Ophthalmology.Forms
         private System.Windows.Forms.TextBox txtBoxTime;
         private CustomDateTimePicker customDtPickerReg;
         private CustomDateTimePicker customDtPickerAdd;
+        private System.Windows.Forms.Label labelError;
     }
 }

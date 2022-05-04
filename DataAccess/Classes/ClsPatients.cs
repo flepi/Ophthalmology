@@ -15,12 +15,14 @@ namespace DataAccess
 {
     public class ClsPatients:Connection
     {
+
         //Добавление данных из sql
         MySqlDataReader leer;
         //Чтобы просчитать строки таблицы 
         DataTable table = new DataTable();
         //Добавляем sql-запрос для запуска
         MySqlCommand command = new MySqlCommand();
+        BindingSource bSource = new BindingSource();
 
 
         //

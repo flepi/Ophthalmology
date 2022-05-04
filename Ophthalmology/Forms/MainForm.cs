@@ -1,5 +1,6 @@
 ﻿using Common.Cache;
 using FontAwesome.Sharp;
+
 using Ophthalmology.Forms;
 using System;
 using System.Collections.Generic;
@@ -195,6 +196,7 @@ namespace Ophthalmology
         private void btnContacts_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RBGColors.color4);
+            openForm(new Contacts());
             labelSetHome.Text = "Контакты";
 
             //Код выше писать........................
@@ -349,15 +351,17 @@ namespace Ophthalmology
             LoadCard();
 
             //Управления разрешениями 
-            //Услоавие, где устанавливаем доступ определенным ролям
+            //Условие, где устанавливаем доступ определенным ролям
             if (UserCache.role == Positions.Register)
             {
                 btnReports.Enabled = false;
                 button6.Enabled = false;
             }
-            if (UserCache.role == Positions.Director)
+            if (UserCache.role == Positions.Doctors)
             {
-
+                btnRegistration.Enabled = false;
+                btnReports.Enabled = false;
+                button6.Enabled = false;
             }
             if (UserCache.role == Positions.Administrator)
             {
@@ -367,7 +371,7 @@ namespace Ophthalmology
         //Метод, для загрузки данных в карточку
         private void LoadCard()
         {
-            labelNameCard.Text = "Ваше имя: " + UserCache.name;
+            labelNameCard.Text = UserCache.name;
         }
         #region Перестановка формы
         //Перестановка формы

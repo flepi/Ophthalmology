@@ -82,22 +82,29 @@ namespace Ophthalmology.Forms
             //Условие, если редактирование ложно, то добавляется запись
             if (EditService == false)
             {
-                try
+                if (txtBoxUsername.Text != " Имя" && txtBoxLogin.Text != " Логин" && txtBoxPassword.Text != " Пароль")
                 {
-                    OutPutUser.ConnOpen();
-                    OutPutUser.AddUsers(txtBoxUsername.Text, txtBoxLogin.Text, txtBoxPassword.Text, comboBoxRole.Text);
-                    MessageBox.Show(" Пользователь успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //Обновление  таблицы
-                    dataGridView1.DataSource = OutPutUser.listUsers();
-                    //ClearTxt();
+                    try
+                    {
+                        OutPutUser.ConnOpen();
+                        OutPutUser.AddUsers(txtBoxUsername.Text, txtBoxLogin.Text, txtBoxPassword.Text, comboBoxRole.Text);
+                        MessageBox.Show(" Пользователь успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //Обновление  таблицы
+                        dataGridView1.DataSource = OutPutUser.listUsers();
+                        //ClearTxt();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ошибка добавление  пользователя \n\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        OutPutUser.ConnClose();
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Ошибка добавление  пользователя \n\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    OutPutUser.ConnClose();
+                    ErrorMessage("Заполните все поля!");
                 }
             }
 
@@ -162,6 +169,80 @@ namespace Ophthalmology.Forms
             {
                 MessageBox.Show("Выберите строку, пожалуйста");
             }
+        }
+        //Метод на очистку txtbox-ов
+        private void ClearTxt()
+        {
+            txtBoxUsername.Text = " Имя";
+            txtBoxLogin.Text = " Логин";
+            txtBoxPassword.Text = " Пароль";
+            labelError.Visible = false;
+        }
+        //Метод для вывода ошибок
+        private void ErrorMessage(string mes)
+        {
+            labelError.Text = "    " + mes;
+            labelError.Visible = true;
+        }
+        #region !!==!! Надпись на txtbox-aх и чтобы она пропадала при нажатие на неё
+        private void txtBoxUsername_Enter(object sender, EventArgs e)
+        {
+            if (txtBoxUsername.Text == " Имя")
+            {
+                txtBoxUsername.Text = "";
+                txtBoxUsername.ForeColor = Color.White;
+            }
+        }
+
+        private void txtBoxUsername_Leave(object sender, EventArgs e)
+        {
+            if (txtBoxUsername.Text == "")
+            {
+                txtBoxUsername.Text = " Имя";
+                txtBoxUsername.ForeColor = Color.DarkGray;
+            }
+        }
+
+        private void txtBoxLogin_Enter(object sender, EventArgs e)
+        {
+            if (txtBoxLogin.Text == " Логин")
+            {
+                txtBoxLogin.Text = "";
+                txtBoxLogin.ForeColor = Color.White;
+            }
+        }
+
+        private void txtBoxLogin_Leave(object sender, EventArgs e)
+        {
+            if (txtBoxLogin.Text == "")
+            {
+                txtBoxLogin.Text = " Логин";
+                txtBoxLogin.ForeColor = Color.DarkGray;
+            }
+        }
+
+        private void txtBoxPassword_Enter(object sender, EventArgs e)
+        {
+            if (txtBoxPassword.Text == " Пароль")
+            {
+                txtBoxPassword.Text = "";
+                txtBoxPassword.ForeColor = Color.White;
+            }
+        }
+
+        private void txtBoxPassword_Leave(object sender, EventArgs e)
+        {
+            if (txtBoxPassword.Text == "")
+            {
+                txtBoxPassword.Text = " Пароль";
+                txtBoxPassword.ForeColor = Color.DarkGray;
+            }
+        }
+        #endregion
+        //Поиск пользователя по имени
+        private void SearchTxt_TextChanged(object sender, EventArgs e)
+        {
+            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"name LIKE '%{SearchTxt.Text}%'";
         }
     }
 }

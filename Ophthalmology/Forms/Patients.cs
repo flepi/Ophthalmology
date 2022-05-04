@@ -36,6 +36,7 @@ namespace Ophthalmology
 
         private void Patients_Load(object sender, EventArgs e)
         {
+            //Заполнение данных из бд
             dataGridView1.DataSource = OutPutPatients.listPatients();
             //Видимость полей в гриде
             dataGridView1.Columns[0].Visible = true;
@@ -64,7 +65,7 @@ namespace Ophthalmology
             dataGridView1.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            //Заголовки
+            //Наименование заголовок
             dataGridView1.Columns[0].HeaderText = "id";
             dataGridView1.Columns[1].HeaderText = "ФИО Пациента";
             dataGridView1.Columns[2].HeaderText = "Мед.Полис";
@@ -77,8 +78,12 @@ namespace Ophthalmology
             //dataGridView1.RowHeadersVisible = false;
             //Показываем заголовки столбцов
             dataGridView1.ColumnHeadersVisible = true;
-
+            //Устанавливаем ограничения для роли
             if (UserCache.role == Positions.Register)
+            {
+
+            }
+            if (UserCache.role == Positions.Doctors)
             {
                 BtnPatientsAdd.Enabled = false;
                 BtnPatientsEdit.Enabled = false;
@@ -101,25 +106,33 @@ namespace Ophthalmology
             //
             //Условие, если редактирование ложно, то добавляется запись
             if (EditPat == false)
-             {
-                try
+            {
+                if (txtBoxFioPat.Text != " ФИО Пациента" && txtBoxMedPat.Text != " Мед.Полис" && txtNum_house.Text != " Номер дома"
+                    && txtNum_kv.Text != " Номер квартиры" && txtBoxPhonePat.Text != " Телефон")
                 {
-                    OutPutPatients.ConnOpen();
-                    OutPutPatients.AddPatients(txtBoxFioPat.Text, txtBoxMedPat.Text, cmBoxStreets.Text,txtNum_house.Text, txtNum_kv.Text ,txtBoxPhonePat.Text,customDateTimePicker1.Value.ToString("yyyy-MM-dd"));
-                    MessageBox.Show(" Пользователь успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //Обновление  таблицы
-                    dataGridView1.DataSource = OutPutPatients.listPatients();
-                    ClearTxt();
+                    try
+                    {
+                        OutPutPatients.ConnOpen();
+                        OutPutPatients.AddPatients(txtBoxFioPat.Text, txtBoxMedPat.Text, cmBoxStreets.Text, txtNum_house.Text, txtNum_kv.Text, txtBoxPhonePat.Text, customDateTimePicker1.Value.ToString("yyyy-MM-dd"));
+                        MessageBox.Show(" Пользователь успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //Обновление  таблицы
+                        dataGridView1.DataSource = OutPutPatients.listPatients();
+                        ClearTxt();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ошибка добавление  пользователя \n\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        OutPutPatients.ConnClose();
+                    }
                 }
-                catch(Exception ex)
+                else
                 {
-                    MessageBox.Show("Ошибка добавление  пользователя \n\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ErrorMessage("Заполните все поля!");
                 }
-                finally
-                {
-                    OutPutPatients.ConnClose();
-                }
-             }
+            }
 
 
             //РЕДАКТИРОВАНИЕ
@@ -182,10 +195,14 @@ namespace Ophthalmology
             txtNum_house.Text = " Номер дома";
             txtNum_kv.Text = " Номер квартиры";
             txtBoxPhonePat.Text = " Телефон";
+            labelError.Visible = false;
         }
-
-
-
+        //Метод для вывода ошибок
+        private void ErrorMessage(string mes)
+        {
+            labelError.Text = "    " + mes;
+            labelError.Visible = true;
+        }
         //
         //Удаление
         //
@@ -296,5 +313,10 @@ namespace Ophthalmology
             }
         }
         #endregion
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"fio_pat LIKE '%{SearchTxt.Text}%'";
+        }
     }
 }

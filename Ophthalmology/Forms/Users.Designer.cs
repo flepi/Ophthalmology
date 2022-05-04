@@ -42,6 +42,9 @@ namespace Ophthalmology.Forms
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.buttonExitDoctors = new System.Windows.Forms.Button();
             this.txtBoxPassword = new System.Windows.Forms.TextBox();
+            this.labelError = new System.Windows.Forms.Label();
+            this.Search = new System.Windows.Forms.Label();
+            this.SearchTxt = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,6 +74,8 @@ namespace Ophthalmology.Forms
             this.txtBoxUsername.Size = new System.Drawing.Size(146, 19);
             this.txtBoxUsername.TabIndex = 32;
             this.txtBoxUsername.Text = " Имя";
+            this.txtBoxUsername.Enter += new System.EventHandler(this.txtBoxUsername_Enter);
+            this.txtBoxUsername.Leave += new System.EventHandler(this.txtBoxUsername_Leave);
             // 
             // txtBoxLogin
             // 
@@ -84,6 +89,8 @@ namespace Ophthalmology.Forms
             this.txtBoxLogin.Size = new System.Drawing.Size(146, 19);
             this.txtBoxLogin.TabIndex = 31;
             this.txtBoxLogin.Text = " Логин";
+            this.txtBoxLogin.Enter += new System.EventHandler(this.txtBoxLogin_Enter);
+            this.txtBoxLogin.Leave += new System.EventHandler(this.txtBoxLogin_Leave);
             // 
             // BtnServicesEdit
             // 
@@ -158,7 +165,6 @@ namespace Ophthalmology.Forms
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
@@ -172,7 +178,7 @@ namespace Ophthalmology.Forms
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(69)))), ((int)(((byte)(129)))));
-            this.dataGridView1.Location = new System.Drawing.Point(7, 51);
+            this.dataGridView1.Location = new System.Drawing.Point(7, 37);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -191,7 +197,7 @@ namespace Ophthalmology.Forms
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(621, 271);
+            this.dataGridView1.Size = new System.Drawing.Size(621, 285);
             this.dataGridView1.TabIndex = 27;
             // 
             // buttonExitDoctors
@@ -222,6 +228,48 @@ namespace Ophthalmology.Forms
             this.txtBoxPassword.Size = new System.Drawing.Size(146, 19);
             this.txtBoxPassword.TabIndex = 34;
             this.txtBoxPassword.Text = " Пароль";
+            this.txtBoxPassword.Enter += new System.EventHandler(this.txtBoxPassword_Enter);
+            this.txtBoxPassword.Leave += new System.EventHandler(this.txtBoxPassword_Leave);
+            // 
+            // labelError
+            // 
+            this.labelError.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelError.AutoSize = true;
+            this.labelError.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelError.ForeColor = System.Drawing.Color.DarkGray;
+            this.labelError.Image = ((System.Drawing.Image)(resources.GetObject("labelError.Image")));
+            this.labelError.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.labelError.Location = new System.Drawing.Point(634, 199);
+            this.labelError.Name = "labelError";
+            this.labelError.Size = new System.Drawing.Size(34, 15);
+            this.labelError.TabIndex = 71;
+            this.labelError.Text = "label";
+            this.labelError.Visible = false;
+            // 
+            // Search
+            // 
+            this.Search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Search.AutoSize = true;
+            this.Search.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Search.ForeColor = System.Drawing.Color.DarkGray;
+            this.Search.Location = new System.Drawing.Point(390, 12);
+            this.Search.Name = "Search";
+            this.Search.Size = new System.Drawing.Size(120, 17);
+            this.Search.TabIndex = 77;
+            this.Search.Text = "Поиск пациента:";
+            // 
+            // SearchTxt
+            // 
+            this.SearchTxt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SearchTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
+            this.SearchTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.SearchTxt.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SearchTxt.ForeColor = System.Drawing.Color.DarkGray;
+            this.SearchTxt.Location = new System.Drawing.Point(491, 12);
+            this.SearchTxt.Name = "SearchTxt";
+            this.SearchTxt.Size = new System.Drawing.Size(137, 19);
+            this.SearchTxt.TabIndex = 76;
+            this.SearchTxt.TextChanged += new System.EventHandler(this.SearchTxt_TextChanged);
             // 
             // Users
             // 
@@ -229,6 +277,9 @@ namespace Ophthalmology.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(787, 387);
+            this.Controls.Add(this.Search);
+            this.Controls.Add(this.SearchTxt);
+            this.Controls.Add(this.labelError);
             this.Controls.Add(this.txtBoxPassword);
             this.Controls.Add(this.comboBoxRole);
             this.Controls.Add(this.txtBoxUsername);
@@ -261,5 +312,8 @@ namespace Ophthalmology.Forms
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button buttonExitDoctors;
         private System.Windows.Forms.TextBox txtBoxPassword;
+        private System.Windows.Forms.Label labelError;
+        private System.Windows.Forms.Label Search;
+        private System.Windows.Forms.TextBox SearchTxt;
     }
 }

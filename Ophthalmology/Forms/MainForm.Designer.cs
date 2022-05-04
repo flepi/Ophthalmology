@@ -622,7 +622,6 @@ namespace Ophthalmology
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private FontAwesome.Sharp.IconButton btnExitAccounts;
-        private FontAwesome.Sharp.IconButton btnAbout;
         private FontAwesome.Sharp.IconButton btnContacts;
         private System.Windows.Forms.Panel panelReports;
         private System.Windows.Forms.Button button13;
@@ -646,6 +645,7 @@ namespace Ophthalmology
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
         private FontAwesome.Sharp.IconButton btnRegistration;
+        private FontAwesome.Sharp.IconButton btnAbout;
     }
 }
 

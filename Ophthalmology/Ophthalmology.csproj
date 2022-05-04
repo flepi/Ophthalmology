@@ -135,11 +135,23 @@
     <Compile Include="Forms\Authorization.Designer.cs">
       <DependentUpon>Authorization.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Contacts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Contacts.Designer.cs">
+      <DependentUpon>Contacts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Doctors.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Doctors.Designer.cs">
       <DependentUpon>Doctors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InfoProgramm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InfoProgramm.Designer.cs">
+      <DependentUpon>InfoProgramm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ListRegistration.cs">
       <SubType>Form</SubType>
@@ -194,8 +206,14 @@
     <EmbeddedResource Include="Forms\Authorization.resx">
       <DependentUpon>Authorization.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Contacts.resx">
+      <DependentUpon>Contacts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Doctors.resx">
       <DependentUpon>Doctors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InfoProgramm.resx">
+      <DependentUpon>InfoProgramm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ListRegistration.resx">
       <DependentUpon>ListRegistration.cs</DependentUpon>
@@ -256,10 +274,6 @@
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{7CBAC2D4-D511-41B6-A3FE-CADE09046B6E}</Project>
       <Name>DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{65fa9f72-d6f3-407e-b6e7-a1c171b4daae}</Project>
-      <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

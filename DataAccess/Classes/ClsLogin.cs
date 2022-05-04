@@ -12,37 +12,42 @@ namespace DataAccess
     public class ClsLogin:ConnectionToMySql
     {
         //Вычисление хэша строки и возрат его из метода
-        static string sha256(string randomString)
-        {
-            //Тут происходит криптографическая магия. Смысл данного метода заключается в том, что строка залетает в метод
-            var crypt = new System.Security.Cryptography.SHA256Managed();
-            var hash = new System.Text.StringBuilder();
-            byte[] crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(randomString));
-            foreach (byte theByte in crypto)
-            {
-                hash.Append(theByte.ToString("x2"));
-            }
-            return hash.ToString();
-        }
+        //static string sha256(string randomString)
+        //{
+        //    //Тут происходит криптографическая магия. Смысл данного метода заключается в том, что строка залетает в метод
+        //    var crypt = new System.Security.Cryptography.SHA256Managed();
+        //    var hash = new System.Text.StringBuilder();
+        //    byte[] crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(randomString));
+        //    foreach (byte theByte in crypto)
+        //    {
+        //        hash.Append(theByte.ToString("x2"));
+        //    }
+        //    return hash.ToString();
+        //}
 
-        //Метод входа
+        //Логический метод для входа пользователя 
         public bool Login(string user, string pass)
         {
             //using- блок гарантирует вызов метода одноразово т.е соединение базового класса будет существовать
             //до тех пор, пока строки внутри блока не закончатся,когда закончатся их просто выбросят и отпустит используемые ресурсы 
             //var неявная переменная 
-            using(var connection = GetConn())
+            //Присваивается защищенный метод, чтобы получить соединение
+            using (var connection = GetConn())
             {
+                //ОТкрываем соединение
                 connection.Open();
                 using(var command = new MySqlCommand())
                 {
+                    //Устанавливаем соединение с сервером
                     command.Connection = connection;
+                    //Запрос
                     command.CommandText = "Select * from Users where login=@user and password=@pass";
-                    //Пользовательский параметр  со значением 
+                    //Пользовательские параметры  со значением 
                     command.Parameters.AddWithValue("@user" , user);
                     command.Parameters.AddWithValue("@pass", pass);
                     //Какой тип команды 
                     command.CommandType = CommandType.Text;
+                    //Объект для чтения, который присваивает запрос для ответа сервера
                     MySqlDataReader reader = command.ExecuteReader();
                     //Если у reader есть строки, которые мы возращаем, то запрос успешный
                     if (reader.HasRows)
@@ -65,7 +70,6 @@ namespace DataAccess
             }
         }
         //Метод который возращает значения логина и пароля
-
             public bool LoginUser(string user, string pass)
             {
                 return Login(user, pass);

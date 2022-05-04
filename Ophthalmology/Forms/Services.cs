@@ -63,6 +63,12 @@ namespace Ophthalmology.Forms
                 BtnServicesEdit.Enabled = false;
                 BtnServicesDel.Enabled = false;
             }
+            if (UserCache.role == Positions.Doctors)
+            {
+                BtnServicesAdd.Enabled = false;
+                BtnServicesEdit.Enabled = false;
+                BtnServicesDel.Enabled = false;
+            }
             //Вывод информации в combobox
             comboBoxDoc.DataSource = OutPutService.listDoctors();
             comboBoxDoc.DisplayMember = "fio_doc"; // Вывод информации в cbmbox
@@ -82,22 +88,29 @@ namespace Ophthalmology.Forms
             //Условие, если редактирование ложно, то добавляется запись
             if (EditService == false)
             {
-                try
+                if (txtBoxService.Text != " Услуга" && txtBoxPrice.Text != " Стоимость")
                 {
-                    OutPutService.ConnOpen();
-                    OutPutService.AddServices(txtBoxService.Text, Convert.ToDecimal(txtBoxPrice.Text), comboBoxDoc.Text);
-                    MessageBox.Show(" Пользователь успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //Обновление  таблицы
-                    dataGridView1.DataSource = OutPutService.listServices();
-                    ClearTxt();
+                    try
+                    {
+                        OutPutService.ConnOpen();
+                        OutPutService.AddServices(txtBoxService.Text, Convert.ToDecimal(txtBoxPrice.Text), comboBoxDoc.Text);
+                        MessageBox.Show(" Пользователь успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //Обновление  таблицы
+                        dataGridView1.DataSource = OutPutService.listServices();
+                        ClearTxt();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ошибка добавление  пользователя \n\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        OutPutService.ConnClose();
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Ошибка добавление  пользователя \n\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    OutPutService.ConnClose();
+                    ErrorMessage("Заполните все поля!");
                 }
             }
 
@@ -170,6 +183,13 @@ namespace Ophthalmology.Forms
         {
             txtBoxService.Text = " Услуга";
             txtBoxPrice.Text = " Стоимость";
+            labelError.Visible = false;
+        }
+        //Метод для вывода ошибок
+        private void ErrorMessage(string mes)
+        {
+            labelError.Text = "    " + mes;
+            labelError.Visible = true;
         }
         #region !!==!! Надпись на txtbox-aх и чтобы она пропадала при нажатие на неё
         private void txtBoxService_Enter(object sender, EventArgs e)
@@ -208,6 +228,10 @@ namespace Ophthalmology.Forms
             }
         }
         #endregion
-
+        //Поиск услуги
+        private void SearchTxt_TextChanged(object sender, EventArgs e)
+        {
+            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"name_service LIKE '%{SearchTxt.Text}%'";
+        }
     }
 }

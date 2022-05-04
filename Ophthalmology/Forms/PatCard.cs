@@ -97,9 +97,7 @@ namespace Ophthalmology.Forms
             //Устанавлием ограничения для ролей
             if (UserCache.role == Positions.Register)
             {
-                BtnCardAdd.Enabled = false;
-                BtnCardEdit.Enabled = false;
-                BtnCardDel.Enabled = false;
+                
             }
             //Вывод информации в combobox
             cmBoxPatients.DataSource = OutPutCard.listPatients();
@@ -254,6 +252,11 @@ namespace Ophthalmology.Forms
                 txtBoxComment.Text = " Комментарий";
                 txtBoxComment.ForeColor = Color.DarkGray;
             }
+        }
+        //Поиск карточки пациента
+        private void SearchTxt_TextChanged(object sender, EventArgs e)
+        {
+            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"fio_pat LIKE '%{SearchTxt.Text}%'";
         }
     }
 }
