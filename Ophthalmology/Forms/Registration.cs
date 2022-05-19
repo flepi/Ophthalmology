@@ -16,6 +16,7 @@ namespace Ophthalmology.Forms
     public partial class Registration : Form
     {
         ClsRegisters Registers = new ClsRegisters();
+        private BindingSource bSource = new BindingSource();
         public Registration()
         {
             InitializeComponent();
@@ -29,7 +30,7 @@ namespace Ophthalmology.Forms
             cmBoxStreets.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cmBoxStreets.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
-
+        //Кнопка проверить
         private void btnCheck_Click(object sender, EventArgs e)
         {
             if (txtBoxPolis.Text != " Полис")
@@ -289,7 +290,7 @@ namespace Ophthalmology.Forms
             }
         }
         #endregion
-
+        //Кнопка добавить 
         private void BtnPatientsAdd_Click(object sender, EventArgs e)
         {
             if (txtBoxFioPat.Text != " ФИО Пациента" && txtBoxMedPat.Text != " Мед.Полис" && txtNum_house.Text != " Номер дома"
@@ -332,6 +333,16 @@ namespace Ophthalmology.Forms
             {
                 ErrorMessage("Заполните все поля!");
             }
+        }
+
+        private void cmBoxDoctors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+ 
+        }
+
+        private void cmBoxPosition_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //cmBoxDoctors.DataSource = "position Like '" + cmBoxPosition.Text;
         }
     }
 }

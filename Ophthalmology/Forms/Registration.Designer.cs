@@ -121,6 +121,7 @@ namespace Ophthalmology.Forms
             this.cmBoxPosition.TabIndex = 38;
             this.cmBoxPosition.Text = "Выбрать специальность";
             this.cmBoxPosition.Visible = false;
+            this.cmBoxPosition.SelectedIndexChanged += new System.EventHandler(this.cmBoxPosition_SelectedIndexChanged);
             // 
             // cmBoxDoctors
             // 
@@ -136,6 +137,7 @@ namespace Ophthalmology.Forms
             this.cmBoxDoctors.TabIndex = 39;
             this.cmBoxDoctors.Text = "Выбрать врача";
             this.cmBoxDoctors.Visible = false;
+            this.cmBoxDoctors.SelectedIndexChanged += new System.EventHandler(this.cmBoxDoctors_SelectedIndexChanged);
             // 
             // btnCheck
             // 

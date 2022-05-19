@@ -277,11 +277,11 @@ namespace Ophthalmology.Forms
             this.Search.AutoSize = true;
             this.Search.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Search.ForeColor = System.Drawing.Color.DarkGray;
-            this.Search.Location = new System.Drawing.Point(397, 5);
+            this.Search.Location = new System.Drawing.Point(382, 7);
             this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(120, 17);
+            this.Search.Size = new System.Drawing.Size(117, 17);
             this.Search.TabIndex = 75;
-            this.Search.Text = "Поиск пациента:";
+            this.Search.Text = "Поиск карточки:";
             // 
             // SearchTxt
             // 

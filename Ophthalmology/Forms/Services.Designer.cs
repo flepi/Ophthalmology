@@ -238,9 +238,9 @@ namespace Ophthalmology.Forms
             this.Search.ForeColor = System.Drawing.Color.DarkGray;
             this.Search.Location = new System.Drawing.Point(385, 7);
             this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(120, 17);
+            this.Search.Size = new System.Drawing.Size(97, 17);
             this.Search.TabIndex = 77;
-            this.Search.Text = "Поиск пациента:";
+            this.Search.Text = "Поиск услуги:";
             // 
             // SearchTxt
             // 

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label2.Text" xml:space="preserve">
-    <value>ПОЛИКЛИНИКА №23
+    <value>ПОЛИКЛИНИКА №22
 
 Режим работы:
 Понедельник - пятница с 8:00 до 20:00
@@ -128,8 +128,6 @@
 
 Единый колл-центр (регистратура): +7 (351) 728-49-99
 Факс: +7 (351) 728-20-02
-Вызов неотложной помощи: +7 (351) 729-00-16 (с 11:00 до 23:00)
-Неотложная помощь работает без выходных для всего населения
-</value>
+Email: gorclinilk22@mail.ru</value>
   </data>
 </root>

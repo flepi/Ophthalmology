@@ -49,12 +49,12 @@ namespace Ophthalmology
             dataGridView1.Columns[4].Visible = true;
             dataGridView1.Columns[5].Visible = true;
             //Ширина полей
-            dataGridView1.Columns[0].FillWeight = 5;
-            dataGridView1.Columns[1].FillWeight = 20;
+            dataGridView1.Columns[0].FillWeight = 7;
+            dataGridView1.Columns[1].FillWeight = 30;
             dataGridView1.Columns[2].FillWeight = 20;
-            dataGridView1.Columns[3].FillWeight = 15;
+            dataGridView1.Columns[3].FillWeight = 7;
             dataGridView1.Columns[4].FillWeight = 15;
-            dataGridView1.Columns[5].FillWeight = 20;
+            dataGridView1.Columns[5].FillWeight = 15;
             //Растягивание полей грида
             dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -63,10 +63,10 @@ namespace Ophthalmology
             dataGridView1.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //Заголовки
-            dataGridView1.Columns[0].HeaderText = "id";
+            dataGridView1.Columns[0].HeaderText = "Код";
             dataGridView1.Columns[1].HeaderText = "ФИО Доктора";
             dataGridView1.Columns[2].HeaderText = "Должность";
-            dataGridView1.Columns[3].HeaderText = "Кабинет";
+            dataGridView1.Columns[3].HeaderText = "Каб.";
             dataGridView1.Columns[4].HeaderText = "Телефон";
             dataGridView1.Columns[5].HeaderText = "Дата рождения";
             //Убираем заголовки строк

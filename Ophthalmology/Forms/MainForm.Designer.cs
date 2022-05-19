@@ -37,7 +37,6 @@ namespace Ophthalmology
             this.btnContacts = new FontAwesome.Sharp.IconButton();
             this.panelReports = new System.Windows.Forms.Panel();
             this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
             this.btnReports = new FontAwesome.Sharp.IconButton();
             this.panelReferences = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
@@ -105,7 +104,7 @@ namespace Ophthalmology
             this.btnExitAccounts.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnExitAccounts.IconSize = 32;
             this.btnExitAccounts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExitAccounts.Location = new System.Drawing.Point(0, 760);
+            this.btnExitAccounts.Location = new System.Drawing.Point(0, 732);
             this.btnExitAccounts.Name = "btnExitAccounts";
             this.btnExitAccounts.Padding = new System.Windows.Forms.Padding(17, 0, 29, 0);
             this.btnExitAccounts.Size = new System.Drawing.Size(234, 78);
@@ -127,7 +126,7 @@ namespace Ophthalmology
             this.btnAbout.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAbout.IconSize = 32;
             this.btnAbout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAbout.Location = new System.Drawing.Point(0, 700);
+            this.btnAbout.Location = new System.Drawing.Point(0, 672);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Padding = new System.Windows.Forms.Padding(17, 0, 29, 0);
             this.btnAbout.Size = new System.Drawing.Size(234, 60);
@@ -149,7 +148,7 @@ namespace Ophthalmology
             this.btnContacts.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnContacts.IconSize = 32;
             this.btnContacts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnContacts.Location = new System.Drawing.Point(0, 640);
+            this.btnContacts.Location = new System.Drawing.Point(0, 612);
             this.btnContacts.Name = "btnContacts";
             this.btnContacts.Padding = new System.Windows.Forms.Padding(17, 0, 29, 0);
             this.btnContacts.Size = new System.Drawing.Size(234, 60);
@@ -164,12 +163,11 @@ namespace Ophthalmology
             // 
             this.panelReports.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.panelReports.Controls.Add(this.button13);
-            this.panelReports.Controls.Add(this.button14);
             this.panelReports.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelReports.Location = new System.Drawing.Point(0, 568);
             this.panelReports.Name = "panelReports";
             this.panelReports.Padding = new System.Windows.Forms.Padding(35, 0, 30, 0);
-            this.panelReports.Size = new System.Drawing.Size(234, 72);
+            this.panelReports.Size = new System.Drawing.Size(234, 44);
             this.panelReports.TabIndex = 4;
             // 
             // button13
@@ -178,29 +176,14 @@ namespace Ophthalmology
             this.button13.FlatAppearance.BorderSize = 0;
             this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button13.ForeColor = System.Drawing.Color.White;
-            this.button13.Location = new System.Drawing.Point(35, 35);
+            this.button13.Location = new System.Drawing.Point(35, 0);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(169, 35);
+            this.button13.Size = new System.Drawing.Size(169, 37);
             this.button13.TabIndex = 1;
-            this.button13.Text = "Статистика выработки";
+            this.button13.Text = "Выработка врачей";
             this.button13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button13.UseVisualStyleBackColor = true;
             this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
-            // button14
-            // 
-            this.button14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button14.FlatAppearance.BorderSize = 0;
-            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button14.ForeColor = System.Drawing.Color.White;
-            this.button14.Location = new System.Drawing.Point(35, 0);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(169, 35);
-            this.button14.TabIndex = 0;
-            this.button14.Text = "Статистика приёмов";
-            this.button14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
             // btnReports
             // 
@@ -625,7 +608,6 @@ namespace Ophthalmology
         private FontAwesome.Sharp.IconButton btnContacts;
         private System.Windows.Forms.Panel panelReports;
         private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
         private FontAwesome.Sharp.IconButton btnReports;
         private System.Windows.Forms.Panel panelSetHome;
         private FontAwesome.Sharp.IconPictureBox iconSetHome;

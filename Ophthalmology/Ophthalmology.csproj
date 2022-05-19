@@ -16,7 +16,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -31,6 +31,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Azure.Core, Version=1.18.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
@@ -189,6 +193,12 @@
     <Compile Include="Forms\Services.Designer.cs">
       <DependentUpon>Services.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\StatsProd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StatsProd.Designer.cs">
+      <DependentUpon>StatsProd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Users.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -232,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Services.resx">
       <DependentUpon>Services.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StatsProd.resx">
+      <DependentUpon>StatsProd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Users.resx">
       <DependentUpon>Users.cs</DependentUpon>
@@ -281,6 +294,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\calendarDark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5WWU%28Сжат%29.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HPNB %28сжат%29.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pngwing.com %283%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="womanglasses3_116026.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

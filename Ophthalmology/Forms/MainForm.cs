@@ -206,6 +206,8 @@ namespace Ophthalmology
         //О программе
         private void btnAbout_Click(object sender, EventArgs e)
         {
+            ActivateButton(sender, RBGColors.color4);
+            openForm(new InfoProgramm());
             ActivateButton(sender, RBGColors.color5);
             labelSetHome.Text = "О программе";
 
@@ -268,6 +270,9 @@ namespace Ophthalmology
 
         private void button13_Click(object sender, EventArgs e)
         {
+            openForm(new StatsProd());
+
+            labelSetHome.Text = "Выработка врачей";
             //Выше код
             hidePanel();
         }
@@ -302,6 +307,7 @@ namespace Ophthalmology
 
         //Переменная типа Form, значение  активное имени формы и этому значению мы говорим нет!
         private Form activeForm = null;
+        //Метод открытия дочерней формы
         private void openForm(Form childForm)
         {
             if (activeForm != null)

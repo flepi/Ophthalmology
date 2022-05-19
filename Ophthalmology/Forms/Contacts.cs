@@ -16,5 +16,10 @@ namespace Ophthalmology.Forms
         {
             InitializeComponent();
         }
+
+        private void buttonExitDoctors_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -23,12 +23,15 @@ namespace DataAccess
         //Проверка пациента на полис
         public bool Check(string med_polis)
         {
+                //Открываем соединение
                 command.Connection = ConnOpen();
-                //Какой тип команды 
+                //Устанавливаем чтобы можно использовать несколько строк
                 command.CommandType = CommandType.Text;
+                //Создаём запрос (Выбрать всех пациентов, где мед.полис = переменной полис)
                 command.CommandText = "Select * from Patients where med_polis=@polis";
                 //Пользовательский параметр  со значением 
                 command.Parameters.AddWithValue("@polis", med_polis);
+                //Читаем запрос
                 leer = command.ExecuteReader();
                 //Если у reader есть строки, которые мы возращаем, то запрос успешный
                 if (leer.HasRows)
@@ -129,37 +132,19 @@ namespace DataAccess
             ConnClose();
             return table;
         }
-
-        //public DataTable listDiagnostics()
-        //{
-        //    DataTable table = new DataTable();
-        //    command.Connection = ConnOpen();
-        //    command.CommandText = "SELECT All_services.`сategory`, All_services.name_services ,
-        //    All_services.price  FROM All_services
-        //    INNER JOIN t_services ON  t_services.`name`= All_services.`сategory` where t_services.`name` = 'Диагностика'";
-        //    //Исправляем. чтобы можно использовать несколько строк
-        //    command.CommandType = CommandType.Text;
-        //    leer = command.ExecuteReader();
-        //    //table.Clear();
-        //    ////Таблица будет заполняться sql-запросом 
-        //    table.Load(leer);
-        //    ConnClose();
-        //    return table;
-        //}
-
-        // SELECT Doctors.fio_doc FROM Doctors WHERE Doctors.position= 'Врач-Педиатр'
-
         //Метод для добавления информации в combobox
-        //Вывод информации о регистрации
         public DataTable listDoctors()
         {
             DataTable table = new DataTable();
             command.Connection = ConnOpen();
-            command.CommandText = "SELECT * FROM Doctors ";
+            command.CommandText = "SELECT * FROM Doctors";
+            //SELECT id, fio_doc FROM Doctors where position = @position
             //Исправляем. чтобы можно использовать несколько строк
-            command.CommandType = CommandType.Text;
+            //command.CommandType = CommandType.Text;
             //command.Parameters.AddWithValue("@position", position);
             leer = command.ExecuteReader();
+            ////Очищает параметры 
+            //command.Parameters.Clear();
             table.Clear();
             //Таблица будет заполняться sql-запросом 
             table.Load(leer);
@@ -185,7 +170,7 @@ namespace DataAccess
             command.Parameters.AddWithValue("@num_kv", num_kv);
             command.Parameters.AddWithValue("@phone", phone);
             command.Parameters.AddWithValue("@dob", dob);
-
+            //Выполнение запроса
             command.ExecuteNonQuery();
             //Очищает параметры 
             command.Parameters.Clear();
@@ -202,6 +187,58 @@ namespace DataAccess
             leer = command.ExecuteReader();
             //table.Clear();
             //Таблица будет заполняться sql-запросом 
+            table.Load(leer);
+            ConnClose();
+            return table;
+        }
+        //
+        //Метод для отображения записи таблицы Patients 
+        //
+        public DataTable listPatients()
+        {
+            DataTable table = new DataTable();
+            command.Connection = ConnOpen();
+            command.CommandText = "SELECT * FROM Patients";
+            //Исправляем. чтобы можно использовать несколько строк
+            command.CommandType = CommandType.Text;
+            leer = command.ExecuteReader();
+            //table.Clear();
+            //Таблица будет заполняться sql-запросом 
+            table.Load(leer);
+            ConnClose();
+            return table;
+        }
+        //Составление списка выработки
+        public DataTable StatsTime(string doc, string date1, string date2)
+        {
+            //MySqlCommand command = new MySqlCommand();
+            DataTable table = new DataTable();
+            command.Connection = ConnOpen();
+            command.CommandText = "SELECT id, doc, position, fio, date,time FROM Registration WHERE doc=@doc and (date >= @date1 and date <= @date2)";
+            //Исправляем. чтобы можно использовать несколько строк
+            command.CommandType = CommandType.Text;
+            command.Parameters.AddWithValue("@doc", doc);
+            command.Parameters.AddWithValue("@date1", date1);
+            command.Parameters.AddWithValue("@date2", date2);
+            leer = command.ExecuteReader();
+            //Очищает параметры 
+            command.Parameters.Clear();
+            table.Load(leer);
+            ConnClose();
+            return table;
+        }
+        public DataTable listDoc(string position)
+        {
+            //MySqlCommand command = new MySqlCommand();
+            DataTable table = new DataTable();
+            command.Connection = ConnOpen();
+            command.CommandText = "SELECT id, fio_doc FROM Doctors where position = @position)";
+            //Исправляем. чтобы можно использовать несколько строк
+            command.CommandType = CommandType.Text;
+            command.Parameters.AddWithValue("@position", position);
+            leer = command.ExecuteReader();
+            //Очищает параметры 
+            command.Parameters.Clear();
             table.Load(leer);
             ConnClose();
             return table;

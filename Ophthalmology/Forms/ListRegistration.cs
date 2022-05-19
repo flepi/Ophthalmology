@@ -62,8 +62,8 @@ namespace Ophthalmology.Forms
             dataGridView1.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //Заголовки
-            dataGridView1.Columns[0].HeaderText = "id";
-            dataGridView1.Columns[1].HeaderText = "ФИО";
+            dataGridView1.Columns[0].HeaderText = "Код";
+            dataGridView1.Columns[1].HeaderText = "ФИО Пациента";
             dataGridView1.Columns[2].HeaderText = "Должность";
             dataGridView1.Columns[3].HeaderText = "Доктор";
             dataGridView1.Columns[4].HeaderText = "День";
@@ -89,6 +89,11 @@ namespace Ophthalmology.Forms
             cmBoxPosition.DisplayMember = "position_name"; // Вывод информации в cbmbox
             cmBoxPosition.ValueMember = "id_position";
 
+            //Вывод информации о должностях в combobox
+            cmBoxPat.DataSource = OutPutReg.listPatients();
+            cmBoxPat.DisplayMember = "fio_pat"; // Вывод информации в cbmbox
+            cmBoxPat.ValueMember = "id";
+
             //Вывод информации о врачей по должностям combobox
             cmBoxDoctors.DataSource = OutPutReg.listDoctors();
             cmBoxDoctors.DisplayMember = "fio_doc"; // Вывод информации в cbmbox
@@ -103,12 +108,12 @@ namespace Ophthalmology.Forms
             //Условие, если редактирование ложно, то добавляется запись
             if (EditReg == false)
             {
-                if (txtBoxFio.Text != " ФИО" && txtBoxTime.Text != " Время приёма" )
+                if (txtBoxTime.Text != " Время приёма" )
                 {
                     try
                     {
                         OutPutReg.ConnOpen();
-                        OutPutReg.AddRegisters(txtBoxFio.Text, cmBoxPosition.Text, cmBoxDoctors.Text, customDtPickerReg.Value.ToString("yyyy-MM-dd"), txtBoxTime.Text);
+                        OutPutReg.AddRegisters(cmBoxPat.Text, cmBoxPosition.Text, cmBoxDoctors.Text, customDtPickerReg.Value.ToString("yyyy-MM-dd"), txtBoxTime.Text);
                         MessageBox.Show(" Пользователь успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         //Обновление  таблицы
                         dataGridView1.DataSource = OutPutReg.listRegisters();
@@ -136,7 +141,7 @@ namespace Ophthalmology.Forms
             {
                 try
                 {
-                    OutPutReg.EditRegisters(txtBoxFio.Text, cmBoxPosition.Text, cmBoxDoctors.Text, customDtPickerReg.Value.ToString("yyyy-MM-dd"), txtBoxTime.Text, Convert.ToInt32(idReg));
+                    OutPutReg.EditRegisters(cmBoxPat.Text, cmBoxPosition.Text, cmBoxDoctors.Text, customDtPickerReg.Value.ToString("yyyy-MM-dd"), txtBoxTime.Text, Convert.ToInt32(idReg));
                     MessageBox.Show(" Пользователь успешно изменен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //Обновление  таблицы
                     dataGridView1.DataSource = OutPutReg.listRegisters();
@@ -163,7 +168,7 @@ namespace Ophthalmology.Forms
             {
                 EditReg = true;
                 //Имя тексового поля равно значению ячейки, выбранная в имя столбца 
-                txtBoxFio.Text = dataGridView1.CurrentRow.Cells["fio"].Value.ToString();
+                cmBoxPat.Text = dataGridView1.CurrentRow.Cells["fio"].Value.ToString();
                 cmBoxPosition.Text = dataGridView1.CurrentRow.Cells["position"].Value.ToString();
                 cmBoxDoctors.Text = dataGridView1.CurrentRow.Cells["doc"].Value.ToString();
                 txtBoxTime.Text = dataGridView1.CurrentRow.Cells["time"].Value.ToString();
@@ -197,7 +202,7 @@ namespace Ophthalmology.Forms
         //Метод на очистку txtbox-ов
         private void ClearTxt()
         {
-            txtBoxFio.Text = " ФИО";
+            //txtBoxFio.Text = " ФИО";
             txtBoxTime.Text = " Время приёма";
             labelError.Visible = false;
         }
@@ -208,23 +213,23 @@ namespace Ophthalmology.Forms
             labelError.Visible = true;
         }
         #region !!==!! Надпись на txtbox-aх и чтобы она пропадала при нажатие на неё
-        private void txtBoxFio_Enter(object sender, EventArgs e)
-        {
-            if (txtBoxFio.Text == " ФИО")
-            {
-                txtBoxFio.Text = "";
-                txtBoxFio.ForeColor = Color.White;
-            }
-        }
+        //private void txtBoxFio_Enter(object sender, EventArgs e)
+        //{
+        //    if (txtBoxFio.Text == " ФИО")
+        //    {
+        //        txtBoxFio.Text = "";
+        //        txtBoxFio.ForeColor = Color.White;
+        //    }
+        //}
 
-        private void txtBoxFio_Leave(object sender, EventArgs e)
-        {
-            if (txtBoxFio.Text == "")
-            {
-                txtBoxFio.Text = " ФИО";
-                txtBoxFio.ForeColor = Color.DarkGray;
-            }
-        }
+        //private void txtBoxFio_Leave(object sender, EventArgs e)
+        //{
+        //    if (txtBoxFio.Text == "")
+        //    {
+        //        txtBoxFio.Text = " ФИО";
+        //        txtBoxFio.ForeColor = Color.DarkGray;
+        //    }
+        //}
 
         private void txtBoxTime_Enter(object sender, EventArgs e)
         {
@@ -244,5 +249,10 @@ namespace Ophthalmology.Forms
             }
         }
         #endregion
+        //Поиск
+        private void SearchTxt_TextChanged(object sender, EventArgs e)
+        {
+            (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"fio LIKE '%{SearchTxt.Text}%'";
+        }
     }
 }

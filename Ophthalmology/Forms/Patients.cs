@@ -66,7 +66,7 @@ namespace Ophthalmology
             dataGridView1.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //Наименование заголовок
-            dataGridView1.Columns[0].HeaderText = "id";
+            dataGridView1.Columns[0].HeaderText = "Код";
             dataGridView1.Columns[1].HeaderText = "ФИО Пациента";
             dataGridView1.Columns[2].HeaderText = "Мед.Полис";
             dataGridView1.Columns[3].HeaderText = "Улица";
@@ -314,7 +314,13 @@ namespace Ophthalmology
         }
         #endregion
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+
+        private void SearchTxt_Enter(object sender, EventArgs e)
+        {
+
+        }
+        //Поиск пациента
+        private void SearchTxt_TextChanged(object sender, EventArgs e)
         {
             (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"fio_pat LIKE '%{SearchTxt.Text}%'";
         }

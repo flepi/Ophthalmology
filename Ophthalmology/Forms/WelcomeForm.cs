@@ -36,17 +36,17 @@ namespace Ophthalmology
         int counter = 0;
         int len = 0;
         string text;
-
+        //Загрузка формы
         private void WelcomeForm_Load(object sender, EventArgs e)
         {
+            //Выводим в label роль пользователя
             label2.Text = "Ваша роль: " + UserCache.role;
             this.Opacity = 0.0;
-            circularProgressBar1.Value = 0;
-            circularProgressBar1.Minimum = 0;
-            circularProgressBar1.Maximum = 100;
+            //Устанавливаем усвойства для ProgressBar1
+            ProgressBar1.Value = 0;
+            ProgressBar1.Minimum = 0;
+            ProgressBar1.Maximum = 100;
             timer2.Start();
-
-
 
             label2.Hide();
             text = label1.Text;
@@ -54,7 +54,7 @@ namespace Ophthalmology
             label1.Text = "";
             timer1.Start();
         }
-
+        //Для перестановки формы
         private void WelcomeForm_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
@@ -71,7 +71,7 @@ namespace Ophthalmology
                 timer1.Stop();
             }
         }
-
+        //Для перестановки формы
         private void pictureBox2_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
@@ -85,9 +85,9 @@ namespace Ophthalmology
             {
                 this.Opacity += 0.05;
             }
-            circularProgressBar1.Value += 1;
-            circularProgressBar1.Text = circularProgressBar1.Value.ToString();
-            if (circularProgressBar1.Value == 100)
+            ProgressBar1.Value += 1;
+            ProgressBar1.Text = ProgressBar1.Value.ToString();
+            if (ProgressBar1.Value == 100)
             {
                 timer2.Stop();
                 timer3.Start();

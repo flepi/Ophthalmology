@@ -82,7 +82,7 @@ namespace Ophthalmology.Forms
             //dataGridView1.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //dataGridView1.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            dataGridView1.Columns[0].HeaderText = "id";
+            dataGridView1.Columns[0].HeaderText = "Код";
             dataGridView1.Columns[1].HeaderText = "ФИО Пациента";
             dataGridView1.Columns[2].HeaderText = "ФИО Доктора";
             dataGridView1.Columns[3].HeaderText = "Симптом";

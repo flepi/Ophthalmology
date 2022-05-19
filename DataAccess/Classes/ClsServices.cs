@@ -37,7 +37,7 @@ namespace DataAccess
             return table;
         }
         //
-        //Метод для добавление пользователя
+        //Метод для добавление услуги
         //
         public void AddServices(string service, decimal price, string doc)
         {

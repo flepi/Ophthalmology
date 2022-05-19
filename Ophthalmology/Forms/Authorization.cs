@@ -14,8 +14,10 @@ using DataAccess;
 
 namespace Ophthalmology
 {
+    //Форма авторизации
     public partial class Authorization : Form
     {
+        //Экземляр класса ClsLogin
         ClsLogin users = new ClsLogin();
         public Authorization()
         {
@@ -174,11 +176,6 @@ namespace Ophthalmology
         private void Authorization_Load(object sender, EventArgs e)
         {
 
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-           //textBox1.Text = users.sha256(textBoxPass.Text);
         }
     }
 }
