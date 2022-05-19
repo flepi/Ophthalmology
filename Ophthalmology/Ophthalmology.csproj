@@ -33,9 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>cdn-icons_flaticon_com-881760.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="Azure.Core, Version=1.18.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
       <HintPath>..\packages\Azure.Core.1.18.0\lib\net461\Azure.Core.dll</HintPath>
@@ -305,7 +305,7 @@
     <None Include="Resources\pngwing.com %283%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="womanglasses3_116026.ico" />
+    <Content Include="cdn-icons_flaticon_com-881760.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
