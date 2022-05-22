@@ -32,7 +32,7 @@ namespace Ophthalmology.Forms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Registration));
             this.buttonExitRegistration = new System.Windows.Forms.Button();
             this.BtnRegistration = new FontAwesome.Sharp.IconButton();
-            this.txtBoxPolis = new System.Windows.Forms.TextBox();
+            this.txtBoxCheckFio = new System.Windows.Forms.TextBox();
             this.cmBoxPosition = new System.Windows.Forms.ComboBox();
             this.cmBoxDoctors = new System.Windows.Forms.ComboBox();
             this.btnCheck = new FontAwesome.Sharp.IconButton();
@@ -41,16 +41,16 @@ namespace Ophthalmology.Forms
             this.txtNum_house = new System.Windows.Forms.TextBox();
             this.cmBoxStreets = new System.Windows.Forms.ComboBox();
             this.txtBoxPhonePat = new System.Windows.Forms.TextBox();
-            this.txtBoxFioPat = new System.Windows.Forms.TextBox();
             this.txtBoxMedPat = new System.Windows.Forms.TextBox();
             this.BtnPatientsAdd = new FontAwesome.Sharp.IconButton();
             this.labelCheckPolis = new System.Windows.Forms.Label();
             this.labelRegisration = new System.Windows.Forms.Label();
-            this.txtBoxFio = new System.Windows.Forms.TextBox();
             this.txtBoxTime = new System.Windows.Forms.TextBox();
             this.labelError = new System.Windows.Forms.Label();
+            this.labelPat = new System.Windows.Forms.Label();
             this.customDtPickerAdd = new Ophthalmology.CustomDateTimePicker();
             this.customDtPickerReg = new Ophthalmology.CustomDateTimePicker();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // buttonExitRegistration
@@ -82,7 +82,7 @@ namespace Ophthalmology.Forms
             this.BtnRegistration.IconColor = System.Drawing.Color.DarkGreen;
             this.BtnRegistration.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnRegistration.IconSize = 25;
-            this.BtnRegistration.Location = new System.Drawing.Point(459, 196);
+            this.BtnRegistration.Location = new System.Drawing.Point(455, 199);
             this.BtnRegistration.Name = "BtnRegistration";
             this.BtnRegistration.Size = new System.Drawing.Size(327, 30);
             this.BtnRegistration.TabIndex = 18;
@@ -93,19 +93,19 @@ namespace Ophthalmology.Forms
             this.BtnRegistration.Visible = false;
             this.BtnRegistration.Click += new System.EventHandler(this.BtnRegistration_Click);
             // 
-            // txtBoxPolis
+            // txtBoxCheckFio
             // 
-            this.txtBoxPolis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
-            this.txtBoxPolis.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBoxPolis.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtBoxPolis.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtBoxPolis.Location = new System.Drawing.Point(12, 65);
-            this.txtBoxPolis.Name = "txtBoxPolis";
-            this.txtBoxPolis.Size = new System.Drawing.Size(173, 19);
-            this.txtBoxPolis.TabIndex = 26;
-            this.txtBoxPolis.Text = " Полис";
-            this.txtBoxPolis.Enter += new System.EventHandler(this.txtBoxPolis_Enter);
-            this.txtBoxPolis.Leave += new System.EventHandler(this.txtBoxPolis_Leave);
+            this.txtBoxCheckFio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
+            this.txtBoxCheckFio.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtBoxCheckFio.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtBoxCheckFio.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtBoxCheckFio.Location = new System.Drawing.Point(12, 65);
+            this.txtBoxCheckFio.Name = "txtBoxCheckFio";
+            this.txtBoxCheckFio.Size = new System.Drawing.Size(187, 19);
+            this.txtBoxCheckFio.TabIndex = 26;
+            this.txtBoxCheckFio.Text = " ФИО";
+            this.txtBoxCheckFio.Enter += new System.EventHandler(this.txtBoxPolis_Enter);
+            this.txtBoxCheckFio.Leave += new System.EventHandler(this.txtBoxPolis_Leave);
             // 
             // cmBoxPosition
             // 
@@ -115,7 +115,7 @@ namespace Ophthalmology.Forms
             this.cmBoxPosition.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cmBoxPosition.ForeColor = System.Drawing.Color.LightGray;
             this.cmBoxPosition.FormattingEnabled = true;
-            this.cmBoxPosition.Location = new System.Drawing.Point(459, 78);
+            this.cmBoxPosition.Location = new System.Drawing.Point(455, 76);
             this.cmBoxPosition.Name = "cmBoxPosition";
             this.cmBoxPosition.Size = new System.Drawing.Size(327, 25);
             this.cmBoxPosition.TabIndex = 38;
@@ -131,7 +131,7 @@ namespace Ophthalmology.Forms
             this.cmBoxDoctors.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cmBoxDoctors.ForeColor = System.Drawing.Color.LightGray;
             this.cmBoxDoctors.FormattingEnabled = true;
-            this.cmBoxDoctors.Location = new System.Drawing.Point(459, 109);
+            this.cmBoxDoctors.Location = new System.Drawing.Point(455, 107);
             this.cmBoxDoctors.Name = "cmBoxDoctors";
             this.cmBoxDoctors.Size = new System.Drawing.Size(327, 25);
             this.cmBoxDoctors.TabIndex = 39;
@@ -153,9 +153,9 @@ namespace Ophthalmology.Forms
             this.btnCheck.IconSize = 20;
             this.btnCheck.Location = new System.Drawing.Point(12, 90);
             this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(173, 30);
+            this.btnCheck.Size = new System.Drawing.Size(187, 42);
             this.btnCheck.TabIndex = 44;
-            this.btnCheck.Text = "Проверить";
+            this.btnCheck.Text = "Поиск пациента в БД";
             this.btnCheck.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCheck.UseVisualStyleBackColor = false;
             this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
@@ -182,7 +182,7 @@ namespace Ophthalmology.Forms
             this.txtNum_kv.ForeColor = System.Drawing.Color.DarkGray;
             this.txtNum_kv.Location = new System.Drawing.Point(455, 157);
             this.txtNum_kv.Name = "txtNum_kv";
-            this.txtNum_kv.Size = new System.Drawing.Size(316, 19);
+            this.txtNum_kv.Size = new System.Drawing.Size(326, 19);
             this.txtNum_kv.TabIndex = 53;
             this.txtNum_kv.Text = " Номер квартиры";
             this.txtNum_kv.Visible = false;
@@ -196,9 +196,9 @@ namespace Ophthalmology.Forms
             this.txtNum_house.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNum_house.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtNum_house.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtNum_house.Location = new System.Drawing.Point(455, 132);
+            this.txtNum_house.Location = new System.Drawing.Point(456, 132);
             this.txtNum_house.Name = "txtNum_house";
-            this.txtNum_house.Size = new System.Drawing.Size(316, 19);
+            this.txtNum_house.Size = new System.Drawing.Size(326, 19);
             this.txtNum_house.TabIndex = 52;
             this.txtNum_house.Text = " Номер дома";
             this.txtNum_house.Visible = false;
@@ -213,9 +213,9 @@ namespace Ophthalmology.Forms
             this.cmBoxStreets.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cmBoxStreets.ForeColor = System.Drawing.Color.LightGray;
             this.cmBoxStreets.FormattingEnabled = true;
-            this.cmBoxStreets.Location = new System.Drawing.Point(455, 101);
+            this.cmBoxStreets.Location = new System.Drawing.Point(456, 101);
             this.cmBoxStreets.Name = "cmBoxStreets";
-            this.cmBoxStreets.Size = new System.Drawing.Size(316, 25);
+            this.cmBoxStreets.Size = new System.Drawing.Size(326, 25);
             this.cmBoxStreets.TabIndex = 51;
             this.cmBoxStreets.Visible = false;
             // 
@@ -228,28 +228,12 @@ namespace Ophthalmology.Forms
             this.txtBoxPhonePat.ForeColor = System.Drawing.Color.DarkGray;
             this.txtBoxPhonePat.Location = new System.Drawing.Point(455, 182);
             this.txtBoxPhonePat.Name = "txtBoxPhonePat";
-            this.txtBoxPhonePat.Size = new System.Drawing.Size(316, 19);
+            this.txtBoxPhonePat.Size = new System.Drawing.Size(328, 19);
             this.txtBoxPhonePat.TabIndex = 49;
             this.txtBoxPhonePat.Text = " Телефон";
             this.txtBoxPhonePat.Visible = false;
             this.txtBoxPhonePat.Enter += new System.EventHandler(this.txtBoxPhonePat_Enter);
             this.txtBoxPhonePat.Leave += new System.EventHandler(this.txtBoxPhonePat_Leave);
-            // 
-            // txtBoxFioPat
-            // 
-            this.txtBoxFioPat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxFioPat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
-            this.txtBoxFioPat.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBoxFioPat.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtBoxFioPat.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtBoxFioPat.Location = new System.Drawing.Point(455, 50);
-            this.txtBoxFioPat.Name = "txtBoxFioPat";
-            this.txtBoxFioPat.Size = new System.Drawing.Size(316, 19);
-            this.txtBoxFioPat.TabIndex = 48;
-            this.txtBoxFioPat.Text = " ФИО Пациента";
-            this.txtBoxFioPat.Visible = false;
-            this.txtBoxFioPat.Enter += new System.EventHandler(this.txtBoxFioPat_Enter);
-            this.txtBoxFioPat.Leave += new System.EventHandler(this.txtBoxFioPat_Leave);
             // 
             // txtBoxMedPat
             // 
@@ -258,9 +242,9 @@ namespace Ophthalmology.Forms
             this.txtBoxMedPat.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBoxMedPat.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtBoxMedPat.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtBoxMedPat.Location = new System.Drawing.Point(454, 76);
+            this.txtBoxMedPat.Location = new System.Drawing.Point(455, 76);
             this.txtBoxMedPat.Name = "txtBoxMedPat";
-            this.txtBoxMedPat.Size = new System.Drawing.Size(317, 19);
+            this.txtBoxMedPat.Size = new System.Drawing.Size(327, 19);
             this.txtBoxMedPat.TabIndex = 47;
             this.txtBoxMedPat.Text = " Мед.Полис";
             this.txtBoxMedPat.Visible = false;
@@ -280,9 +264,9 @@ namespace Ophthalmology.Forms
             this.BtnPatientsAdd.IconColor = System.Drawing.Color.Green;
             this.BtnPatientsAdd.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnPatientsAdd.IconSize = 25;
-            this.BtnPatientsAdd.Location = new System.Drawing.Point(456, 236);
+            this.BtnPatientsAdd.Location = new System.Drawing.Point(458, 237);
             this.BtnPatientsAdd.Name = "BtnPatientsAdd";
-            this.BtnPatientsAdd.Size = new System.Drawing.Size(315, 36);
+            this.BtnPatientsAdd.Size = new System.Drawing.Size(325, 36);
             this.BtnPatientsAdd.TabIndex = 54;
             this.BtnPatientsAdd.Text = "Добавить";
             this.BtnPatientsAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -295,11 +279,11 @@ namespace Ophthalmology.Forms
             this.labelCheckPolis.AutoSize = true;
             this.labelCheckPolis.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelCheckPolis.ForeColor = System.Drawing.Color.LightGray;
-            this.labelCheckPolis.Location = new System.Drawing.Point(8, 27);
+            this.labelCheckPolis.Location = new System.Drawing.Point(8, 37);
             this.labelCheckPolis.Name = "labelCheckPolis";
-            this.labelCheckPolis.Size = new System.Drawing.Size(165, 20);
+            this.labelCheckPolis.Size = new System.Drawing.Size(191, 20);
             this.labelCheckPolis.TabIndex = 55;
-            this.labelCheckPolis.Text = "Проверка по полису";
+            this.labelCheckPolis.Text = "Введите ФИО пациента:";
             // 
             // labelRegisration
             // 
@@ -314,22 +298,6 @@ namespace Ophthalmology.Forms
             this.labelRegisration.Text = "Запись на приём";
             this.labelRegisration.Visible = false;
             // 
-            // txtBoxFio
-            // 
-            this.txtBoxFio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxFio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
-            this.txtBoxFio.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBoxFio.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtBoxFio.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtBoxFio.Location = new System.Drawing.Point(459, 50);
-            this.txtBoxFio.Name = "txtBoxFio";
-            this.txtBoxFio.Size = new System.Drawing.Size(327, 19);
-            this.txtBoxFio.TabIndex = 57;
-            this.txtBoxFio.Text = " ФИО";
-            this.txtBoxFio.Visible = false;
-            this.txtBoxFio.Enter += new System.EventHandler(this.txtBoxFio_Enter);
-            this.txtBoxFio.Leave += new System.EventHandler(this.txtBoxFio_Leave);
-            // 
             // txtBoxTime
             // 
             this.txtBoxTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -337,7 +305,7 @@ namespace Ophthalmology.Forms
             this.txtBoxTime.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBoxTime.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtBoxTime.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtBoxTime.Location = new System.Drawing.Point(459, 171);
+            this.txtBoxTime.Location = new System.Drawing.Point(459, 300);
             this.txtBoxTime.Name = "txtBoxTime";
             this.txtBoxTime.Size = new System.Drawing.Size(327, 19);
             this.txtBoxTime.TabIndex = 58;
@@ -353,12 +321,23 @@ namespace Ophthalmology.Forms
             this.labelError.ForeColor = System.Drawing.Color.DarkGray;
             this.labelError.Image = ((System.Drawing.Image)(resources.GetObject("labelError.Image")));
             this.labelError.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.labelError.Location = new System.Drawing.Point(12, 132);
+            this.labelError.Location = new System.Drawing.Point(12, 138);
             this.labelError.Name = "labelError";
             this.labelError.Size = new System.Drawing.Size(34, 15);
             this.labelError.TabIndex = 61;
             this.labelError.Text = "label";
             this.labelError.Visible = false;
+            // 
+            // labelPat
+            // 
+            this.labelPat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelPat.AutoSize = true;
+            this.labelPat.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPat.ForeColor = System.Drawing.Color.LightGray;
+            this.labelPat.Location = new System.Drawing.Point(456, 51);
+            this.labelPat.Name = "labelPat";
+            this.labelPat.Size = new System.Drawing.Size(0, 17);
+            this.labelPat.TabIndex = 62;
             // 
             // customDtPickerAdd
             // 
@@ -368,11 +347,11 @@ namespace Ophthalmology.Forms
             this.customDtPickerAdd.CalendarTitleForeColor = System.Drawing.Color.Green;
             this.customDtPickerAdd.CustomFormat = "";
             this.customDtPickerAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.customDtPickerAdd.Location = new System.Drawing.Point(454, 207);
+            this.customDtPickerAdd.Location = new System.Drawing.Point(456, 206);
             this.customDtPickerAdd.MinimumSize = new System.Drawing.Size(4, 25);
             this.customDtPickerAdd.Name = "customDtPickerAdd";
             this.customDtPickerAdd.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.customDtPickerAdd.Size = new System.Drawing.Size(317, 25);
+            this.customDtPickerAdd.Size = new System.Drawing.Size(327, 25);
             this.customDtPickerAdd.SkinColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
             this.customDtPickerAdd.TabIndex = 60;
             this.customDtPickerAdd.TxtColor = System.Drawing.Color.DarkGray;
@@ -386,7 +365,7 @@ namespace Ophthalmology.Forms
             this.customDtPickerReg.CalendarTitleForeColor = System.Drawing.Color.Green;
             this.customDtPickerReg.CustomFormat = "";
             this.customDtPickerReg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.customDtPickerReg.Location = new System.Drawing.Point(459, 140);
+            this.customDtPickerReg.Location = new System.Drawing.Point(455, 138);
             this.customDtPickerReg.MinimumSize = new System.Drawing.Size(4, 25);
             this.customDtPickerReg.Name = "customDtPickerReg";
             this.customDtPickerReg.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -396,17 +375,29 @@ namespace Ophthalmology.Forms
             this.customDtPickerReg.TxtColor = System.Drawing.Color.DarkGray;
             this.customDtPickerReg.Visible = false;
             // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.BeepOnError = true;
+            this.maskedTextBox1.Location = new System.Drawing.Point(459, 334);
+            this.maskedTextBox1.Mask = "00:00";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(37, 20);
+            this.maskedTextBox1.TabIndex = 63;
+            this.maskedTextBox1.ValidatingType = typeof(System.DateTime);
+            this.maskedTextBox1.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBox1_MaskInputRejected);
+            // 
             // Registration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(810, 415);
+            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.labelPat);
             this.Controls.Add(this.labelError);
             this.Controls.Add(this.customDtPickerAdd);
             this.Controls.Add(this.customDtPickerReg);
             this.Controls.Add(this.txtBoxTime);
-            this.Controls.Add(this.txtBoxFio);
             this.Controls.Add(this.labelRegisration);
             this.Controls.Add(this.labelCheckPolis);
             this.Controls.Add(this.BtnPatientsAdd);
@@ -414,13 +405,12 @@ namespace Ophthalmology.Forms
             this.Controls.Add(this.txtNum_house);
             this.Controls.Add(this.cmBoxStreets);
             this.Controls.Add(this.txtBoxPhonePat);
-            this.Controls.Add(this.txtBoxFioPat);
             this.Controls.Add(this.txtBoxMedPat);
             this.Controls.Add(this.labelPriemAdd);
             this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.cmBoxDoctors);
             this.Controls.Add(this.cmBoxPosition);
-            this.Controls.Add(this.txtBoxPolis);
+            this.Controls.Add(this.txtBoxCheckFio);
             this.Controls.Add(this.BtnRegistration);
             this.Controls.Add(this.buttonExitRegistration);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -438,7 +428,7 @@ namespace Ophthalmology.Forms
 
         private System.Windows.Forms.Button buttonExitRegistration;
         private FontAwesome.Sharp.IconButton BtnRegistration;
-        private System.Windows.Forms.TextBox txtBoxPolis;
+        private System.Windows.Forms.TextBox txtBoxCheckFio;
         private System.Windows.Forms.ComboBox cmBoxPosition;
         private System.Windows.Forms.ComboBox cmBoxDoctors;
         private FontAwesome.Sharp.IconButton btnCheck;
@@ -447,15 +437,15 @@ namespace Ophthalmology.Forms
         private System.Windows.Forms.TextBox txtNum_house;
         private System.Windows.Forms.ComboBox cmBoxStreets;
         private System.Windows.Forms.TextBox txtBoxPhonePat;
-        private System.Windows.Forms.TextBox txtBoxFioPat;
         private System.Windows.Forms.TextBox txtBoxMedPat;
         private FontAwesome.Sharp.IconButton BtnPatientsAdd;
         private System.Windows.Forms.Label labelCheckPolis;
         private System.Windows.Forms.Label labelRegisration;
-        private System.Windows.Forms.TextBox txtBoxFio;
         private System.Windows.Forms.TextBox txtBoxTime;
         private CustomDateTimePicker customDtPickerReg;
         private CustomDateTimePicker customDtPickerAdd;
         private System.Windows.Forms.Label labelError;
+        private System.Windows.Forms.Label labelPat;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
     }
 }

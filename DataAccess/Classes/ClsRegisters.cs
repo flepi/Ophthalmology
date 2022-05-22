@@ -27,10 +27,10 @@ namespace DataAccess
                 command.Connection = ConnOpen();
                 //Устанавливаем чтобы можно использовать несколько строк
                 command.CommandType = CommandType.Text;
-                //Создаём запрос (Выбрать всех пациентов, где мед.полис = переменной полис)
-                command.CommandText = "Select * from Patients where med_polis=@polis";
+                //Создаём запрос (Выбрать всех пациентов, где ФИО = переменной ФИО)
+                command.CommandText = "Select * from Patients where fio_pat=@fio";
                 //Пользовательский параметр  со значением 
-                command.Parameters.AddWithValue("@polis", med_polis);
+                command.Parameters.AddWithValue("@fio", med_polis);
                 //Читаем запрос
                 leer = command.ExecuteReader();
                 //Если у reader есть строки, которые мы возращаем, то запрос успешный
@@ -227,21 +227,21 @@ namespace DataAccess
             ConnClose();
             return table;
         }
-        public DataTable listDoc(string position)
-        {
-            //MySqlCommand command = new MySqlCommand();
-            DataTable table = new DataTable();
-            command.Connection = ConnOpen();
-            command.CommandText = "SELECT id, fio_doc FROM Doctors where position = @position)";
-            //Исправляем. чтобы можно использовать несколько строк
-            command.CommandType = CommandType.Text;
-            command.Parameters.AddWithValue("@position", position);
-            leer = command.ExecuteReader();
-            //Очищает параметры 
-            command.Parameters.Clear();
-            table.Load(leer);
-            ConnClose();
-            return table;
-        }
+        //public DataTable listDoc(string position)
+        //{
+        //    //MySqlCommand command = new MySqlCommand();
+        //    DataTable table = new DataTable();
+        //    command.Connection = ConnOpen();
+        //    command.CommandText = "SELECT id, fio_doc FROM Doctors where position = @position)";
+        //    //Исправляем. чтобы можно использовать несколько строк
+        //    command.CommandType = CommandType.Text;
+        //    command.Parameters.AddWithValue("@position", position);
+        //    leer = command.ExecuteReader();
+        //    //Очищает параметры 
+        //    command.Parameters.Clear();
+        //    table.Load(leer);
+        //    ConnClose();
+        //    return table;
+        //}
     }
 }

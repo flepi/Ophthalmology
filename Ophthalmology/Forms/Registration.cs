@@ -33,15 +33,17 @@ namespace Ophthalmology.Forms
         //Кнопка проверить
         private void btnCheck_Click(object sender, EventArgs e)
         {
-            if (txtBoxPolis.Text != " Полис")
+            if (txtBoxCheckFio.Text != " ФИО")
             {
                 //Объявляем переменную неявного типа, для проверки
-                var validPolis = Registers.Check(txtBoxPolis.Text);
+                var validPolis = Registers.Check(txtBoxCheckFio.Text);
                 if (validPolis == true)
                 {
                     MessageBox.Show("Пациент есть в базе данных");
+                    labelPat.Text = txtBoxCheckFio.Text;
+                    labelPat.Visible = true;
                     labelRegisration.Visible = true;
-                    txtBoxFio.Visible = true;
+                    labelPat.Visible = true;
                     customDtPickerReg.Visible = true;
                     cmBoxPosition.Visible = true;
                     cmBoxDoctors.Visible = true;
@@ -52,11 +54,11 @@ namespace Ophthalmology.Forms
                 else
                 {
                     MessageBox.Show("Пациента нет в базе данных");
-                    labelPriemAdd.Visible = true;
-                    txtBoxFioPat.Visible = true;
+                    labelPat.Visible = true;
+                    labelPat.Text = txtBoxCheckFio.Text;
                     txtBoxMedPat.Visible = true;
                     txtBoxPhonePat.Visible = true;
-                    txtBoxPolis.Visible = true;
+                    txtBoxCheckFio.Visible = true;
                     txtNum_house.Visible = true;
                     txtNum_kv.Visible = true;
                     BtnPatientsAdd.Visible = true;
@@ -79,13 +81,11 @@ namespace Ophthalmology.Forms
         //Метод на очистку txtbox-ов
         private void ClearTxt()
         {
-            txtBoxFioPat.Text = " ФИО Пациента";
             txtBoxMedPat.Text = " Мед.Полис";
             txtNum_house.Text = " Номер дома";
             txtNum_kv.Text = " Номер квартиры";
             txtBoxPhonePat.Text = " Телефон";
-            txtBoxPolis.Text = " Полис";
-            txtBoxFio.Text = " ФИО";
+            txtBoxCheckFio.Text = " Полис";
             txtBoxTime.Text = " Время приёма";
             labelError.Visible = false;
         }
@@ -93,19 +93,19 @@ namespace Ophthalmology.Forms
         {
             this.Close();
         }
-        //Кнопка записать
+        //Кнопка записать на приём
         private void BtnRegistration_Click(object sender, EventArgs e)
         {
-            if (txtBoxFio.Text != " ФИО" && txtBoxTime.Text!=" Время приёма")
+            if (txtBoxTime.Text!=" Время приёма")
             {
                 try
                 {
                     Registers.ConnOpen();
-                    Registers.AddRegisters(txtBoxFio.Text, cmBoxPosition.Text, cmBoxDoctors.Text, customDtPickerReg.Value.ToString("yyyy-MM-dd"), txtBoxTime.Text);
+                    Registers.AddRegisters(labelPat.Text, cmBoxPosition.Text, cmBoxDoctors.Text, customDtPickerReg.Value.ToString("yyyy-MM-dd"), txtBoxTime.Text);
                     MessageBox.Show(" Пользователь успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     labelRegisration.Visible = false;
-                    txtBoxFio.Visible = false;
+                    labelPat.Visible = false;
                     customDtPickerReg.Visible = false;
                     cmBoxPosition.Visible = false;
                     cmBoxDoctors.Visible = false;
@@ -150,37 +150,19 @@ namespace Ophthalmology.Forms
         #region !!==!! Надпись на txtbox-aх и чтобы она пропадала при нажатие на неё
         private void txtBoxPolis_Enter(object sender, EventArgs e)
         {
-            if (txtBoxPolis.Text == " Полис")
+            if (txtBoxCheckFio.Text == " ФИО")
             {
-                txtBoxPolis.Text = "";
-                txtBoxPolis.ForeColor = Color.White;
+                txtBoxCheckFio.Text = "";
+                txtBoxCheckFio.ForeColor = Color.White;
             }
         }
 
         private void txtBoxPolis_Leave(object sender, EventArgs e)
         {
-            if (txtBoxPolis.Text == "")
+            if (txtBoxCheckFio.Text == "")
             {
-                txtBoxPolis.Text = " Полис";
-                txtBoxPolis.ForeColor = Color.DarkGray;
-            }
-        }
-
-        private void txtBoxFio_Enter(object sender, EventArgs e)
-        {
-            if (txtBoxFio.Text == " ФИО")
-            {
-                txtBoxFio.Text = "";
-                txtBoxFio.ForeColor = Color.White;
-            }
-        }
-
-        private void txtBoxFio_Leave(object sender, EventArgs e)
-        {
-            if (txtBoxFio.Text == "")
-            {
-                txtBoxFio.Text = " ФИО";
-                txtBoxFio.ForeColor = Color.DarkGray;
+                txtBoxCheckFio.Text = " ФИО";
+                txtBoxCheckFio.ForeColor = Color.DarkGray;
             }
         }
 
@@ -199,23 +181,6 @@ namespace Ophthalmology.Forms
             {
                 txtBoxTime.Text = " Время приёма";
                 txtBoxTime.ForeColor = Color.DarkGray;
-            }
-        }
-        private void txtBoxFioPat_Enter(object sender, EventArgs e)
-        {
-            if (txtBoxFioPat.Text == " ФИО Пациента")
-            {
-                txtBoxFioPat.Text = "";
-                txtBoxFioPat.ForeColor = Color.White;
-            }
-        }
-
-        private void txtBoxFioPat_Leave(object sender, EventArgs e)
-        {
-            if (txtBoxFioPat.Text == "")
-            {
-                txtBoxFioPat.Text = " ФИО Пациента";
-                txtBoxFioPat.ForeColor = Color.DarkGray;
             }
         }
         private void txtBoxMedPat_Enter(object sender, EventArgs e)
@@ -290,19 +255,17 @@ namespace Ophthalmology.Forms
             }
         }
         #endregion
-        //Кнопка добавить 
+        //Кнопка добавить пациента
         private void BtnPatientsAdd_Click(object sender, EventArgs e)
         {
-            if (txtBoxFioPat.Text != " ФИО Пациента" && txtBoxMedPat.Text != " Мед.Полис" && txtNum_house.Text != " Номер дома"
+            if (txtBoxMedPat.Text != " Мед.Полис" && txtNum_house.Text != " Номер дома"
                 && txtBoxPhonePat.Text != " Телефон" && txtNum_kv.Text != " Номер квартиры" && txtNum_kv.Text != " Номер квартиры")
             {
                 try
                 {
                     Registers.ConnOpen();
-                    Registers.AddPatients(txtBoxFioPat.Text, txtBoxMedPat.Text, cmBoxStreets.Text, txtNum_house.Text, txtNum_kv.Text, txtBoxPhonePat.Text, customDtPickerAdd.Value.ToString("yyyy-MM-dd"));
+                    Registers.AddPatients(labelPat.Text, txtBoxMedPat.Text, cmBoxStreets.Text, txtNum_house.Text, txtNum_kv.Text, txtBoxPhonePat.Text, customDtPickerAdd.Value.ToString("yyyy-MM-dd"));
                     MessageBox.Show(" Пользователь успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    labelPriemAdd.Visible = false;
-                    txtBoxFioPat.Visible = false;
                     txtBoxMedPat.Visible = false;
                     txtBoxPhonePat.Visible = false;
                     txtNum_house.Visible = false;
@@ -312,7 +275,6 @@ namespace Ophthalmology.Forms
                     cmBoxStreets.Visible = false;
 
                     labelRegisration.Visible = true;
-                    txtBoxFio.Visible = true;
                     customDtPickerReg.Visible = true;
                     cmBoxPosition.Visible = true;
                     cmBoxDoctors.Visible = true;
@@ -343,6 +305,11 @@ namespace Ophthalmology.Forms
         private void cmBoxPosition_SelectedIndexChanged(object sender, EventArgs e)
         {
             //cmBoxDoctors.DataSource = "position Like '" + cmBoxPosition.Text;
+        }
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            if(maskedTextBox1.Text)
         }
     }
 }
