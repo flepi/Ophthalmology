@@ -136,7 +136,7 @@ namespace Ophthalmology
                 try
                 {
                     OutPutDoctors.EditDoctor(txtBoxFioDoc.Text, cmBoxPosition.Text, txtBoxCabDoc.Text, txtBoxPhoneDoc.Text, customDateTimePicker1.Value.ToString("yyyy-MM-dd"), Convert.ToInt32(idDoc));
-                    MessageBox.Show(" Доктор успешно изменен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(" Врач успешно изменен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //Обновление  таблицы
                     dataGridView1.DataSource = OutPutDoctors.listDoctors();
                     ClearTxt();
@@ -181,7 +181,7 @@ namespace Ophthalmology
         {
             txtBoxFioDoc.Text = " ФИО Доктора";
             txtBoxCabDoc.Text = " Кабинет";
-            txtBoxPhoneDoc.Text = " Телефон";
+            //txtBoxPhoneDoc.Text = " Телефон";
             labelError.Visible = false;
         }
         //Метод для вывода ошибок
@@ -199,7 +199,7 @@ namespace Ophthalmology
             {
                 idDoc = dataGridView1.CurrentRow.Cells["id"].Value.ToString();
                 OutPutDoctors.DeleteDoctor(Convert.ToInt32(idDoc));
-                MessageBox.Show("Доктор успешно удалён");
+                MessageBox.Show(" Врач успешно удалён", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //Обновление  таблицы
                 dataGridView1.DataSource = OutPutDoctors.listDoctors();
             }

@@ -33,7 +33,6 @@ namespace Ophthalmology
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Patients));
-            this.txtBoxPhonePat = new System.Windows.Forms.TextBox();
             this.txtBoxFioPat = new System.Windows.Forms.TextBox();
             this.txtBoxMedPat = new System.Windows.Forms.TextBox();
             this.BtnPatientsEdit = new FontAwesome.Sharp.IconButton();
@@ -48,23 +47,9 @@ namespace Ophthalmology
             this.labelError = new System.Windows.Forms.Label();
             this.SearchTxt = new System.Windows.Forms.TextBox();
             this.Search = new System.Windows.Forms.Label();
+            this.txtBoxPhonePat = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtBoxPhonePat
-            // 
-            this.txtBoxPhonePat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxPhonePat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
-            this.txtBoxPhonePat.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBoxPhonePat.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtBoxPhonePat.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtBoxPhonePat.Location = new System.Drawing.Point(667, 163);
-            this.txtBoxPhonePat.Name = "txtBoxPhonePat";
-            this.txtBoxPhonePat.Size = new System.Drawing.Size(109, 19);
-            this.txtBoxPhonePat.TabIndex = 23;
-            this.txtBoxPhonePat.Text = " Телефон";
-            this.txtBoxPhonePat.Enter += new System.EventHandler(this.txtBoxPhonePat_Enter);
-            this.txtBoxPhonePat.Leave += new System.EventHandler(this.txtBoxPhonePat_Leave);
             // 
             // txtBoxFioPat
             // 
@@ -322,12 +307,26 @@ namespace Ophthalmology
             this.Search.TabIndex = 73;
             this.Search.Text = "Поиск пациента:";
             // 
+            // txtBoxPhonePat
+            // 
+            this.txtBoxPhonePat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBoxPhonePat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
+            this.txtBoxPhonePat.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtBoxPhonePat.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtBoxPhonePat.ForeColor = System.Drawing.Color.LightGray;
+            this.txtBoxPhonePat.Location = new System.Drawing.Point(667, 163);
+            this.txtBoxPhonePat.Mask = "+7(999) 999-9999";
+            this.txtBoxPhonePat.Name = "txtBoxPhonePat";
+            this.txtBoxPhonePat.Size = new System.Drawing.Size(109, 19);
+            this.txtBoxPhonePat.TabIndex = 77;
+            // 
             // Patients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(787, 387);
+            this.Controls.Add(this.txtBoxPhonePat);
             this.Controls.Add(this.Search);
             this.Controls.Add(this.SearchTxt);
             this.Controls.Add(this.labelError);
@@ -335,7 +334,6 @@ namespace Ophthalmology
             this.Controls.Add(this.txtNum_kv);
             this.Controls.Add(this.txtNum_house);
             this.Controls.Add(this.cmBoxStreets);
-            this.Controls.Add(this.txtBoxPhonePat);
             this.Controls.Add(this.txtBoxFioPat);
             this.Controls.Add(this.txtBoxMedPat);
             this.Controls.Add(this.BtnPatientsEdit);
@@ -356,7 +354,6 @@ namespace Ophthalmology
         }
 
         #endregion
-        private System.Windows.Forms.TextBox txtBoxPhonePat;
         private System.Windows.Forms.TextBox txtBoxFioPat;
         private System.Windows.Forms.TextBox txtBoxMedPat;
         private FontAwesome.Sharp.IconButton BtnPatientsEdit;
@@ -371,5 +368,6 @@ namespace Ophthalmology
         private System.Windows.Forms.Label labelError;
         private System.Windows.Forms.TextBox SearchTxt;
         private System.Windows.Forms.Label Search;
+        private System.Windows.Forms.MaskedTextBox txtBoxPhonePat;
     }
 }

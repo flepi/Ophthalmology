@@ -9,6 +9,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
+
 using Common.Cache;
 
 namespace Ophthalmology
@@ -33,6 +35,22 @@ namespace Ophthalmology
             // Для закругления углов 
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 7, 7));
         }
+        #region Перестановка формы
+        //Для перестановки формы
+        private void WelcomeForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+        //Для перестановки формы
+        private void pictureBox2_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+        #endregion
+
+        //Переменная для плавного отображения label
         int counter = 0;
         int len = 0;
         string text;
@@ -54,13 +72,7 @@ namespace Ophthalmology
             label1.Text = "";
             timer1.Start();
         }
-        //Для перестановки формы
-        private void WelcomeForm_MouseDown(object sender, MouseEventArgs e)
-        {
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
-        }
-
+        //Таймер на "Добро пожаловать"
         private void timer1_Tick(object sender, EventArgs e)
         {
             label1.Text = text.Substring(0, counter);
@@ -71,13 +83,7 @@ namespace Ophthalmology
                 timer1.Stop();
             }
         }
-        //Для перестановки формы
-        private void pictureBox2_MouseDown(object sender, MouseEventArgs e)
-        {
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
-        }
-
+        //Таймер на прозрачность формы
         private void timer2_Tick(object sender, EventArgs e)
         {
             //Установка прозрачности 
@@ -93,11 +99,10 @@ namespace Ophthalmology
                 timer3.Start();
             }
         }
-
         private void timer3_Tick(object sender, EventArgs e)
         {
             this.Opacity -= 0.1;
-            if (this.Opacity == 0 )
+            if (this.Opacity == 0)
             {
                 timer2.Stop();
                 this.Close();

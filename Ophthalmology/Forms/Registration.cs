@@ -39,8 +39,11 @@ namespace Ophthalmology.Forms
                 var validPolis = Registers.Check(txtBoxCheckFio.Text);
                 if (validPolis == true)
                 {
-                    MessageBox.Show("Пациент есть в базе данных");
+                    MessageBox.Show("Пациент есть в базе данных", "Уведомление", MessageBoxButtons.OK);
                     labelPat.Text = txtBoxCheckFio.Text;
+                    labelDataPriem.Visible = true;
+                    labelRegisration.Visible = true;
+                    labelTime.Visible = true;
                     labelPat.Visible = true;
                     labelRegisration.Visible = true;
                     labelPat.Visible = true;
@@ -50,10 +53,17 @@ namespace Ophthalmology.Forms
                     BtnRegistration.Visible = true;
                     txtBoxTime.Visible = true;
                     labelError.Visible = false;
+                    labelError2.Visible = false;
+                    txtBoxCheckFio.Visible = false;
+                    btnCheck.Visible = false;
+                    labelCheckPolis.Visible = false;
                 }
                 else
                 {
-                    MessageBox.Show("Пациента нет в базе данных");
+                    MessageBox.Show("Пациента нет в базе данных", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    labelDob.Visible = true;
+                    labelPriemAdd.Visible = true;
+                    labelPhone.Visible = true;
                     labelPat.Visible = true;
                     labelPat.Text = txtBoxCheckFio.Text;
                     txtBoxMedPat.Visible = true;
@@ -65,11 +75,15 @@ namespace Ophthalmology.Forms
                     customDtPickerAdd.Visible = true;
                     cmBoxStreets.Visible = true;
                     labelError.Visible = false;
+                    labelError2.Visible = false;
+                    txtBoxCheckFio.Visible = false;
+                    btnCheck.Visible = false;
+                    labelCheckPolis.Visible = false;
                 }
             }
             else
             {
-                ErrorMessage("Пожалуйста введите полис");
+                ErrorMessage("Пожалуйста введите ФИО");
             }
         }
         //Метод для вывода ошибок
@@ -78,16 +92,22 @@ namespace Ophthalmology.Forms
             labelError.Text = "    " + mes;
             labelError.Visible = true;
         }
+        private void ErrorMessage2(string mes)
+        {
+            labelError2.Text = "    " + mes;
+            labelError2.Visible = true;
+        }
         //Метод на очистку txtbox-ов
         private void ClearTxt()
         {
             txtBoxMedPat.Text = " Мед.Полис";
             txtNum_house.Text = " Номер дома";
             txtNum_kv.Text = " Номер квартиры";
-            txtBoxPhonePat.Text = " Телефон";
-            txtBoxCheckFio.Text = " Полис";
-            txtBoxTime.Text = " Время приёма";
+            txtBoxPhonePat.Text = "+7";
+            txtBoxCheckFio.Text = " ФИО";
+            //txtBoxTime.Text = " Время приёма";
             labelError.Visible = false;
+            labelError2.Visible = false;
         }
         private void buttonExitRegistration_Click(object sender, EventArgs e)
         {
@@ -96,14 +116,13 @@ namespace Ophthalmology.Forms
         //Кнопка записать на приём
         private void BtnRegistration_Click(object sender, EventArgs e)
         {
-            if (txtBoxTime.Text!=" Время приёма")
-            {
                 try
                 {
                     Registers.ConnOpen();
                     Registers.AddRegisters(labelPat.Text, cmBoxPosition.Text, cmBoxDoctors.Text, customDtPickerReg.Value.ToString("yyyy-MM-dd"), txtBoxTime.Text);
-                    MessageBox.Show(" Пользователь успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(" Пациент успешно записан", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    labelTime.Visible = false;
                     labelRegisration.Visible = false;
                     labelPat.Visible = false;
                     customDtPickerReg.Visible = false;
@@ -111,23 +130,23 @@ namespace Ophthalmology.Forms
                     cmBoxDoctors.Visible = false;
                     BtnRegistration.Visible = false;
                     txtBoxTime.Visible = false;
-             
+                    labelDataPriem.Visible = false;
+
+                    txtBoxCheckFio.Visible = true;
+                    btnCheck.Visible = true;
+                    labelCheckPolis.Visible = true;
+
                     ClearTxt();
                     this.Refresh();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Ошибка добавление  пользователя \n\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ошибка добавление записи \n\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {
                     Registers.ConnClose();
                 }
-            }
-            else
-            {
-                ErrorMessage("Заполните все поля!");
-            }
         }
 
         private void Registration_Load(object sender, EventArgs e)
@@ -259,13 +278,15 @@ namespace Ophthalmology.Forms
         private void BtnPatientsAdd_Click(object sender, EventArgs e)
         {
             if (txtBoxMedPat.Text != " Мед.Полис" && txtNum_house.Text != " Номер дома"
-                && txtBoxPhonePat.Text != " Телефон" && txtNum_kv.Text != " Номер квартиры" && txtNum_kv.Text != " Номер квартиры")
+                 && txtNum_kv.Text != " Номер квартиры" && txtNum_kv.Text != " Номер квартиры")
             {
                 try
                 {
                     Registers.ConnOpen();
                     Registers.AddPatients(labelPat.Text, txtBoxMedPat.Text, cmBoxStreets.Text, txtNum_house.Text, txtNum_kv.Text, txtBoxPhonePat.Text, customDtPickerAdd.Value.ToString("yyyy-MM-dd"));
-                    MessageBox.Show(" Пользователь успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(" Пациент успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    labelPhone.Visible = false;
                     txtBoxMedPat.Visible = false;
                     txtBoxPhonePat.Visible = false;
                     txtNum_house.Visible = false;
@@ -273,7 +294,11 @@ namespace Ophthalmology.Forms
                     BtnPatientsAdd.Visible = false;
                     customDtPickerAdd.Visible = false;
                     cmBoxStreets.Visible = false;
+                    labelDob.Visible = false;
+                    labelPriemAdd.Visible = false;
 
+                    labelDataPriem.Visible = true;
+                    labelTime.Visible = true;
                     labelRegisration.Visible = true;
                     customDtPickerReg.Visible = true;
                     cmBoxPosition.Visible = true;
@@ -293,7 +318,7 @@ namespace Ophthalmology.Forms
             }
             else
             {
-                ErrorMessage("Заполните все поля!");
+                ErrorMessage2("Заполните все поля!");
             }
         }
 
@@ -309,7 +334,6 @@ namespace Ophthalmology.Forms
 
         private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
-            if(maskedTextBox1.Text)
         }
     }
 }

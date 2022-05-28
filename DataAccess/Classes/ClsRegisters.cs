@@ -33,6 +33,8 @@ namespace DataAccess
                 command.Parameters.AddWithValue("@fio", med_polis);
                 //Читаем запрос
                 leer = command.ExecuteReader();
+                //Очищает параметры 
+                command.Parameters.Clear();
                 //Если у reader есть строки, которые мы возращаем, то запрос успешный
                 if (leer.HasRows)
                 {

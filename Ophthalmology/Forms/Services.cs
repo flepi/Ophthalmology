@@ -94,14 +94,14 @@ namespace Ophthalmology.Forms
                     {
                         OutPutService.ConnOpen();
                         OutPutService.AddServices(txtBoxService.Text, Convert.ToDecimal(txtBoxPrice.Text), comboBoxDoc.Text);
-                        MessageBox.Show(" Пользователь успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(" Услуга успешно добавлена", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         //Обновление  таблицы
                         dataGridView1.DataSource = OutPutService.listServices();
                         ClearTxt();
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Ошибка добавление  пользователя \n\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Ошибка добавление  услуги \n\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     finally
                     {
@@ -125,7 +125,7 @@ namespace Ophthalmology.Forms
                 try
                 {
                     OutPutService.EditServices(txtBoxService.Text, Convert.ToDecimal(txtBoxPrice.Text), comboBoxDoc.Text, Convert.ToInt32(idService));
-                    MessageBox.Show(" Пользователь успешно изменен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(" Услуга успешно изменена", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //Обновление  таблицы
                     dataGridView1.DataSource = OutPutService.listServices();
                     ClearTxt();
@@ -169,7 +169,7 @@ namespace Ophthalmology.Forms
             {
                 idService = dataGridView1.CurrentRow.Cells["id"].Value.ToString();
                 OutPutService.DeleteServices(Convert.ToInt32(idService));
-                MessageBox.Show("Пользователь удалён");
+                MessageBox.Show(" Услуга успешно удалена", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //Обновление  таблицы
                 dataGridView1.DataSource = OutPutService.listServices();
             }

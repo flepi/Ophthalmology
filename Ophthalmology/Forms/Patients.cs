@@ -114,14 +114,14 @@ namespace Ophthalmology
                     {
                         OutPutPatients.ConnOpen();
                         OutPutPatients.AddPatients(txtBoxFioPat.Text, txtBoxMedPat.Text, cmBoxStreets.Text, txtNum_house.Text, txtNum_kv.Text, txtBoxPhonePat.Text, customDateTimePicker1.Value.ToString("yyyy-MM-dd"));
-                        MessageBox.Show(" Пользователь успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(" Пациент успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         //Обновление  таблицы
                         dataGridView1.DataSource = OutPutPatients.listPatients();
                         ClearTxt();
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Ошибка добавление  пользователя \n\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Ошибка добавление  пациента \n\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     finally
                     {
@@ -145,7 +145,7 @@ namespace Ophthalmology
                 try
                 {
                     OutPutPatients.EditPatients(txtBoxFioPat.Text, txtBoxMedPat.Text, cmBoxStreets.Text, txtNum_house.Text, txtNum_kv.Text, txtBoxPhonePat.Text, customDateTimePicker1.Value.ToString("yyyy-MM-dd"), Convert.ToInt32(idPat));
-                    MessageBox.Show(" Пользователь успешно изменен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(" Пациент успешно изменен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     //Обновление  таблицы
                     dataGridView1.DataSource = OutPutPatients.listPatients();
                     ClearTxt();
@@ -212,7 +212,8 @@ namespace Ophthalmology
             {
                 idPat = dataGridView1.CurrentRow.Cells["id"].Value.ToString();
                 OutPutPatients.DeletePatients(Convert.ToInt32(idPat));
-                MessageBox.Show("Пользователь удалён");
+                MessageBox.Show(" Пациент успешно удалён", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //Обновление  таблицы
                 //Обновление  таблицы
                 dataGridView1.DataSource = OutPutPatients.listPatients();
             }

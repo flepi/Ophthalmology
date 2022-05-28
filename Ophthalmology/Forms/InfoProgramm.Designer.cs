@@ -57,9 +57,9 @@ namespace Ophthalmology.Forms
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.richTextBox1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.richTextBox1.ForeColor = System.Drawing.Color.LightGray;
-            this.richTextBox1.Location = new System.Drawing.Point(18, 16);
+            this.richTextBox1.Location = new System.Drawing.Point(18, 15);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(675, 254);
+            this.richTextBox1.Size = new System.Drawing.Size(675, 262);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
