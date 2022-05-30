@@ -233,5 +233,12 @@ namespace Ophthalmology.Forms
         {
             (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"name_service LIKE '%{SearchTxt.Text}%'";
         }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MessageBox.Show("\nНаименование услуги: " + dataGridView1.CurrentRow.Cells["name_service"].Value.ToString()
+                + "\nЦена: " + dataGridView1.CurrentRow.Cells["price"].Value.ToString()
+                + "\nВыполняет: " + dataGridView1.CurrentRow.Cells["doc"].Value.ToString(), "Информация об услуге");
+        }
     }
 }

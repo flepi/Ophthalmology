@@ -68,7 +68,7 @@ namespace Ophthalmology.Forms
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(69)))), ((int)(((byte)(129)))));
-            this.dataGridView1.Location = new System.Drawing.Point(12, 146);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 153);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -176,11 +176,11 @@ namespace Ophthalmology.Forms
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.ForeColor = System.Drawing.Color.LightGray;
-            this.label4.Location = new System.Drawing.Point(458, 122);
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(455, 122);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(15, 17);
+            this.label4.Size = new System.Drawing.Size(18, 19);
             this.label4.TabIndex = 32;
             this.label4.Text = "0";
             this.label4.Visible = false;

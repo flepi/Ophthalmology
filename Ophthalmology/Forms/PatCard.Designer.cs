@@ -41,12 +41,12 @@ namespace Ophthalmology.Forms
             this.cmBoxServices = new System.Windows.Forms.ComboBox();
             this.txtBoxTreatment = new System.Windows.Forms.TextBox();
             this.txtBoxComment = new System.Windows.Forms.TextBox();
-            this.BtnCardAdd = new FontAwesome.Sharp.IconButton();
-            this.BtnCardEdit = new FontAwesome.Sharp.IconButton();
-            this.BtnCardDel = new FontAwesome.Sharp.IconButton();
             this.cmBoxDoctors = new System.Windows.Forms.ComboBox();
             this.Search = new System.Windows.Forms.Label();
             this.SearchTxt = new System.Windows.Forms.TextBox();
+            this.BtnCardEdit = new FontAwesome.Sharp.IconButton();
+            this.BtnCardDel = new FontAwesome.Sharp.IconButton();
+            this.BtnCardAdd = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,6 +108,7 @@ namespace Ophthalmology.Forms
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(642, 303);
             this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
             // 
             // cmBoxPatients
             // 
@@ -193,27 +194,43 @@ namespace Ophthalmology.Forms
             this.txtBoxComment.Enter += new System.EventHandler(this.txtBoxComment_Enter);
             this.txtBoxComment.Leave += new System.EventHandler(this.txtBoxComment_Leave);
             // 
-            // BtnCardAdd
+            // cmBoxDoctors
             // 
-            this.BtnCardAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnCardAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
-            this.BtnCardAdd.FlatAppearance.BorderSize = 0;
-            this.BtnCardAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(71)))), ((int)(((byte)(26)))));
-            this.BtnCardAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCardAdd.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BtnCardAdd.ForeColor = System.Drawing.Color.LightGray;
-            this.BtnCardAdd.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
-            this.BtnCardAdd.IconColor = System.Drawing.Color.Green;
-            this.BtnCardAdd.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnCardAdd.IconSize = 25;
-            this.BtnCardAdd.Location = new System.Drawing.Point(648, 321);
-            this.BtnCardAdd.Name = "BtnCardAdd";
-            this.BtnCardAdd.Size = new System.Drawing.Size(136, 36);
-            this.BtnCardAdd.TabIndex = 46;
-            this.BtnCardAdd.Text = "Сохранить";
-            this.BtnCardAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnCardAdd.UseVisualStyleBackColor = false;
-            this.BtnCardAdd.Click += new System.EventHandler(this.BtnCardAdd_Click);
+            this.cmBoxDoctors.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmBoxDoctors.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
+            this.cmBoxDoctors.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmBoxDoctors.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cmBoxDoctors.ForeColor = System.Drawing.Color.LightGray;
+            this.cmBoxDoctors.FormattingEnabled = true;
+            this.cmBoxDoctors.Location = new System.Drawing.Point(648, 57);
+            this.cmBoxDoctors.Name = "cmBoxDoctors";
+            this.cmBoxDoctors.Size = new System.Drawing.Size(136, 25);
+            this.cmBoxDoctors.TabIndex = 49;
+            // 
+            // Search
+            // 
+            this.Search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Search.AutoSize = true;
+            this.Search.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Search.ForeColor = System.Drawing.Color.DarkGray;
+            this.Search.Location = new System.Drawing.Point(382, 7);
+            this.Search.Name = "Search";
+            this.Search.Size = new System.Drawing.Size(117, 17);
+            this.Search.TabIndex = 75;
+            this.Search.Text = "Поиск карточки:";
+            // 
+            // SearchTxt
+            // 
+            this.SearchTxt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SearchTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
+            this.SearchTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.SearchTxt.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SearchTxt.ForeColor = System.Drawing.Color.DarkGray;
+            this.SearchTxt.Location = new System.Drawing.Point(505, 5);
+            this.SearchTxt.Name = "SearchTxt";
+            this.SearchTxt.Size = new System.Drawing.Size(137, 19);
+            this.SearchTxt.TabIndex = 74;
+            this.SearchTxt.TextChanged += new System.EventHandler(this.SearchTxt_TextChanged);
             // 
             // BtnCardEdit
             // 
@@ -258,43 +275,27 @@ namespace Ophthalmology.Forms
             this.BtnCardDel.UseVisualStyleBackColor = true;
             this.BtnCardDel.Click += new System.EventHandler(this.BtnCardDel_Click);
             // 
-            // cmBoxDoctors
+            // BtnCardAdd
             // 
-            this.cmBoxDoctors.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmBoxDoctors.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
-            this.cmBoxDoctors.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmBoxDoctors.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cmBoxDoctors.ForeColor = System.Drawing.Color.LightGray;
-            this.cmBoxDoctors.FormattingEnabled = true;
-            this.cmBoxDoctors.Location = new System.Drawing.Point(648, 57);
-            this.cmBoxDoctors.Name = "cmBoxDoctors";
-            this.cmBoxDoctors.Size = new System.Drawing.Size(136, 25);
-            this.cmBoxDoctors.TabIndex = 49;
-            // 
-            // Search
-            // 
-            this.Search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Search.AutoSize = true;
-            this.Search.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Search.ForeColor = System.Drawing.Color.DarkGray;
-            this.Search.Location = new System.Drawing.Point(382, 7);
-            this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(117, 17);
-            this.Search.TabIndex = 75;
-            this.Search.Text = "Поиск карточки:";
-            // 
-            // SearchTxt
-            // 
-            this.SearchTxt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
-            this.SearchTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.SearchTxt.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SearchTxt.ForeColor = System.Drawing.Color.DarkGray;
-            this.SearchTxt.Location = new System.Drawing.Point(505, 5);
-            this.SearchTxt.Name = "SearchTxt";
-            this.SearchTxt.Size = new System.Drawing.Size(137, 19);
-            this.SearchTxt.TabIndex = 74;
-            this.SearchTxt.TextChanged += new System.EventHandler(this.SearchTxt_TextChanged);
+            this.BtnCardAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnCardAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
+            this.BtnCardAdd.FlatAppearance.BorderSize = 0;
+            this.BtnCardAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(71)))), ((int)(((byte)(26)))));
+            this.BtnCardAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCardAdd.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.BtnCardAdd.ForeColor = System.Drawing.Color.LightGray;
+            this.BtnCardAdd.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
+            this.BtnCardAdd.IconColor = System.Drawing.Color.Green;
+            this.BtnCardAdd.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnCardAdd.IconSize = 25;
+            this.BtnCardAdd.Location = new System.Drawing.Point(648, 321);
+            this.BtnCardAdd.Name = "BtnCardAdd";
+            this.BtnCardAdd.Size = new System.Drawing.Size(136, 36);
+            this.BtnCardAdd.TabIndex = 46;
+            this.BtnCardAdd.Text = "Сохранить";
+            this.BtnCardAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnCardAdd.UseVisualStyleBackColor = false;
+            this.BtnCardAdd.Click += new System.EventHandler(this.BtnCardAdd_Click);
             // 
             // PatCard
             // 

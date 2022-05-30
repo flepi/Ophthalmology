@@ -325,5 +325,16 @@ namespace Ophthalmology
         {
             (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"fio_pat LIKE '%{SearchTxt.Text}%'";
         }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MessageBox.Show("\nФИО пациента: " + dataGridView1.CurrentRow.Cells["fio_pat"].Value.ToString()
+                + "\nМед.Полис: " + dataGridView1.CurrentRow.Cells["med_polis"].Value.ToString()
+                + "\nУлица: " + dataGridView1.CurrentRow.Cells["street"].Value.ToString()
+                + "\nНомер дома: " + dataGridView1.CurrentRow.Cells["num_house"].Value.ToString()
+                + "\nНомер квартиры: " + dataGridView1.CurrentRow.Cells["num_kv"].Value.ToString()
+                + "\nНомер телефона: " + dataGridView1.CurrentRow.Cells["phone"].Value.ToString()
+                + "\nДата рождения:" + dataGridView1.CurrentRow.Cells["dob"].Value.ToString(), "Информация о пациенте");
+        }
     }
 }

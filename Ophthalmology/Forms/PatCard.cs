@@ -205,7 +205,7 @@ namespace Ophthalmology.Forms
         private void BtnCardDel_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
-            {
+            {   
                 idCard = dataGridView1.CurrentRow.Cells["id"].Value.ToString();
                 OutPutCard.DeleteCard(Convert.ToInt32(idCard));
                 MessageBox.Show("Пользователь удалён");
@@ -257,6 +257,17 @@ namespace Ophthalmology.Forms
         private void SearchTxt_TextChanged(object sender, EventArgs e)
         {
             (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"fio_pat LIKE '%{SearchTxt.Text}%'";
+        }
+
+        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            MessageBox.Show("\nФИО пациента: " + dataGridView1.CurrentRow.Cells["fio_pat"].Value.ToString()
+                + "\nЛечащий врач: " + dataGridView1.CurrentRow.Cells["fio_doc"].Value.ToString()
+                + "\nСимптом: " + dataGridView1.CurrentRow.Cells["symptoms"].Value.ToString()
+                + "\nДиагноз: "+ dataGridView1.CurrentRow.Cells["diagnoses"].Value.ToString()
+                +"\nУслуга: " + dataGridView1.CurrentRow.Cells["service"].Value.ToString()
+                + "\nЛечение: " + dataGridView1.CurrentRow.Cells["treatment"].Value.ToString()
+                + "\nКомментарий :" + dataGridView1.CurrentRow.Cells["comments"].Value.ToString(), "Карточка пациента");
         }
     }
 }

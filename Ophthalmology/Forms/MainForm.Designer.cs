@@ -494,6 +494,7 @@ namespace Ophthalmology
             this.iconSetHome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.iconSetHome.TabIndex = 0;
             this.iconSetHome.TabStop = false;
+            this.iconSetHome.Paint += new System.Windows.Forms.PaintEventHandler(this.iconSetHome_Paint);
             this.iconSetHome.MouseDown += new System.Windows.Forms.MouseEventHandler(this.iconSetHome_MouseDown);
             // 
             // panelChild

@@ -183,6 +183,7 @@ namespace Ophthalmology
             this.linkLabelPass.TabIndex = 0;
             this.linkLabelPass.TabStop = true;
             this.linkLabelPass.Text = "Забыли пароль?";
+            this.linkLabelPass.Visible = false;
             // 
             // iconBtnMaxLogin
             // 

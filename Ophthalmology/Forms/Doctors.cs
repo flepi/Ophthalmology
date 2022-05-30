@@ -289,5 +289,14 @@ namespace Ophthalmology
         {
             (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"fio_doc LIKE '%{SearchTxt.Text}%'";
         }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MessageBox.Show("\nФИО Врача: " + dataGridView1.CurrentRow.Cells["fio_doc"].Value.ToString()
+                + "\nДолжность: " + dataGridView1.CurrentRow.Cells["position"].Value.ToString()
+                + "\nКабинет: " + dataGridView1.CurrentRow.Cells["cab"].Value.ToString()
+                + "\nТелефон: " + dataGridView1.CurrentRow.Cells["phone"].Value.ToString()
+                + "\nДата Рождения: " + dataGridView1.CurrentRow.Cells["dob"].Value.ToString(), "Информация о враче ");
+        }
     }
 }

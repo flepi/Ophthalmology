@@ -244,5 +244,13 @@ namespace Ophthalmology.Forms
         {
             (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"name LIKE '%{SearchTxt.Text}%'";
         }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MessageBox.Show("\nИмя пользователя: " + dataGridView1.CurrentRow.Cells["name"].Value.ToString()
+                + "\nЛогин: " + dataGridView1.CurrentRow.Cells["login"].Value.ToString()
+                + "\nПароль: " + dataGridView1.CurrentRow.Cells["password"].Value.ToString()
+                + "\nРоль: " + dataGridView1.CurrentRow.Cells["role"].Value.ToString(), "Информация о пользователе");
+        }
     }
 }

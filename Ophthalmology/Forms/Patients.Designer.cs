@@ -43,11 +43,11 @@ namespace Ophthalmology
             this.cmBoxStreets = new System.Windows.Forms.ComboBox();
             this.txtNum_house = new System.Windows.Forms.TextBox();
             this.txtNum_kv = new System.Windows.Forms.TextBox();
-            this.customDateTimePicker1 = new Ophthalmology.CustomDateTimePicker();
             this.labelError = new System.Windows.Forms.Label();
             this.SearchTxt = new System.Windows.Forms.TextBox();
             this.Search = new System.Windows.Forms.Label();
             this.txtBoxPhonePat = new System.Windows.Forms.MaskedTextBox();
+            this.customDateTimePicker1 = new Ophthalmology.CustomDateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -204,6 +204,7 @@ namespace Ophthalmology
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(659, 301);
             this.dataGridView1.TabIndex = 15;
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // cmBoxStreets
             // 
@@ -247,24 +248,6 @@ namespace Ophthalmology
             this.txtNum_kv.Text = " Номер квартиры";
             this.txtNum_kv.Enter += new System.EventHandler(this.txtNum_kv_Enter);
             this.txtNum_kv.Leave += new System.EventHandler(this.txtNum_kv_Leave);
-            // 
-            // customDateTimePicker1
-            // 
-            this.customDateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.customDateTimePicker1.BorderColors = System.Drawing.Color.PaleVioletRed;
-            this.customDateTimePicker1.BorderSize = 0;
-            this.customDateTimePicker1.CalendarTitleForeColor = System.Drawing.Color.Green;
-            this.customDateTimePicker1.CustomFormat = "";
-            this.customDateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.customDateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.customDateTimePicker1.Location = new System.Drawing.Point(667, 188);
-            this.customDateTimePicker1.MinimumSize = new System.Drawing.Size(4, 25);
-            this.customDateTimePicker1.Name = "customDateTimePicker1";
-            this.customDateTimePicker1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.customDateTimePicker1.Size = new System.Drawing.Size(109, 25);
-            this.customDateTimePicker1.SkinColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
-            this.customDateTimePicker1.TabIndex = 43;
-            this.customDateTimePicker1.TxtColor = System.Drawing.Color.DarkGray;
             // 
             // labelError
             // 
@@ -319,6 +302,24 @@ namespace Ophthalmology
             this.txtBoxPhonePat.Name = "txtBoxPhonePat";
             this.txtBoxPhonePat.Size = new System.Drawing.Size(109, 19);
             this.txtBoxPhonePat.TabIndex = 77;
+            // 
+            // customDateTimePicker1
+            // 
+            this.customDateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.customDateTimePicker1.BorderColors = System.Drawing.Color.PaleVioletRed;
+            this.customDateTimePicker1.BorderSize = 0;
+            this.customDateTimePicker1.CalendarTitleForeColor = System.Drawing.Color.Green;
+            this.customDateTimePicker1.CustomFormat = "";
+            this.customDateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.customDateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.customDateTimePicker1.Location = new System.Drawing.Point(667, 188);
+            this.customDateTimePicker1.MinimumSize = new System.Drawing.Size(4, 25);
+            this.customDateTimePicker1.Name = "customDateTimePicker1";
+            this.customDateTimePicker1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.customDateTimePicker1.Size = new System.Drawing.Size(109, 25);
+            this.customDateTimePicker1.SkinColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(46)))), ((int)(((byte)(86)))));
+            this.customDateTimePicker1.TabIndex = 43;
+            this.customDateTimePicker1.TxtColor = System.Drawing.Color.DarkGray;
             // 
             // Patients
             // 

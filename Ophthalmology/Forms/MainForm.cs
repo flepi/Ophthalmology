@@ -452,5 +452,19 @@ namespace Ophthalmology
             //Выше код
             hidePanel();
         }
+
+        async void iconSetHome_Paint(object sender, PaintEventArgs e)
+        {
+        //    await Task.Run(async () =>
+        //    {
+        //        Pen pen = new Pen(iconSetHome.ForeColor, 3);
+        //        for (int i = 40; i > 1; i--, await Task.Delay(40))
+        //        {
+        //            //iconSetHome.CreateGraphics().Clear(SystemColors.Control);
+        //            pen.DashPattern = new float[] { 3, i };
+        //            iconSetHome.CreateGraphics().DrawRectangle(pen, 1, 1, iconSetHome.Width - 2, iconSetHome.Height - 2);
+        //        }
+        //    });
+        }
     }
 }

@@ -254,5 +254,14 @@ namespace Ophthalmology.Forms
         {
             (dataGridView1.DataSource as DataTable).DefaultView.RowFilter = $"fio LIKE '%{SearchTxt.Text}%'";
         }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MessageBox.Show("\nФИО Пациента: " + dataGridView1.CurrentRow.Cells["fio"].Value.ToString()
+                + "\nДолжность: " + dataGridView1.CurrentRow.Cells["position"].Value.ToString()
+                + "\nФИО Врача: " + dataGridView1.CurrentRow.Cells["doc"].Value.ToString()
+                + "\nДень приёма: " + dataGridView1.CurrentRow.Cells["date"].Value.ToString()
+                + "\nВремя приёма: " + dataGridView1.CurrentRow.Cells["time"].Value.ToString(), "Информация о приёме ");
+        }
     }
 }
